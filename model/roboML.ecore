@@ -16,18 +16,19 @@
   <eClassifiers xsi:type="ecore:EEnum" name="Direction">
     <eLiterals name="forward" literal="forward"/>
     <eLiterals name="backward" value="1"/>
+    <eLiterals name="sideLeft" value="2"/>
+    <eLiterals name="sideRight" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Deplacement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="movement" lowerBound="1"
         eType="#//Movement"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deplacementLentgh" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" lowerBound="1" eType="#//Unit"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="speed" lowerBound="1" eType="#//Speed"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deplacementDistance" eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rotation" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotationAngle" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotationSense" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotationAngle" eType="#//RMLObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotationSense" eType="#//RMLObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
@@ -35,28 +36,29 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="booleanexpression" lowerBound="1"
         eType="#//BooleanExpression"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
-        eType="#//Variable" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" eSuperTypes="#//Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+        upperBound="2" eType="#//Entity" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
         eType="#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newAttribute" eType="#//RMLObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="#//RMLObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
         eType="#//Variable" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableName" eType="#//RMLObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableValue" eType="#//RMLObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assignement" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variableToAssign" eType="#//Variable"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueToAssign" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignableVariable" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+        eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sensor" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorValue" eType="#//RMLObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="getSetSensorValue" eType="#//GetSetValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TimeSensor" eSuperTypes="#//Sensor"/>
@@ -64,11 +66,39 @@
   <eClassifiers xsi:type="ecore:EClass" name="DistanceSensor" eSuperTypes="#//Sensor"/>
   <eClassifiers xsi:type="ecore:EClass" name="GetSetValue" eSuperTypes="#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Speed">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deplacementSpeed" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deplacementSpeed" eType="#//RMLObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="getsetSpeedValue" eType="#//GetSetValue"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Variable">
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" lowerBound="1"
         eType="#//Function"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Condition" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statementIf" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statementElse" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanexpression" eType="#//BooleanExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RoboMLProgram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" upperBound="-1"
+        eType="#//Function" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ArithmeticExpression" eSuperTypes="#//Entity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+        upperBound="2" eType="#//Entity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RMLObject">
+    <eLiterals name="RMLInt"/>
+    <eLiterals name="RMLString" value="1"/>
+    <eLiterals name="RMLFloat" value="2"/>
+    <eLiterals name="RMLDouble" value="3"/>
+    <eLiterals name="RMLBoolean" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RMLObjectInstance" eSuperTypes="#//Entity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//RMLObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity"/>
 </ecore:EPackage>

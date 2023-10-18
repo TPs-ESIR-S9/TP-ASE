@@ -4,7 +4,7 @@
     <semanticResources>roboML.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_vrN1cGvsEe6d_sV6BSG1qw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_wAAZsGvsEe6d_sV6BSG1qw" name="roboML" repPath="#_v5PqYGvsEe6d_sV6BSG1qw" changeId="1697614530444">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_wAAZsGvsEe6d_sV6BSG1qw" name="roboML" repPath="#_v5PqYGvsEe6d_sV6BSG1qw" changeId="1697618673796">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="roboML.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -402,7 +402,7 @@
         <styles xmi:type="notation:DiagramStyle" xmi:id="_wBXEkmvsEe6d_sV6BSG1qw"/>
         <edges xmi:type="notation:Edge" xmi:id="_uLwGcGvvEe6Sa95bTnlreg" type="4001" element="_uLqm5mvvEe6Sa95bTnlreg" source="_WDvkoGvvEe6Sa95bTnlreg" target="_N7F38GvuEe6Sa95bTnlreg">
           <children xmi:type="notation:Node" xmi:id="_uLwGdGvvEe6Sa95bTnlreg" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uLwGdWvvEe6Sa95bTnlreg" x="-1" y="6"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uLwGdWvvEe6Sa95bTnlreg" x="-21" y="10"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_uLwGdmvvEe6Sa95bTnlreg" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uLwGd2vvEe6Sa95bTnlreg" x="1" y="10"/>

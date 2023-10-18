@@ -2,6 +2,7 @@
  */
 package roboML;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link roboML.Variable#getVariableName <em>Variable Name</em>}</li>
  *   <li>{@link roboML.Variable#getVariableValue <em>Variable Value</em>}</li>
+ *   <li>{@link roboML.Variable#getVariableref <em>Variableref</em>}</li>
  * </ul>
  *
  * @see roboML.RoboMLPackage#getVariable()
@@ -71,5 +73,17 @@ public interface Variable extends EObject {
 	 * @generated
 	 */
 	void setVariableValue(RMLObject value);
+
+	/**
+	 * Returns the value of the '<em><b>Variableref</b></em>' containment reference list.
+	 * The list contents are of type {@link roboML.VariableRef}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Variableref</em>' containment reference list.
+	 * @see roboML.RoboMLPackage#getVariable_Variableref()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<VariableRef> getVariableref();
 
 } // Variable

@@ -95,6 +95,8 @@ public class RoboMLFactoryImpl extends EFactoryImpl implements RoboMLFactory {
 			return createEntity();
 		case RoboMLPackage.GET_VALUE:
 			return createGetValue();
+		case RoboMLPackage.VARIABLE_REF:
+			return createVariableRef();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -345,6 +347,17 @@ public class RoboMLFactoryImpl extends EFactoryImpl implements RoboMLFactory {
 	public GetValue createGetValue() {
 		GetValueImpl getValue = new GetValueImpl();
 		return getValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public VariableRef createVariableRef() {
+		VariableRefImpl variableRef = new VariableRefImpl();
+		return variableRef;
 	}
 
 	/**

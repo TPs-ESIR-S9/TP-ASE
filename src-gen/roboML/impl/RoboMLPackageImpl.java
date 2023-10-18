@@ -36,6 +36,7 @@ import roboML.TimeSensor;
 import roboML.Unit;
 import roboML.UnitMeasure;
 import roboML.Variable;
+import roboML.VariableRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -190,6 +191,13 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	 * @generated
 	 */
 	private EClass getValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variableRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -532,6 +540,16 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getVariable_Variableref() {
+		return (EReference) variableEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAssignement() {
 		return assignementEClass;
 	}
@@ -832,6 +850,16 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getVariableRef() {
+		return variableRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EEnum getUnitMeasure() {
 		return unitMeasureEEnum;
 	}
@@ -918,6 +946,7 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		variableEClass = createEClass(VARIABLE);
 		createEAttribute(variableEClass, VARIABLE__VARIABLE_NAME);
 		createEAttribute(variableEClass, VARIABLE__VARIABLE_VALUE);
+		createEReference(variableEClass, VARIABLE__VARIABLEREF);
 
 		assignementEClass = createEClass(ASSIGNEMENT);
 		createEReference(assignementEClass, ASSIGNEMENT__ASSIGNABLE_VARIABLE);
@@ -961,6 +990,8 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		createEAttribute(entityEClass, ENTITY__ENTITY_TYPE);
 
 		getValueEClass = createEClass(GET_VALUE);
+
+		variableRefEClass = createEClass(VARIABLE_REF);
 
 		// Create enums
 		unitMeasureEEnum = createEEnum(UNIT_MEASURE);
@@ -1009,6 +1040,7 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		conditionEClass.getESuperTypes().add(this.getStatement());
 		arithmeticExpressionEClass.getESuperTypes().add(this.getEntity());
 		getValueEClass.getESuperTypes().add(this.getEntity());
+		variableRefEClass.getESuperTypes().add(this.getEntity());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(unitEClass, Unit.class, "Unit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1078,6 +1110,9 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVariable_VariableValue(), this.getRMLObject(), "variableValue", null, 0, 1, Variable.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVariable_Variableref(), this.getVariableRef(), null, "variableref", null, 0, -1,
+				Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(assignementEClass, Assignement.class, "Assignement", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1161,6 +1196,9 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(getValueEClass, GetValue.class, "GetValue", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(variableRefEClass, VariableRef.class, "VariableRef", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals

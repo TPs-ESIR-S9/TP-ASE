@@ -10,9 +10,6 @@
     <eLiterals name="cm" value="2"/>
     <eLiterals name="mm" value="3"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Movement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="movementType" eType="#//Direction"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Direction">
     <eLiterals name="forward" literal="forward"/>
     <eLiterals name="backward" value="1"/>
@@ -21,10 +18,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Deplacement" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="movement" lowerBound="1"
-        eType="#//Movement"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" lowerBound="1" eType="#//Unit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deplacementDistance" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="movementType" eType="#//Direction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rotation" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rotationAngle" lowerBound="1"
@@ -35,13 +31,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
         eType="#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanexpression" lowerBound="1"
-        eType="#//BooleanExpression"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" eSuperTypes="#//Entity">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elementA" lowerBound="1"
-        eType="#//Entity"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="elementB" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanExpression" eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
@@ -54,6 +46,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableName" eType="#//RMLObject"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="variableValue" eType="#//RMLObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableref" upperBound="-1"
+        eType="#//VariableRef" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Assignement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignableVariable" eType="#//Variable"/>
@@ -85,7 +79,9 @@
         eType="#//Statement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statementElse" upperBound="-1"
         eType="#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanexpression" eType="#//BooleanExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
+        eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="booleanExpression" eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RoboMLProgram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" upperBound="-1"
@@ -97,6 +93,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementA" lowerBound="1"
         eType="#//Entity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementB" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="arithmeticOperator" eType="#//ArithmeticOperators"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RMLObject">
     <eLiterals name="RMLInt"/>
@@ -109,4 +106,29 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityType" eType="#//RMLObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GetValue" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableRef" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ArithmeticOperators">
+    <eLiterals name="+"/>
+    <eLiterals name="-" value="1"/>
+    <eLiterals name="*" value="2"/>
+    <eLiterals name="/" value="3"/>
+    <eLiterals name="%" value="4"/>
+    <eLiterals name="**" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementA" lowerBound="1"
+        eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementB" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanOperator" eType="#//BooleanOperators"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="BooleanOperators">
+    <eLiterals name="&lt;"/>
+    <eLiterals name="&lt;=" value="1"/>
+    <eLiterals name="==" value="2"/>
+    <eLiterals name=">" value="3"/>
+    <eLiterals name=">=" value="4"/>
+    <eLiterals name="!=" value="5"/>
+    <eLiterals name="&amp;&amp;" value="6"/>
+    <eLiterals name="II" value="7"/>
+  </eClassifiers>
 </ecore:EPackage>

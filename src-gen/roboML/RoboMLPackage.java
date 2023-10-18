@@ -463,13 +463,22 @@ public interface RoboMLPackage extends EPackage {
 	int VARIABLE__VARIABLE_VALUE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Variableref</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE__VARIABLEREF = 2;
+
+	/**
 	 * The number of structural features of the '<em>Variable</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_COUNT = 2;
+	int VARIABLE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Variable</em>' class.
@@ -1024,6 +1033,43 @@ public interface RoboMLPackage extends EPackage {
 	int GET_VALUE_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link roboML.impl.VariableRefImpl <em>Variable Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see roboML.impl.VariableRefImpl
+	 * @see roboML.impl.RoboMLPackageImpl#getVariableRef()
+	 * @generated
+	 */
+	int VARIABLE_REF = 21;
+
+	/**
+	 * The feature id for the '<em><b>Entity Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_REF__ENTITY_TYPE = ENTITY__ENTITY_TYPE;
+
+	/**
+	 * The number of structural features of the '<em>Variable Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_REF_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Variable Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_REF_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link roboML.UnitMeasure <em>Unit Measure</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1031,7 +1077,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getUnitMeasure()
 	 * @generated
 	 */
-	int UNIT_MEASURE = 21;
+	int UNIT_MEASURE = 22;
 
 	/**
 	 * The meta object id for the '{@link roboML.Direction <em>Direction</em>}' enum.
@@ -1041,7 +1087,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getDirection()
 	 * @generated
 	 */
-	int DIRECTION = 22;
+	int DIRECTION = 23;
 
 	/**
 	 * The meta object id for the '{@link roboML.RMLObject <em>RML Object</em>}' enum.
@@ -1051,7 +1097,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getRMLObject()
 	 * @generated
 	 */
-	int RML_OBJECT = 23;
+	int RML_OBJECT = 24;
 
 	/**
 	 * Returns the meta object for class '{@link roboML.Unit <em>Unit</em>}'.
@@ -1319,6 +1365,17 @@ public interface RoboMLPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVariable_VariableValue();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link roboML.Variable#getVariableref <em>Variableref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Variableref</em>'.
+	 * @see roboML.Variable#getVariableref()
+	 * @see #getVariable()
+	 * @generated
+	 */
+	EReference getVariable_Variableref();
 
 	/**
 	 * Returns the meta object for class '{@link roboML.Assignement <em>Assignement</em>}'.
@@ -1638,6 +1695,16 @@ public interface RoboMLPackage extends EPackage {
 	EClass getGetValue();
 
 	/**
+	 * Returns the meta object for class '{@link roboML.VariableRef <em>Variable Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Variable Ref</em>'.
+	 * @see roboML.VariableRef
+	 * @generated
+	 */
+	EClass getVariableRef();
+
+	/**
 	 * Returns the meta object for enum '{@link roboML.UnitMeasure <em>Unit Measure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1907,6 +1974,14 @@ public interface RoboMLPackage extends EPackage {
 		EAttribute VARIABLE__VARIABLE_VALUE = eINSTANCE.getVariable_VariableValue();
 
 		/**
+		 * The meta object literal for the '<em><b>Variableref</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE__VARIABLEREF = eINSTANCE.getVariable_Variableref();
+
+		/**
 		 * The meta object literal for the '{@link roboML.impl.AssignementImpl <em>Assignement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2171,6 +2246,16 @@ public interface RoboMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GET_VALUE = eINSTANCE.getGetValue();
+
+		/**
+		 * The meta object literal for the '{@link roboML.impl.VariableRefImpl <em>Variable Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see roboML.impl.VariableRefImpl
+		 * @see roboML.impl.RoboMLPackageImpl#getVariableRef()
+		 * @generated
+		 */
+		EClass VARIABLE_REF = eINSTANCE.getVariableRef();
 
 		/**
 		 * The meta object literal for the '{@link roboML.UnitMeasure <em>Unit Measure</em>}' enum.

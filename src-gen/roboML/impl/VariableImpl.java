@@ -2,16 +2,23 @@
  */
 package roboML.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import roboML.RMLObject;
 import roboML.RoboMLPackage;
 import roboML.Variable;
+import roboML.VariableRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +30,7 @@ import roboML.Variable;
  * <ul>
  *   <li>{@link roboML.impl.VariableImpl#getVariableName <em>Variable Name</em>}</li>
  *   <li>{@link roboML.impl.VariableImpl#getVariableValue <em>Variable Value</em>}</li>
+ *   <li>{@link roboML.impl.VariableImpl#getVariableref <em>Variableref</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,6 +75,16 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * @ordered
 	 */
 	protected RMLObject variableValue = VARIABLE_VALUE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getVariableref() <em>Variableref</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getVariableref()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<VariableRef> variableref;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,12 +159,42 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * @generated
 	 */
 	@Override
+	public EList<VariableRef> getVariableref() {
+		if (variableref == null) {
+			variableref = new EObjectContainmentEList<VariableRef>(VariableRef.class, this,
+					RoboMLPackage.VARIABLE__VARIABLEREF);
+		}
+		return variableref;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case RoboMLPackage.VARIABLE__VARIABLEREF:
+			return ((InternalEList<?>) getVariableref()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case RoboMLPackage.VARIABLE__VARIABLE_NAME:
 			return getVariableName();
 		case RoboMLPackage.VARIABLE__VARIABLE_VALUE:
 			return getVariableValue();
+		case RoboMLPackage.VARIABLE__VARIABLEREF:
+			return getVariableref();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,6 +204,7 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -164,6 +213,10 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 			return;
 		case RoboMLPackage.VARIABLE__VARIABLE_VALUE:
 			setVariableValue((RMLObject) newValue);
+			return;
+		case RoboMLPackage.VARIABLE__VARIABLEREF:
+			getVariableref().clear();
+			getVariableref().addAll((Collection<? extends VariableRef>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -183,6 +236,9 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 		case RoboMLPackage.VARIABLE__VARIABLE_VALUE:
 			setVariableValue(VARIABLE_VALUE_EDEFAULT);
 			return;
+		case RoboMLPackage.VARIABLE__VARIABLEREF:
+			getVariableref().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -199,6 +255,8 @@ public class VariableImpl extends MinimalEObjectImpl.Container implements Variab
 			return variableName != VARIABLE_NAME_EDEFAULT;
 		case RoboMLPackage.VARIABLE__VARIABLE_VALUE:
 			return variableValue != VARIABLE_VALUE_EDEFAULT;
+		case RoboMLPackage.VARIABLE__VARIABLEREF:
+			return variableref != null && !variableref.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

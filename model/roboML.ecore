@@ -108,12 +108,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="GetValue" eSuperTypes="#//Entity"/>
   <eClassifiers xsi:type="ecore:EClass" name="VariableRef" eSuperTypes="#//Entity"/>
   <eClassifiers xsi:type="ecore:EEnum" name="ArithmeticOperators">
-    <eLiterals name="+"/>
-    <eLiterals name="-" value="1"/>
-    <eLiterals name="*" value="2"/>
-    <eLiterals name="/" value="3"/>
-    <eLiterals name="%" value="4"/>
-    <eLiterals name="**" value="5"/>
+    <eLiterals name="Plus"/>
+    <eLiterals name="Minus" value="1"/>
+    <eLiterals name="Multiplie" value="2"/>
+    <eLiterals name="Divide" value="3"/>
+    <eLiterals name="Modulo" value="4"/>
+    <eLiterals name="Power" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementA" lowerBound="1"
@@ -122,13 +122,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="booleanOperator" eType="#//BooleanOperators"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="BooleanOperators">
-    <eLiterals name="&lt;"/>
-    <eLiterals name="&lt;=" value="1"/>
-    <eLiterals name="==" value="2"/>
-    <eLiterals name=">" value="3"/>
-    <eLiterals name=">=" value="4"/>
-    <eLiterals name="!=" value="5"/>
-    <eLiterals name="&amp;&amp;" value="6"/>
-    <eLiterals name="II" value="7"/>
+    <eLiterals name="Inferior"/>
+    <eLiterals name="InferiorEq" value="1"/>
+    <eLiterals name="Equals" value="2"/>
+    <eLiterals name="Superior" value="3"/>
+    <eLiterals name="SuperiorEq" value="4"/>
+    <eLiterals name="Different" value="5"/>
+    <eLiterals name="And" value="6"/>
+    <eLiterals name="Or" value="7"/>
   </eClassifiers>
 </ecore:EPackage>

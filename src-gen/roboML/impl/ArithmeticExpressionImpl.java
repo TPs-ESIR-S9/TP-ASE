@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import roboML.ArithmeticExpression;
+import roboML.ArithmeticOperators;
 import roboML.Entity;
 import roboML.RoboMLPackage;
 import roboML.Variable;
@@ -33,6 +34,7 @@ import roboML.Variable;
  *   <li>{@link roboML.impl.ArithmeticExpressionImpl#getVariable <em>Variable</em>}</li>
  *   <li>{@link roboML.impl.ArithmeticExpressionImpl#getElementA <em>Element A</em>}</li>
  *   <li>{@link roboML.impl.ArithmeticExpressionImpl#getElementB <em>Element B</em>}</li>
+ *   <li>{@link roboML.impl.ArithmeticExpressionImpl#getArithmeticOperator <em>Arithmetic Operator</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,6 +69,26 @@ public class ArithmeticExpressionImpl extends EntityImpl implements ArithmeticEx
 	 * @ordered
 	 */
 	protected Entity elementB;
+
+	/**
+	 * The default value of the '{@link #getArithmeticOperator() <em>Arithmetic Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArithmeticOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ArithmeticOperators ARITHMETIC_OPERATOR_EDEFAULT = ArithmeticOperators.PLUS;
+
+	/**
+	 * The cached value of the '{@link #getArithmeticOperator() <em>Arithmetic Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArithmeticOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected ArithmeticOperators arithmeticOperator = ARITHMETIC_OPERATOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -191,6 +213,31 @@ public class ArithmeticExpressionImpl extends EntityImpl implements ArithmeticEx
 	 * @generated
 	 */
 	@Override
+	public ArithmeticOperators getArithmeticOperator() {
+		return arithmeticOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setArithmeticOperator(ArithmeticOperators newArithmeticOperator) {
+		ArithmeticOperators oldArithmeticOperator = arithmeticOperator;
+		arithmeticOperator = newArithmeticOperator == null ? ARITHMETIC_OPERATOR_EDEFAULT : newArithmeticOperator;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					RoboMLPackage.ARITHMETIC_EXPRESSION__ARITHMETIC_OPERATOR, oldArithmeticOperator,
+					arithmeticOperator));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case RoboMLPackage.ARITHMETIC_EXPRESSION__VARIABLE:
@@ -217,6 +264,8 @@ public class ArithmeticExpressionImpl extends EntityImpl implements ArithmeticEx
 			if (resolve)
 				return getElementB();
 			return basicGetElementB();
+		case RoboMLPackage.ARITHMETIC_EXPRESSION__ARITHMETIC_OPERATOR:
+			return getArithmeticOperator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -240,6 +289,9 @@ public class ArithmeticExpressionImpl extends EntityImpl implements ArithmeticEx
 		case RoboMLPackage.ARITHMETIC_EXPRESSION__ELEMENT_B:
 			setElementB((Entity) newValue);
 			return;
+		case RoboMLPackage.ARITHMETIC_EXPRESSION__ARITHMETIC_OPERATOR:
+			setArithmeticOperator((ArithmeticOperators) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -261,6 +313,9 @@ public class ArithmeticExpressionImpl extends EntityImpl implements ArithmeticEx
 		case RoboMLPackage.ARITHMETIC_EXPRESSION__ELEMENT_B:
 			setElementB((Entity) null);
 			return;
+		case RoboMLPackage.ARITHMETIC_EXPRESSION__ARITHMETIC_OPERATOR:
+			setArithmeticOperator(ARITHMETIC_OPERATOR_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -279,8 +334,27 @@ public class ArithmeticExpressionImpl extends EntityImpl implements ArithmeticEx
 			return elementA != null;
 		case RoboMLPackage.ARITHMETIC_EXPRESSION__ELEMENT_B:
 			return elementB != null;
+		case RoboMLPackage.ARITHMETIC_EXPRESSION__ARITHMETIC_OPERATOR:
+			return arithmeticOperator != ARITHMETIC_OPERATOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (arithmeticOperator: ");
+		result.append(arithmeticOperator);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ArithmeticExpressionImpl

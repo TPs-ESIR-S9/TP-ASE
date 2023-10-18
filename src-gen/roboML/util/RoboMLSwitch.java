@@ -107,15 +107,6 @@ public class RoboMLSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case RoboMLPackage.BOOLEAN_EXPRESSION: {
-			BooleanExpression booleanExpression = (BooleanExpression) theEObject;
-			T result = caseBooleanExpression(booleanExpression);
-			if (result == null)
-				result = caseEntity(booleanExpression);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case RoboMLPackage.FUNCTION: {
 			Function function = (Function) theEObject;
 			T result = caseFunction(function);
@@ -242,6 +233,13 @@ public class RoboMLSwitch<T> extends Switch<T> {
 			T result = caseVariableRef(variableRef);
 			if (result == null)
 				result = caseEntity(variableRef);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RoboMLPackage.BOOLEAN_EXPRESSION: {
+			BooleanExpression booleanExpression = (BooleanExpression) theEObject;
+			T result = caseBooleanExpression(booleanExpression);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;

@@ -4,7 +4,7 @@
     <semanticResources>roboML.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_vrN1cGvsEe6d_sV6BSG1qw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_wAAZsGvsEe6d_sV6BSG1qw" name="roboML" repPath="#_v5PqYGvsEe6d_sV6BSG1qw" changeId="1697614021422">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_wAAZsGvsEe6d_sV6BSG1qw" name="roboML" repPath="#_v5PqYGvsEe6d_sV6BSG1qw" changeId="1697614530444">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="roboML.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -1600,7 +1600,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_KBMlYG2HEe6EmpxoGKcn_A" name="arithmeticOperator : ArithmeticOperators = +" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_KBMlYG2HEe6EmpxoGKcn_A" name="arithmeticOperator : ArithmeticOperators = Plus" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="roboML.ecore#//ArithmeticExpression/arithmeticOperator"/>
         <semanticElements xmi:type="ecore:EAttribute" href="roboML.ecore#//ArithmeticExpression/arithmeticOperator"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_MjRgk22HEe6EmpxoGKcn_A" labelAlignment="LEFT">
@@ -1910,49 +1910,49 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_yMTM0G2GEe6EmpxoGKcn_A" name="+" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/+"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/+"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_yMTM0G2GEe6EmpxoGKcn_A" name="Plus" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Plus"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Plus"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_yMTM0W2GEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_1tliQG2GEe6EmpxoGKcn_A" name="-" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/-"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/-"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_1tliQG2GEe6EmpxoGKcn_A" name="Minus" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Minus"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Minus"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_1tliQW2GEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_2iLn8G2GEe6EmpxoGKcn_A" name="*" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/*"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/*"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_2iLn8G2GEe6EmpxoGKcn_A" name="Multiplie" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Multiplie"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Multiplie"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_2iLn8W2GEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_3QyaYG2GEe6EmpxoGKcn_A" name="/" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/%2F"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/%2F"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_3QyaYG2GEe6EmpxoGKcn_A" name="Divide" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Divide"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Divide"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_3QyaYW2GEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_4BWUoG2GEe6EmpxoGKcn_A" name="%" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/%25"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/%25"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_4BWUoG2GEe6EmpxoGKcn_A" name="Modulo" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Modulo"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Modulo"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_4BWUoW2GEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_5hht8G2GEe6EmpxoGKcn_A" name="**" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/**"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/**"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_5hht8G2GEe6EmpxoGKcn_A" name="Power" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Power"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//ArithmeticOperators/Power"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_5hiVAG2GEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
@@ -1969,7 +1969,7 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_qJc7QG2HEe6EmpxoGKcn_A" name="booleanOperator : BooleanOperators = &lt;" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_qJc7QG2HEe6EmpxoGKcn_A" name="booleanOperator : BooleanOperators = Inferior" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="roboML.ecore#//BooleanExpression/booleanOperator"/>
         <semanticElements xmi:type="ecore:EAttribute" href="roboML.ecore#//BooleanExpression/booleanOperator"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_sSCYY22HEe6EmpxoGKcn_A" labelAlignment="LEFT">
@@ -2011,65 +2011,65 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_eHovMG2HEe6EmpxoGKcn_A" name="&lt;" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%3C"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%3C"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_eHovMG2HEe6EmpxoGKcn_A" name="Inferior" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Inferior"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Inferior"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_eHpWQG2HEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_e_iAgG2HEe6EmpxoGKcn_A" name="&lt;=" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%3C="/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%3C="/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_e_iAgG2HEe6EmpxoGKcn_A" name="InferiorEq" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/InferiorEq"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/InferiorEq"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_e_iAgW2HEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gJpqQG2HEe6EmpxoGKcn_A" name="==" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/=="/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/=="/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gJpqQG2HEe6EmpxoGKcn_A" name="Equals" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Equals"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Equals"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_gJpqQW2HEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_habVoG2HEe6EmpxoGKcn_A" name=">" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%3E"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%3E"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_habVoG2HEe6EmpxoGKcn_A" name="Superior" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Superior"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Superior"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_habVoW2HEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_iar4wG2HEe6EmpxoGKcn_A" name=">=" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%3E="/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%3E="/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_iar4wG2HEe6EmpxoGKcn_A" name="SuperiorEq" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/SuperiorEq"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/SuperiorEq"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_iasf0G2HEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_jPfZ0G2HEe6EmpxoGKcn_A" name="!=" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/!="/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/!="/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_jPfZ0G2HEe6EmpxoGKcn_A" name="Different" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Different"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Different"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_jPfZ0W2HEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_kZZBIG2HEe6EmpxoGKcn_A" name="&amp;&amp;" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%26%26"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/%26%26"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_kZZBIG2HEe6EmpxoGKcn_A" name="And" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/And"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/And"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_kZZBIW2HEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_lY9nwG2HEe6EmpxoGKcn_A" name="II" tooltipText="">
-        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/II"/>
-        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/II"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_lY9nwG2HEe6EmpxoGKcn_A" name="Or" tooltipText="">
+        <target xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Or"/>
+        <semanticElements xmi:type="ecore:EEnumLiteral" href="roboML.ecore#//BooleanOperators/Or"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_lY9nwW2HEe6EmpxoGKcn_A" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EEnum']/@subNodeMappings[name='EC%20EEnumLiteral']/@style"/>
         </ownedStyle>

@@ -14,8 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  *   <li>{@link roboML.Loop#getInstruction <em>Instruction</em>}</li>
- *   <li>{@link roboML.Loop#getBooleanexpression <em>Booleanexpression</em>}</li>
  *   <li>{@link roboML.Loop#getVariable <em>Variable</em>}</li>
+ *   <li>{@link roboML.Loop#getBooleanExpression <em>Boolean Expression</em>}</li>
  * </ul>
  *
  * @see roboML.RoboMLPackage#getLoop()
@@ -36,28 +36,6 @@ public interface Loop extends Statement {
 	EList<Statement> getInstruction();
 
 	/**
-	 * Returns the value of the '<em><b>Booleanexpression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Booleanexpression</em>' reference.
-	 * @see #setBooleanexpression(BooleanExpression)
-	 * @see roboML.RoboMLPackage#getLoop_Booleanexpression()
-	 * @model required="true"
-	 * @generated
-	 */
-	BooleanExpression getBooleanexpression();
-
-	/**
-	 * Sets the value of the '{@link roboML.Loop#getBooleanexpression <em>Booleanexpression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Booleanexpression</em>' reference.
-	 * @see #getBooleanexpression()
-	 * @generated
-	 */
-	void setBooleanexpression(BooleanExpression value);
-
-	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference list.
 	 * The list contents are of type {@link roboML.Variable}.
 	 * <!-- begin-user-doc -->
@@ -68,5 +46,27 @@ public interface Loop extends Statement {
 	 * @generated
 	 */
 	EList<Variable> getVariable();
+
+	/**
+	 * Returns the value of the '<em><b>Boolean Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Boolean Expression</em>' reference.
+	 * @see #setBooleanExpression(Entity)
+	 * @see roboML.RoboMLPackage#getLoop_BooleanExpression()
+	 * @model
+	 * @generated
+	 */
+	Entity getBooleanExpression();
+
+	/**
+	 * Sets the value of the '{@link roboML.Loop#getBooleanExpression <em>Boolean Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Boolean Expression</em>' reference.
+	 * @see #getBooleanExpression()
+	 * @generated
+	 */
+	void setBooleanExpression(Entity value);
 
 } // Loop

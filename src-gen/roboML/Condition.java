@@ -15,8 +15,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link roboML.Condition#getStatementIf <em>Statement If</em>}</li>
  *   <li>{@link roboML.Condition#getStatementElse <em>Statement Else</em>}</li>
- *   <li>{@link roboML.Condition#getBooleanexpression <em>Booleanexpression</em>}</li>
  *   <li>{@link roboML.Condition#getVariable <em>Variable</em>}</li>
+ *   <li>{@link roboML.Condition#getBooleanExpression <em>Boolean Expression</em>}</li>
  * </ul>
  *
  * @see roboML.RoboMLPackage#getCondition()
@@ -49,28 +49,6 @@ public interface Condition extends Statement {
 	EList<Statement> getStatementElse();
 
 	/**
-	 * Returns the value of the '<em><b>Booleanexpression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Booleanexpression</em>' reference.
-	 * @see #setBooleanexpression(BooleanExpression)
-	 * @see roboML.RoboMLPackage#getCondition_Booleanexpression()
-	 * @model
-	 * @generated
-	 */
-	BooleanExpression getBooleanexpression();
-
-	/**
-	 * Sets the value of the '{@link roboML.Condition#getBooleanexpression <em>Booleanexpression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Booleanexpression</em>' reference.
-	 * @see #getBooleanexpression()
-	 * @generated
-	 */
-	void setBooleanexpression(BooleanExpression value);
-
-	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference list.
 	 * The list contents are of type {@link roboML.Variable}.
 	 * <!-- begin-user-doc -->
@@ -81,5 +59,27 @@ public interface Condition extends Statement {
 	 * @generated
 	 */
 	EList<Variable> getVariable();
+
+	/**
+	 * Returns the value of the '<em><b>Boolean Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Boolean Expression</em>' reference.
+	 * @see #setBooleanExpression(Entity)
+	 * @see roboML.RoboMLPackage#getCondition_BooleanExpression()
+	 * @model
+	 * @generated
+	 */
+	Entity getBooleanExpression();
+
+	/**
+	 * Sets the value of the '{@link roboML.Condition#getBooleanExpression <em>Boolean Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Boolean Expression</em>' reference.
+	 * @see #getBooleanExpression()
+	 * @generated
+	 */
+	void setBooleanExpression(Entity value);
 
 } // Condition

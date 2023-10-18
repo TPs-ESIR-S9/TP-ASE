@@ -28,6 +28,24 @@
       <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//RMLObject/RMLDouble"/>
       <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//RMLObject/RMLBoolean"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roboML.ecore#//ArithmeticOperators">
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//ArithmeticOperators/Plus"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//ArithmeticOperators/Minus"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//ArithmeticOperators/Multiplie"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//ArithmeticOperators/Divide"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//ArithmeticOperators/Modulo"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//ArithmeticOperators/Power"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roboML.ecore#//BooleanOperators">
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//BooleanOperators/Inferior"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//BooleanOperators/InferiorEq"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//BooleanOperators/Equals"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//BooleanOperators/Superior"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//BooleanOperators/SuperiorEq"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//BooleanOperators/Different"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//BooleanOperators/And"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//BooleanOperators/Or"/>
+    </genEnums>
     <genClasses ecoreClass="roboML.ecore#//Unit">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Unit/Type"/>
     </genClasses>
@@ -43,12 +61,8 @@
     </genClasses>
     <genClasses ecoreClass="roboML.ecore#//Loop">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Loop/instruction"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Loop/booleanexpression"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Loop/variable"/>
-    </genClasses>
-    <genClasses ecoreClass="roboML.ecore#//BooleanExpression">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//BooleanExpression/elementA"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//BooleanExpression/elementB"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Loop/booleanExpression"/>
     </genClasses>
     <genClasses ecoreClass="roboML.ecore#//Function">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Function/instruction"/>
@@ -59,6 +73,7 @@
     <genClasses ecoreClass="roboML.ecore#//Variable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Variable/variableName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Variable/variableValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Variable/variableref"/>
     </genClasses>
     <genClasses ecoreClass="roboML.ecore#//Assignement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Assignement/assignableVariable"/>
@@ -84,8 +99,8 @@
     <genClasses ecoreClass="roboML.ecore#//Condition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/statementIf"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/statementElse"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/booleanexpression"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/variable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/booleanExpression"/>
     </genClasses>
     <genClasses ecoreClass="roboML.ecore#//RoboMLProgram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//RoboMLProgram/function"/>
@@ -94,10 +109,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//ArithmeticExpression/variable"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//ArithmeticExpression/elementA"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//ArithmeticExpression/elementB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//ArithmeticExpression/arithmeticOperator"/>
     </genClasses>
     <genClasses ecoreClass="roboML.ecore#//Entity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Entity/entityType"/>
     </genClasses>
     <genClasses ecoreClass="roboML.ecore#//GetValue"/>
+    <genClasses ecoreClass="roboML.ecore#//VariableRef"/>
+    <genClasses ecoreClass="roboML.ecore#//BooleanExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//BooleanExpression/elementA"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//BooleanExpression/elementB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//BooleanExpression/booleanOperator"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

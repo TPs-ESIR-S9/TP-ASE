@@ -65,8 +65,6 @@ public class RoboMLFactoryImpl extends EFactoryImpl implements RoboMLFactory {
 			return createRotation();
 		case RoboMLPackage.LOOP:
 			return createLoop();
-		case RoboMLPackage.BOOLEAN_EXPRESSION:
-			return createBooleanExpression();
 		case RoboMLPackage.FUNCTION:
 			return createFunction();
 		case RoboMLPackage.VARIABLE:
@@ -97,6 +95,8 @@ public class RoboMLFactoryImpl extends EFactoryImpl implements RoboMLFactory {
 			return createGetValue();
 		case RoboMLPackage.VARIABLE_REF:
 			return createVariableRef();
+		case RoboMLPackage.BOOLEAN_EXPRESSION:
+			return createBooleanExpression();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -116,6 +116,10 @@ public class RoboMLFactoryImpl extends EFactoryImpl implements RoboMLFactory {
 			return createDirectionFromString(eDataType, initialValue);
 		case RoboMLPackage.RML_OBJECT:
 			return createRMLObjectFromString(eDataType, initialValue);
+		case RoboMLPackage.ARITHMETIC_OPERATORS:
+			return createArithmeticOperatorsFromString(eDataType, initialValue);
+		case RoboMLPackage.BOOLEAN_OPERATORS:
+			return createBooleanOperatorsFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -135,6 +139,10 @@ public class RoboMLFactoryImpl extends EFactoryImpl implements RoboMLFactory {
 			return convertDirectionToString(eDataType, instanceValue);
 		case RoboMLPackage.RML_OBJECT:
 			return convertRMLObjectToString(eDataType, instanceValue);
+		case RoboMLPackage.ARITHMETIC_OPERATORS:
+			return convertArithmeticOperatorsToString(eDataType, instanceValue);
+		case RoboMLPackage.BOOLEAN_OPERATORS:
+			return convertBooleanOperatorsToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -423,6 +431,50 @@ public class RoboMLFactoryImpl extends EFactoryImpl implements RoboMLFactory {
 	 * @generated
 	 */
 	public String convertRMLObjectToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ArithmeticOperators createArithmeticOperatorsFromString(EDataType eDataType, String initialValue) {
+		ArithmeticOperators result = ArithmeticOperators.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertArithmeticOperatorsToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BooleanOperators createBooleanOperatorsFromString(EDataType eDataType, String initialValue) {
+		BooleanOperators result = BooleanOperators.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBooleanOperatorsToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

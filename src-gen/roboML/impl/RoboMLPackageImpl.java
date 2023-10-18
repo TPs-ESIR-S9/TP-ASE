@@ -11,8 +11,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import roboML.ArithmeticExpression;
+import roboML.ArithmeticOperators;
 import roboML.Assignement;
 import roboML.BooleanExpression;
+import roboML.BooleanOperators;
 import roboML.Condition;
 import roboML.Deplacement;
 import roboML.Direction;
@@ -221,6 +223,20 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	private EEnum rmlObjectEEnum = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum arithmeticOperatorsEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum booleanOperatorsEEnum = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -410,7 +426,7 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getLoop_Booleanexpression() {
+	public EReference getLoop_Variable() {
 		return (EReference) loopEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -420,7 +436,7 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getLoop_Variable() {
+	public EReference getLoop_BooleanExpression() {
 		return (EReference) loopEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -452,6 +468,16 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	@Override
 	public EReference getBooleanExpression_ElementB() {
 		return (EReference) booleanExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getBooleanExpression_BooleanOperator() {
+		return (EAttribute) booleanExpressionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -740,7 +766,7 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCondition_Booleanexpression() {
+	public EReference getCondition_Variable() {
 		return (EReference) conditionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -750,7 +776,7 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getCondition_Variable() {
+	public EReference getCondition_BooleanExpression() {
 		return (EReference) conditionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -812,6 +838,16 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	@Override
 	public EReference getArithmeticExpression_ElementB() {
 		return (EReference) arithmeticExpressionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getArithmeticExpression_ArithmeticOperator() {
+		return (EAttribute) arithmeticExpressionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -890,6 +926,26 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 	 * @generated
 	 */
 	@Override
+	public EEnum getArithmeticOperators() {
+		return arithmeticOperatorsEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EEnum getBooleanOperators() {
+		return booleanOperatorsEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RoboMLFactory getRoboMLFactory() {
 		return (RoboMLFactory) getEFactoryInstance();
 	}
@@ -930,12 +986,8 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 
 		loopEClass = createEClass(LOOP);
 		createEReference(loopEClass, LOOP__INSTRUCTION);
-		createEReference(loopEClass, LOOP__BOOLEANEXPRESSION);
 		createEReference(loopEClass, LOOP__VARIABLE);
-
-		booleanExpressionEClass = createEClass(BOOLEAN_EXPRESSION);
-		createEReference(booleanExpressionEClass, BOOLEAN_EXPRESSION__ELEMENT_A);
-		createEReference(booleanExpressionEClass, BOOLEAN_EXPRESSION__ELEMENT_B);
+		createEReference(loopEClass, LOOP__BOOLEAN_EXPRESSION);
 
 		functionEClass = createEClass(FUNCTION);
 		createEReference(functionEClass, FUNCTION__INSTRUCTION);
@@ -975,8 +1027,8 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		conditionEClass = createEClass(CONDITION);
 		createEReference(conditionEClass, CONDITION__STATEMENT_IF);
 		createEReference(conditionEClass, CONDITION__STATEMENT_ELSE);
-		createEReference(conditionEClass, CONDITION__BOOLEANEXPRESSION);
 		createEReference(conditionEClass, CONDITION__VARIABLE);
+		createEReference(conditionEClass, CONDITION__BOOLEAN_EXPRESSION);
 
 		roboMLProgramEClass = createEClass(ROBO_ML_PROGRAM);
 		createEReference(roboMLProgramEClass, ROBO_ML_PROGRAM__FUNCTION);
@@ -985,6 +1037,7 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		createEReference(arithmeticExpressionEClass, ARITHMETIC_EXPRESSION__VARIABLE);
 		createEReference(arithmeticExpressionEClass, ARITHMETIC_EXPRESSION__ELEMENT_A);
 		createEReference(arithmeticExpressionEClass, ARITHMETIC_EXPRESSION__ELEMENT_B);
+		createEAttribute(arithmeticExpressionEClass, ARITHMETIC_EXPRESSION__ARITHMETIC_OPERATOR);
 
 		entityEClass = createEClass(ENTITY);
 		createEAttribute(entityEClass, ENTITY__ENTITY_TYPE);
@@ -993,10 +1046,17 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 
 		variableRefEClass = createEClass(VARIABLE_REF);
 
+		booleanExpressionEClass = createEClass(BOOLEAN_EXPRESSION);
+		createEReference(booleanExpressionEClass, BOOLEAN_EXPRESSION__ELEMENT_A);
+		createEReference(booleanExpressionEClass, BOOLEAN_EXPRESSION__ELEMENT_B);
+		createEAttribute(booleanExpressionEClass, BOOLEAN_EXPRESSION__BOOLEAN_OPERATOR);
+
 		// Create enums
 		unitMeasureEEnum = createEEnum(UNIT_MEASURE);
 		directionEEnum = createEEnum(DIRECTION);
 		rmlObjectEEnum = createEEnum(RML_OBJECT);
+		arithmeticOperatorsEEnum = createEEnum(ARITHMETIC_OPERATORS);
+		booleanOperatorsEEnum = createEEnum(BOOLEAN_OPERATORS);
 	}
 
 	/**
@@ -1031,7 +1091,6 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		deplacementEClass.getESuperTypes().add(this.getStatement());
 		rotationEClass.getESuperTypes().add(this.getStatement());
 		loopEClass.getESuperTypes().add(this.getStatement());
-		booleanExpressionEClass.getESuperTypes().add(this.getEntity());
 		assignementEClass.getESuperTypes().add(this.getStatement());
 		timeSensorEClass.getESuperTypes().add(this.getSensor());
 		distanceSensorEClass.getESuperTypes().add(this.getSensor());
@@ -1075,21 +1134,12 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		initEReference(getLoop_Instruction(), this.getStatement(), null, "instruction", null, 0, -1, Loop.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLoop_Booleanexpression(), this.getBooleanExpression(), null, "booleanexpression", null, 1, 1,
-				Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLoop_Variable(), this.getVariable(), null, "variable", null, 0, -1, Loop.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
-
-		initEClass(booleanExpressionEClass, BooleanExpression.class, "BooleanExpression", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBooleanExpression_ElementA(), this.getEntity(), null, "elementA", null, 1, 1,
-				BooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBooleanExpression_ElementB(), this.getEntity(), null, "elementB", null, 0, 1,
-				BooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLoop_BooleanExpression(), this.getEntity(), null, "booleanExpression", null, 0, 1, Loop.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionEClass, Function.class, "Function", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1166,12 +1216,12 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		initEReference(getCondition_StatementElse(), this.getStatement(), null, "statementElse", null, 0, -1,
 				Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCondition_Booleanexpression(), this.getBooleanExpression(), null, "booleanexpression", null,
-				0, 1, Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCondition_Variable(), this.getVariable(), null, "variable", null, 0, -1, Condition.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCondition_BooleanExpression(), this.getEntity(), null, "booleanExpression", null, 0, 1,
+				Condition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(roboMLProgramEClass, RoboMLProgram.class, "RoboMLProgram", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
@@ -1190,6 +1240,9 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		initEReference(getArithmeticExpression_ElementB(), this.getEntity(), null, "elementB", null, 0, 1,
 				ArithmeticExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getArithmeticExpression_ArithmeticOperator(), this.getArithmeticOperators(),
+				"arithmeticOperator", null, 0, 1, ArithmeticExpression.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEntity_EntityType(), this.getRMLObject(), "entityType", null, 0, 1, Entity.class,
@@ -1200,6 +1253,18 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 
 		initEClass(variableRefEClass, VariableRef.class, "VariableRef", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(booleanExpressionEClass, BooleanExpression.class, "BooleanExpression", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBooleanExpression_ElementA(), this.getEntity(), null, "elementA", null, 1, 1,
+				BooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBooleanExpression_ElementB(), this.getEntity(), null, "elementB", null, 0, 1,
+				BooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBooleanExpression_BooleanOperator(), this.getBooleanOperators(), "booleanOperator", null, 0,
+				1, BooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(unitMeasureEEnum, UnitMeasure.class, "UnitMeasure");
@@ -1220,6 +1285,24 @@ public class RoboMLPackageImpl extends EPackageImpl implements RoboMLPackage {
 		addEEnumLiteral(rmlObjectEEnum, RMLObject.RML_FLOAT);
 		addEEnumLiteral(rmlObjectEEnum, RMLObject.RML_DOUBLE);
 		addEEnumLiteral(rmlObjectEEnum, RMLObject.RML_BOOLEAN);
+
+		initEEnum(arithmeticOperatorsEEnum, ArithmeticOperators.class, "ArithmeticOperators");
+		addEEnumLiteral(arithmeticOperatorsEEnum, ArithmeticOperators.PLUS);
+		addEEnumLiteral(arithmeticOperatorsEEnum, ArithmeticOperators.MINUS);
+		addEEnumLiteral(arithmeticOperatorsEEnum, ArithmeticOperators.MULTIPLIE);
+		addEEnumLiteral(arithmeticOperatorsEEnum, ArithmeticOperators.DIVIDE);
+		addEEnumLiteral(arithmeticOperatorsEEnum, ArithmeticOperators.MODULO);
+		addEEnumLiteral(arithmeticOperatorsEEnum, ArithmeticOperators.POWER);
+
+		initEEnum(booleanOperatorsEEnum, BooleanOperators.class, "BooleanOperators");
+		addEEnumLiteral(booleanOperatorsEEnum, BooleanOperators.INFERIOR);
+		addEEnumLiteral(booleanOperatorsEEnum, BooleanOperators.INFERIOR_EQ);
+		addEEnumLiteral(booleanOperatorsEEnum, BooleanOperators.EQUALS);
+		addEEnumLiteral(booleanOperatorsEEnum, BooleanOperators.SUPERIOR);
+		addEEnumLiteral(booleanOperatorsEEnum, BooleanOperators.SUPERIOR_EQ);
+		addEEnumLiteral(booleanOperatorsEEnum, BooleanOperators.DIFFERENT);
+		addEEnumLiteral(booleanOperatorsEEnum, BooleanOperators.AND);
+		addEEnumLiteral(booleanOperatorsEEnum, BooleanOperators.OR);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -243,22 +243,22 @@ public interface RoboMLPackage extends EPackage {
 	int LOOP__INSTRUCTION = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Booleanexpression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP__BOOLEANEXPRESSION = STATEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOOP__VARIABLE = STATEMENT_FEATURE_COUNT + 2;
+	int LOOP__VARIABLE = STATEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Boolean Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP__BOOLEAN_EXPRESSION = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Loop</em>' class.
@@ -286,34 +286,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getEntity()
 	 * @generated
 	 */
-	int ENTITY = 19;
-
-	/**
-	 * The feature id for the '<em><b>Entity Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTITY__ENTITY_TYPE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Entity</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTITY_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Entity</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENTITY_OPERATION_COUNT = 0;
+	int ENTITY = 18;
 
 	/**
 	 * The meta object id for the '{@link roboML.impl.BooleanExpressionImpl <em>Boolean Expression</em>}' class.
@@ -323,52 +296,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getBooleanExpression()
 	 * @generated
 	 */
-	int BOOLEAN_EXPRESSION = 5;
-
-	/**
-	 * The feature id for the '<em><b>Entity Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION__ENTITY_TYPE = ENTITY__ENTITY_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Element A</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION__ELEMENT_A = ENTITY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Element B</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION__ELEMENT_B = ENTITY_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Boolean Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Boolean Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_EXPRESSION_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 0;
+	int BOOLEAN_EXPRESSION = 21;
 
 	/**
 	 * The meta object id for the '{@link roboML.impl.FunctionImpl <em>Function</em>}' class.
@@ -378,7 +306,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getFunction()
 	 * @generated
 	 */
-	int FUNCTION = 6;
+	int FUNCTION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Instruction</b></em>' containment reference list.
@@ -442,7 +370,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 7;
+	int VARIABLE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Variable Name</b></em>' attribute.
@@ -497,7 +425,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getAssignement()
 	 * @generated
 	 */
-	int ASSIGNEMENT = 8;
+	int ASSIGNEMENT = 7;
 
 	/**
 	 * The feature id for the '<em><b>Assignable Variable</b></em>' reference.
@@ -543,7 +471,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getSensor()
 	 * @generated
 	 */
-	int SENSOR = 9;
+	int SENSOR = 8;
 
 	/**
 	 * The feature id for the '<em><b>Sensor Value</b></em>' attribute.
@@ -589,7 +517,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getTimeSensor()
 	 * @generated
 	 */
-	int TIME_SENSOR = 10;
+	int TIME_SENSOR = 9;
 
 	/**
 	 * The feature id for the '<em><b>Sensor Value</b></em>' attribute.
@@ -635,7 +563,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getNewEClass12()
 	 * @generated
 	 */
-	int NEW_ECLASS12 = 11;
+	int NEW_ECLASS12 = 10;
 
 	/**
 	 * The number of structural features of the '<em>New EClass12</em>' class.
@@ -663,7 +591,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getDistanceSensor()
 	 * @generated
 	 */
-	int DISTANCE_SENSOR = 12;
+	int DISTANCE_SENSOR = 11;
 
 	/**
 	 * The feature id for the '<em><b>Sensor Value</b></em>' attribute.
@@ -709,7 +637,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getSetValue()
 	 * @generated
 	 */
-	int SET_VALUE = 13;
+	int SET_VALUE = 12;
 
 	/**
 	 * The feature id for the '<em><b>Entity To Set</b></em>' reference.
@@ -746,7 +674,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getSpeed()
 	 * @generated
 	 */
-	int SPEED = 14;
+	int SPEED = 13;
 
 	/**
 	 * The feature id for the '<em><b>Deplacement Speed</b></em>' attribute.
@@ -785,6 +713,33 @@ public interface RoboMLPackage extends EPackage {
 	int SPEED_OPERATION_COUNT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Entity Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY__ENTITY_TYPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Entity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Entity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENTITY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link roboML.impl.FunctionCallImpl <em>Function Call</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -792,7 +747,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getFunctionCall()
 	 * @generated
 	 */
-	int FUNCTION_CALL = 15;
+	int FUNCTION_CALL = 14;
 
 	/**
 	 * The feature id for the '<em><b>Entity Type</b></em>' attribute.
@@ -838,7 +793,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getCondition()
 	 * @generated
 	 */
-	int CONDITION = 16;
+	int CONDITION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Statement If</b></em>' containment reference list.
@@ -859,22 +814,22 @@ public interface RoboMLPackage extends EPackage {
 	int CONDITION__STATEMENT_ELSE = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Booleanexpression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION__BOOLEANEXPRESSION = STATEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITION__VARIABLE = STATEMENT_FEATURE_COUNT + 3;
+	int CONDITION__VARIABLE = STATEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Boolean Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITION__BOOLEAN_EXPRESSION = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Condition</em>' class.
@@ -902,7 +857,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getRoboMLProgram()
 	 * @generated
 	 */
-	int ROBO_ML_PROGRAM = 17;
+	int ROBO_ML_PROGRAM = 16;
 
 	/**
 	 * The feature id for the '<em><b>Function</b></em>' containment reference list.
@@ -939,7 +894,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getArithmeticExpression()
 	 * @generated
 	 */
-	int ARITHMETIC_EXPRESSION = 18;
+	int ARITHMETIC_EXPRESSION = 17;
 
 	/**
 	 * The feature id for the '<em><b>Entity Type</b></em>' attribute.
@@ -978,13 +933,22 @@ public interface RoboMLPackage extends EPackage {
 	int ARITHMETIC_EXPRESSION__ELEMENT_B = ENTITY_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Arithmetic Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARITHMETIC_EXPRESSION__ARITHMETIC_OPERATOR = ENTITY_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Arithmetic Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARITHMETIC_EXPRESSION_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 3;
+	int ARITHMETIC_EXPRESSION_FEATURE_COUNT = ENTITY_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Arithmetic Expression</em>' class.
@@ -1003,7 +967,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getGetValue()
 	 * @generated
 	 */
-	int GET_VALUE = 20;
+	int GET_VALUE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Entity Type</b></em>' attribute.
@@ -1040,7 +1004,7 @@ public interface RoboMLPackage extends EPackage {
 	 * @see roboML.impl.RoboMLPackageImpl#getVariableRef()
 	 * @generated
 	 */
-	int VARIABLE_REF = 21;
+	int VARIABLE_REF = 20;
 
 	/**
 	 * The feature id for the '<em><b>Entity Type</b></em>' attribute.
@@ -1068,6 +1032,51 @@ public interface RoboMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int VARIABLE_REF_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Element A</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_EXPRESSION__ELEMENT_A = 0;
+
+	/**
+	 * The feature id for the '<em><b>Element B</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_EXPRESSION__ELEMENT_B = 1;
+
+	/**
+	 * The feature id for the '<em><b>Boolean Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_EXPRESSION__BOOLEAN_OPERATOR = 2;
+
+	/**
+	 * The number of structural features of the '<em>Boolean Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_EXPRESSION_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Boolean Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_EXPRESSION_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link roboML.UnitMeasure <em>Unit Measure</em>}' enum.
@@ -1098,6 +1107,26 @@ public interface RoboMLPackage extends EPackage {
 	 * @generated
 	 */
 	int RML_OBJECT = 24;
+
+	/**
+	 * The meta object id for the '{@link roboML.ArithmeticOperators <em>Arithmetic Operators</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see roboML.ArithmeticOperators
+	 * @see roboML.impl.RoboMLPackageImpl#getArithmeticOperators()
+	 * @generated
+	 */
+	int ARITHMETIC_OPERATORS = 25;
+
+	/**
+	 * The meta object id for the '{@link roboML.BooleanOperators <em>Boolean Operators</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see roboML.BooleanOperators
+	 * @see roboML.impl.RoboMLPackageImpl#getBooleanOperators()
+	 * @generated
+	 */
+	int BOOLEAN_OPERATORS = 26;
 
 	/**
 	 * Returns the meta object for class '{@link roboML.Unit <em>Unit</em>}'.
@@ -1227,17 +1256,6 @@ public interface RoboMLPackage extends EPackage {
 	EReference getLoop_Instruction();
 
 	/**
-	 * Returns the meta object for the reference '{@link roboML.Loop#getBooleanexpression <em>Booleanexpression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Booleanexpression</em>'.
-	 * @see roboML.Loop#getBooleanexpression()
-	 * @see #getLoop()
-	 * @generated
-	 */
-	EReference getLoop_Booleanexpression();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link roboML.Loop#getVariable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1247,6 +1265,17 @@ public interface RoboMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLoop_Variable();
+
+	/**
+	 * Returns the meta object for the reference '{@link roboML.Loop#getBooleanExpression <em>Boolean Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Boolean Expression</em>'.
+	 * @see roboML.Loop#getBooleanExpression()
+	 * @see #getLoop()
+	 * @generated
+	 */
+	EReference getLoop_BooleanExpression();
 
 	/**
 	 * Returns the meta object for class '{@link roboML.BooleanExpression <em>Boolean Expression</em>}'.
@@ -1279,6 +1308,17 @@ public interface RoboMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getBooleanExpression_ElementB();
+
+	/**
+	 * Returns the meta object for the attribute '{@link roboML.BooleanExpression#getBooleanOperator <em>Boolean Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Boolean Operator</em>'.
+	 * @see roboML.BooleanExpression#getBooleanOperator()
+	 * @see #getBooleanExpression()
+	 * @generated
+	 */
+	EAttribute getBooleanExpression_BooleanOperator();
 
 	/**
 	 * Returns the meta object for class '{@link roboML.Function <em>Function</em>}'.
@@ -1578,17 +1618,6 @@ public interface RoboMLPackage extends EPackage {
 	EReference getCondition_StatementElse();
 
 	/**
-	 * Returns the meta object for the reference '{@link roboML.Condition#getBooleanexpression <em>Booleanexpression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Booleanexpression</em>'.
-	 * @see roboML.Condition#getBooleanexpression()
-	 * @see #getCondition()
-	 * @generated
-	 */
-	EReference getCondition_Booleanexpression();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link roboML.Condition#getVariable <em>Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1598,6 +1627,17 @@ public interface RoboMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCondition_Variable();
+
+	/**
+	 * Returns the meta object for the reference '{@link roboML.Condition#getBooleanExpression <em>Boolean Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Boolean Expression</em>'.
+	 * @see roboML.Condition#getBooleanExpression()
+	 * @see #getCondition()
+	 * @generated
+	 */
+	EReference getCondition_BooleanExpression();
 
 	/**
 	 * Returns the meta object for class '{@link roboML.RoboMLProgram <em>Program</em>}'.
@@ -1662,6 +1702,17 @@ public interface RoboMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getArithmeticExpression_ElementB();
+
+	/**
+	 * Returns the meta object for the attribute '{@link roboML.ArithmeticExpression#getArithmeticOperator <em>Arithmetic Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Arithmetic Operator</em>'.
+	 * @see roboML.ArithmeticExpression#getArithmeticOperator()
+	 * @see #getArithmeticExpression()
+	 * @generated
+	 */
+	EAttribute getArithmeticExpression_ArithmeticOperator();
 
 	/**
 	 * Returns the meta object for class '{@link roboML.Entity <em>Entity</em>}'.
@@ -1733,6 +1784,26 @@ public interface RoboMLPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getRMLObject();
+
+	/**
+	 * Returns the meta object for enum '{@link roboML.ArithmeticOperators <em>Arithmetic Operators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Arithmetic Operators</em>'.
+	 * @see roboML.ArithmeticOperators
+	 * @generated
+	 */
+	EEnum getArithmeticOperators();
+
+	/**
+	 * Returns the meta object for enum '{@link roboML.BooleanOperators <em>Boolean Operators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Boolean Operators</em>'.
+	 * @see roboML.BooleanOperators
+	 * @generated
+	 */
+	EEnum getBooleanOperators();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1864,20 +1935,20 @@ public interface RoboMLPackage extends EPackage {
 		EReference LOOP__INSTRUCTION = eINSTANCE.getLoop_Instruction();
 
 		/**
-		 * The meta object literal for the '<em><b>Booleanexpression</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOOP__BOOLEANEXPRESSION = eINSTANCE.getLoop_Booleanexpression();
-
-		/**
 		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference LOOP__VARIABLE = eINSTANCE.getLoop_Variable();
+
+		/**
+		 * The meta object literal for the '<em><b>Boolean Expression</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOOP__BOOLEAN_EXPRESSION = eINSTANCE.getLoop_BooleanExpression();
 
 		/**
 		 * The meta object literal for the '{@link roboML.impl.BooleanExpressionImpl <em>Boolean Expression</em>}' class.
@@ -1904,6 +1975,14 @@ public interface RoboMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BOOLEAN_EXPRESSION__ELEMENT_B = eINSTANCE.getBooleanExpression_ElementB();
+
+		/**
+		 * The meta object literal for the '<em><b>Boolean Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOOLEAN_EXPRESSION__BOOLEAN_OPERATOR = eINSTANCE.getBooleanExpression_BooleanOperator();
 
 		/**
 		 * The meta object literal for the '{@link roboML.impl.FunctionImpl <em>Function</em>}' class.
@@ -2152,20 +2231,20 @@ public interface RoboMLPackage extends EPackage {
 		EReference CONDITION__STATEMENT_ELSE = eINSTANCE.getCondition_StatementElse();
 
 		/**
-		 * The meta object literal for the '<em><b>Booleanexpression</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONDITION__BOOLEANEXPRESSION = eINSTANCE.getCondition_Booleanexpression();
-
-		/**
 		 * The meta object literal for the '<em><b>Variable</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference CONDITION__VARIABLE = eINSTANCE.getCondition_Variable();
+
+		/**
+		 * The meta object literal for the '<em><b>Boolean Expression</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITION__BOOLEAN_EXPRESSION = eINSTANCE.getCondition_BooleanExpression();
 
 		/**
 		 * The meta object literal for the '{@link roboML.impl.RoboMLProgramImpl <em>Program</em>}' class.
@@ -2218,6 +2297,14 @@ public interface RoboMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ARITHMETIC_EXPRESSION__ELEMENT_B = eINSTANCE.getArithmeticExpression_ElementB();
+
+		/**
+		 * The meta object literal for the '<em><b>Arithmetic Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ARITHMETIC_EXPRESSION__ARITHMETIC_OPERATOR = eINSTANCE.getArithmeticExpression_ArithmeticOperator();
 
 		/**
 		 * The meta object literal for the '{@link roboML.impl.EntityImpl <em>Entity</em>}' class.
@@ -2286,6 +2373,26 @@ public interface RoboMLPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum RML_OBJECT = eINSTANCE.getRMLObject();
+
+		/**
+		 * The meta object literal for the '{@link roboML.ArithmeticOperators <em>Arithmetic Operators</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see roboML.ArithmeticOperators
+		 * @see roboML.impl.RoboMLPackageImpl#getArithmeticOperators()
+		 * @generated
+		 */
+		EEnum ARITHMETIC_OPERATORS = eINSTANCE.getArithmeticOperators();
+
+		/**
+		 * The meta object literal for the '{@link roboML.BooleanOperators <em>Boolean Operators</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see roboML.BooleanOperators
+		 * @see roboML.impl.RoboMLPackageImpl#getBooleanOperators()
+		 * @generated
+		 */
+		EEnum BOOLEAN_OPERATORS = eINSTANCE.getBooleanOperators();
 
 	}
 

@@ -92,11 +92,6 @@ public class RoboMLAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseBooleanExpression(BooleanExpression object) {
-			return createBooleanExpressionAdapter();
-		}
-
-		@Override
 		public Adapter caseFunction(Function object) {
 			return createFunctionAdapter();
 		}
@@ -174,6 +169,11 @@ public class RoboMLAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseVariableRef(VariableRef object) {
 			return createVariableRefAdapter();
+		}
+
+		@Override
+		public Adapter caseBooleanExpression(BooleanExpression object) {
+			return createBooleanExpressionAdapter();
 		}
 
 		@Override

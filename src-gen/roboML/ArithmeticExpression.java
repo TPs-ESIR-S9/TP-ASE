@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link roboML.ArithmeticExpression#getVariable <em>Variable</em>}</li>
  *   <li>{@link roboML.ArithmeticExpression#getElementA <em>Element A</em>}</li>
  *   <li>{@link roboML.ArithmeticExpression#getElementB <em>Element B</em>}</li>
+ *   <li>{@link roboML.ArithmeticExpression#getArithmeticOperator <em>Arithmetic Operator</em>}</li>
  * </ul>
  *
  * @see roboML.RoboMLPackage#getArithmeticExpression()
@@ -78,5 +79,30 @@ public interface ArithmeticExpression extends Entity {
 	 * @generated
 	 */
 	void setElementB(Entity value);
+
+	/**
+	 * Returns the value of the '<em><b>Arithmetic Operator</b></em>' attribute.
+	 * The literals are from the enumeration {@link roboML.ArithmeticOperators}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Arithmetic Operator</em>' attribute.
+	 * @see roboML.ArithmeticOperators
+	 * @see #setArithmeticOperator(ArithmeticOperators)
+	 * @see roboML.RoboMLPackage#getArithmeticExpression_ArithmeticOperator()
+	 * @model
+	 * @generated
+	 */
+	ArithmeticOperators getArithmeticOperator();
+
+	/**
+	 * Sets the value of the '{@link roboML.ArithmeticExpression#getArithmeticOperator <em>Arithmetic Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Arithmetic Operator</em>' attribute.
+	 * @see roboML.ArithmeticOperators
+	 * @see #getArithmeticOperator()
+	 * @generated
+	 */
+	void setArithmeticOperator(ArithmeticOperators value);
 
 } // ArithmeticExpression

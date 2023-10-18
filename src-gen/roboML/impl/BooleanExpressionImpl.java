@@ -9,7 +9,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import roboML.BooleanExpression;
+import roboML.BooleanOperators;
 import roboML.Entity;
 import roboML.RoboMLPackage;
 
@@ -23,11 +25,12 @@ import roboML.RoboMLPackage;
  * <ul>
  *   <li>{@link roboML.impl.BooleanExpressionImpl#getElementA <em>Element A</em>}</li>
  *   <li>{@link roboML.impl.BooleanExpressionImpl#getElementB <em>Element B</em>}</li>
+ *   <li>{@link roboML.impl.BooleanExpressionImpl#getBooleanOperator <em>Boolean Operator</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class BooleanExpressionImpl extends EntityImpl implements BooleanExpression {
+public class BooleanExpressionImpl extends MinimalEObjectImpl.Container implements BooleanExpression {
 	/**
 	 * The cached value of the '{@link #getElementA() <em>Element A</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -47,6 +50,26 @@ public class BooleanExpressionImpl extends EntityImpl implements BooleanExpressi
 	 * @ordered
 	 */
 	protected Entity elementB;
+
+	/**
+	 * The default value of the '{@link #getBooleanOperator() <em>Boolean Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBooleanOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BooleanOperators BOOLEAN_OPERATOR_EDEFAULT = BooleanOperators.INFERIOR;
+
+	/**
+	 * The cached value of the '{@link #getBooleanOperator() <em>Boolean Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBooleanOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected BooleanOperators booleanOperator = BOOLEAN_OPERATOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -157,6 +180,30 @@ public class BooleanExpressionImpl extends EntityImpl implements BooleanExpressi
 	 * @generated
 	 */
 	@Override
+	public BooleanOperators getBooleanOperator() {
+		return booleanOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBooleanOperator(BooleanOperators newBooleanOperator) {
+		BooleanOperators oldBooleanOperator = booleanOperator;
+		booleanOperator = newBooleanOperator == null ? BOOLEAN_OPERATOR_EDEFAULT : newBooleanOperator;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RoboMLPackage.BOOLEAN_EXPRESSION__BOOLEAN_OPERATOR,
+					oldBooleanOperator, booleanOperator));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case RoboMLPackage.BOOLEAN_EXPRESSION__ELEMENT_A:
@@ -167,6 +214,8 @@ public class BooleanExpressionImpl extends EntityImpl implements BooleanExpressi
 			if (resolve)
 				return getElementB();
 			return basicGetElementB();
+		case RoboMLPackage.BOOLEAN_EXPRESSION__BOOLEAN_OPERATOR:
+			return getBooleanOperator();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,6 +233,9 @@ public class BooleanExpressionImpl extends EntityImpl implements BooleanExpressi
 			return;
 		case RoboMLPackage.BOOLEAN_EXPRESSION__ELEMENT_B:
 			setElementB((Entity) newValue);
+			return;
+		case RoboMLPackage.BOOLEAN_EXPRESSION__BOOLEAN_OPERATOR:
+			setBooleanOperator((BooleanOperators) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,6 +255,9 @@ public class BooleanExpressionImpl extends EntityImpl implements BooleanExpressi
 		case RoboMLPackage.BOOLEAN_EXPRESSION__ELEMENT_B:
 			setElementB((Entity) null);
 			return;
+		case RoboMLPackage.BOOLEAN_EXPRESSION__BOOLEAN_OPERATOR:
+			setBooleanOperator(BOOLEAN_OPERATOR_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -219,8 +274,27 @@ public class BooleanExpressionImpl extends EntityImpl implements BooleanExpressi
 			return elementA != null;
 		case RoboMLPackage.BOOLEAN_EXPRESSION__ELEMENT_B:
 			return elementB != null;
+		case RoboMLPackage.BOOLEAN_EXPRESSION__BOOLEAN_OPERATOR:
+			return booleanOperator != BOOLEAN_OPERATOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (booleanOperator: ");
+		result.append(booleanOperator);
+		result.append(')');
+		return result.toString();
 	}
 
 } //BooleanExpressionImpl

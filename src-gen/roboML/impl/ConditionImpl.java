@@ -16,9 +16,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import roboML.BooleanExpression;
 import roboML.Condition;
+import roboML.Entity;
 import roboML.RoboMLPackage;
 import roboML.Statement;
 import roboML.Variable;
@@ -33,8 +32,8 @@ import roboML.Variable;
  * <ul>
  *   <li>{@link roboML.impl.ConditionImpl#getStatementIf <em>Statement If</em>}</li>
  *   <li>{@link roboML.impl.ConditionImpl#getStatementElse <em>Statement Else</em>}</li>
- *   <li>{@link roboML.impl.ConditionImpl#getBooleanexpression <em>Booleanexpression</em>}</li>
  *   <li>{@link roboML.impl.ConditionImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link roboML.impl.ConditionImpl#getBooleanExpression <em>Boolean Expression</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,16 +60,6 @@ public class ConditionImpl extends StatementImpl implements Condition {
 	protected EList<Statement> statementElse;
 
 	/**
-	 * The cached value of the '{@link #getBooleanexpression() <em>Booleanexpression</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBooleanexpression()
-	 * @generated
-	 * @ordered
-	 */
-	protected BooleanExpression booleanexpression;
-
-	/**
 	 * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -79,6 +68,16 @@ public class ConditionImpl extends StatementImpl implements Condition {
 	 * @ordered
 	 */
 	protected EList<Variable> variable;
+
+	/**
+	 * The cached value of the '{@link #getBooleanExpression() <em>Boolean Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBooleanExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected Entity booleanExpression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,53 +132,53 @@ public class ConditionImpl extends StatementImpl implements Condition {
 	 * @generated
 	 */
 	@Override
-	public BooleanExpression getBooleanexpression() {
-		if (booleanexpression != null && booleanexpression.eIsProxy()) {
-			InternalEObject oldBooleanexpression = (InternalEObject) booleanexpression;
-			booleanexpression = (BooleanExpression) eResolveProxy(oldBooleanexpression);
-			if (booleanexpression != oldBooleanexpression) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							RoboMLPackage.CONDITION__BOOLEANEXPRESSION, oldBooleanexpression, booleanexpression));
-			}
-		}
-		return booleanexpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BooleanExpression basicGetBooleanexpression() {
-		return booleanexpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setBooleanexpression(BooleanExpression newBooleanexpression) {
-		BooleanExpression oldBooleanexpression = booleanexpression;
-		booleanexpression = newBooleanexpression;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RoboMLPackage.CONDITION__BOOLEANEXPRESSION,
-					oldBooleanexpression, booleanexpression));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EList<Variable> getVariable() {
 		if (variable == null) {
 			variable = new EObjectContainmentEList<Variable>(Variable.class, this, RoboMLPackage.CONDITION__VARIABLE);
 		}
 		return variable;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Entity getBooleanExpression() {
+		if (booleanExpression != null && booleanExpression.eIsProxy()) {
+			InternalEObject oldBooleanExpression = (InternalEObject) booleanExpression;
+			booleanExpression = (Entity) eResolveProxy(oldBooleanExpression);
+			if (booleanExpression != oldBooleanExpression) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							RoboMLPackage.CONDITION__BOOLEAN_EXPRESSION, oldBooleanExpression, booleanExpression));
+			}
+		}
+		return booleanExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Entity basicGetBooleanExpression() {
+		return booleanExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setBooleanExpression(Entity newBooleanExpression) {
+		Entity oldBooleanExpression = booleanExpression;
+		booleanExpression = newBooleanExpression;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RoboMLPackage.CONDITION__BOOLEAN_EXPRESSION,
+					oldBooleanExpression, booleanExpression));
 	}
 
 	/**
@@ -212,12 +211,12 @@ public class ConditionImpl extends StatementImpl implements Condition {
 			return getStatementIf();
 		case RoboMLPackage.CONDITION__STATEMENT_ELSE:
 			return getStatementElse();
-		case RoboMLPackage.CONDITION__BOOLEANEXPRESSION:
-			if (resolve)
-				return getBooleanexpression();
-			return basicGetBooleanexpression();
 		case RoboMLPackage.CONDITION__VARIABLE:
 			return getVariable();
+		case RoboMLPackage.CONDITION__BOOLEAN_EXPRESSION:
+			if (resolve)
+				return getBooleanExpression();
+			return basicGetBooleanExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -239,12 +238,12 @@ public class ConditionImpl extends StatementImpl implements Condition {
 			getStatementElse().clear();
 			getStatementElse().addAll((Collection<? extends Statement>) newValue);
 			return;
-		case RoboMLPackage.CONDITION__BOOLEANEXPRESSION:
-			setBooleanexpression((BooleanExpression) newValue);
-			return;
 		case RoboMLPackage.CONDITION__VARIABLE:
 			getVariable().clear();
 			getVariable().addAll((Collection<? extends Variable>) newValue);
+			return;
+		case RoboMLPackage.CONDITION__BOOLEAN_EXPRESSION:
+			setBooleanExpression((Entity) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -264,11 +263,11 @@ public class ConditionImpl extends StatementImpl implements Condition {
 		case RoboMLPackage.CONDITION__STATEMENT_ELSE:
 			getStatementElse().clear();
 			return;
-		case RoboMLPackage.CONDITION__BOOLEANEXPRESSION:
-			setBooleanexpression((BooleanExpression) null);
-			return;
 		case RoboMLPackage.CONDITION__VARIABLE:
 			getVariable().clear();
+			return;
+		case RoboMLPackage.CONDITION__BOOLEAN_EXPRESSION:
+			setBooleanExpression((Entity) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -286,10 +285,10 @@ public class ConditionImpl extends StatementImpl implements Condition {
 			return statementIf != null && !statementIf.isEmpty();
 		case RoboMLPackage.CONDITION__STATEMENT_ELSE:
 			return statementElse != null && !statementElse.isEmpty();
-		case RoboMLPackage.CONDITION__BOOLEANEXPRESSION:
-			return booleanexpression != null;
 		case RoboMLPackage.CONDITION__VARIABLE:
 			return variable != null && !variable.isEmpty();
+		case RoboMLPackage.CONDITION__BOOLEAN_EXPRESSION:
+			return booleanExpression != null;
 		}
 		return super.eIsSet(featureID);
 	}

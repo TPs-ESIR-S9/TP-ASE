@@ -1,11 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/RoboML/src-gen" creationIcons="false" editDirectory="/RoboML.edit/src-gen"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/RoboML/src-gen" creationIcons="false" editDirectory="/RoboML.edit/src-gen"
     editorDirectory="/RoboML.editor/src-gen" modelPluginID="RoboML" modelName="RoboML"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="19.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>roboML.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
-  <genPackages prefix="RoboML" disposableProviderFactory="true" ecorePackage="roboML.ecore#/"/>
+  <genPackages prefix="RoboML" disposableProviderFactory="true" ecorePackage="roboML.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roboML.ecore#//UnitMeasure">
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//UnitMeasure/m"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//UnitMeasure/dm"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//UnitMeasure/cm"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//UnitMeasure/mm"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roboML.ecore#//Direction">
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//Direction/forward"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//Direction/backward"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//Direction/sideLeft"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//Direction/sideRight"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="roboML.ecore#//RMLObject">
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//RMLObject/RMLInt"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//RMLObject/RMLString"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//RMLObject/RMLFloat"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//RMLObject/RMLDouble"/>
+      <genEnumLiterals ecoreEnumLiteral="roboML.ecore#//RMLObject/RMLBoolean"/>
+    </genEnums>
+    <genClasses ecoreClass="roboML.ecore#//Unit">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Unit/Type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roboML.ecore#//Statement"/>
+    <genClasses ecoreClass="roboML.ecore#//Deplacement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Deplacement/unit"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Deplacement/deplacementDistance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Deplacement/movementType"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//Rotation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference roboML.ecore#//Rotation/rotationAngle"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Rotation/rotationSens"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//Loop">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Loop/instruction"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Loop/booleanexpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Loop/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//BooleanExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//BooleanExpression/elementA"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//BooleanExpression/elementB"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//Function">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Function/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Function/newAttribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Function/returnType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Function/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Variable/variableName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Variable/variableValue"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//Assignement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Assignement/assignableVariable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Assignement/entity"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="roboML.ecore#//Sensor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Sensor/sensorValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Sensor/getSensorValue"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//TimeSensor"/>
+    <genClasses ecoreClass="roboML.ecore#//NewEClass12"/>
+    <genClasses ecoreClass="roboML.ecore#//DistanceSensor"/>
+    <genClasses ecoreClass="roboML.ecore#//SetValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//SetValue/entityToSet"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//Speed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Speed/deplacementSpeed"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Speed/setSpeedValue"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//FunctionCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//FunctionCall/function"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//Condition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/statementIf"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/statementElse"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/booleanexpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//Condition/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//RoboMLProgram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//RoboMLProgram/function"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//ArithmeticExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference roboML.ecore#//ArithmeticExpression/variable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//ArithmeticExpression/elementA"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference roboML.ecore#//ArithmeticExpression/elementB"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute roboML.ecore#//Entity/entityType"/>
+    </genClasses>
+    <genClasses ecoreClass="roboML.ecore#//GetValue"/>
+  </genPackages>
 </genmodel:GenModel>

@@ -27,8 +27,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="deplacementDistance" eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rotation" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotationAngle" eType="#//RMLObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotationSense" eType="#//RMLObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rotationAngle" lowerBound="1"
+        eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rotationSens" lowerBound="1"
+        eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Loop" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
@@ -37,8 +39,9 @@
         eType="#//BooleanExpression"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" eSuperTypes="#//Entity">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
-        upperBound="2" eType="#//Entity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementA" lowerBound="1"
+        eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementB" eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Function">
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" upperBound="-1"
@@ -59,15 +62,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Sensor" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sensorValue" eType="#//RMLObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="getSetSensorValue" eType="#//GetSetValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="getSensorValue" eType="#//GetValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TimeSensor" eSuperTypes="#//Sensor"/>
   <eClassifiers xsi:type="ecore:EClass" name="NewEClass12"/>
   <eClassifiers xsi:type="ecore:EClass" name="DistanceSensor" eSuperTypes="#//Sensor"/>
-  <eClassifiers xsi:type="ecore:EClass" name="GetSetValue" eSuperTypes="#//Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SetValue" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entityToSet" lowerBound="1"
+        eType="#//Entity"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Speed">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="deplacementSpeed" eType="#//RMLObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="getsetSpeedValue" eType="#//GetSetValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="setSpeedValue" lowerBound="1"
+        eType="#//SetValue"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionCall" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="function" lowerBound="1"
@@ -87,8 +94,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="ArithmeticExpression" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" upperBound="-1"
         eType="#//Variable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
-        upperBound="2" eType="#//Entity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementA" lowerBound="1"
+        eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementB" eType="#//Entity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="RMLObject">
     <eLiterals name="RMLInt"/>
@@ -97,8 +105,8 @@
     <eLiterals name="RMLDouble" value="3"/>
     <eLiterals name="RMLBoolean" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RMLObjectInstance" eSuperTypes="#//Entity">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//RMLObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="entityType" eType="#//RMLObject"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GetValue" eSuperTypes="#//Entity"/>
 </ecore:EPackage>

@@ -13,3 +13,5 @@
 - [Languium_Git](https://github.com/eclipse-langium/langium)
 
 - [Languium_WebSite](https://langium.org/docs/getting-started/)
+
+- [Xtext_to_langium](https://github.com/TypeFox/xtext2langium)

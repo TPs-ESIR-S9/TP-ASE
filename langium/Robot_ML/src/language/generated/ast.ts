@@ -8,62 +8,299 @@ import type { AstNode, Reference, ReferenceInfo, TypeMetaData } from 'langium';
 import { AbstractAstReflection } from 'langium';
 
 export const RoboMlTerminals = {
-    WS: /\s+/,
-    ID: /[_a-zA-Z][\w_]*/,
-    ML_COMMENT: /\/\*[\s\S]*?\*\//,
-    SL_COMMENT: /\/\/[^\n\r]*/,
+    ID: /(\^?(([a-z]|[A-Z])|_)((([a-z]|[A-Z])|_)|[0-9])*)/,
+    STRING: /(("((\\([\s\S]))|((?!(\\|"))[\s\S]*?))*")|('((\\([\s\S]))|((?!(\\|'))[\s\S]*?))*'))/,
+    ML_COMMENT: /(\/\*([\s\S]*?\*\/))/,
+    SL_COMMENT: /(\/\/((?!(\n|\r))[\s\S]*?)(\r?\n)?)/,
+    WS: /((( |	)|\r)|\n)+/,
 };
 
-export interface Greeting extends AstNode {
-    readonly $container: Model;
-    readonly $type: 'Greeting';
-    person: Reference<Person>
+export type ArithmeticOperators = ArithmeticOperators_Divide | ArithmeticOperators_Minus | ArithmeticOperators_Modulo | ArithmeticOperators_Multiplie | ArithmeticOperators_Plus | ArithmeticOperators_Power;
+
+export type ArithmeticOperators_Divide = 'Divide';
+
+export type ArithmeticOperators_Minus = 'Minus';
+
+export type ArithmeticOperators_Modulo = 'Modulo';
+
+export type ArithmeticOperators_Multiplie = 'Multiplie';
+
+export type ArithmeticOperators_Plus = 'Plus';
+
+export type ArithmeticOperators_Power = 'Power';
+
+export type Direction = Direction_backward | Direction_forward | Direction_sideLeft | Direction_sideRight;
+
+export type Direction_backward = 'backward';
+
+export type Direction_forward = 'forward';
+
+export type Direction_sideLeft = 'sideLeft';
+
+export type Direction_sideRight = 'sideRight';
+
+export type EString = string;
+
+export function isEString(item: unknown): item is EString {
+    return (typeof item === 'string' && (/(("((\\([\s\S]))|((?!(\\|"))[\s\S]*?))*")|('((\\([\s\S]))|((?!(\\|'))[\s\S]*?))*'))/.test(item) || /(\^?(([a-z]|[A-Z])|_)((([a-z]|[A-Z])|_)|[0-9])*)/.test(item)));
 }
 
-export const Greeting = 'Greeting';
+export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLFloat | RMLObject_RMLInt | RMLObject_RMLString;
 
-export function isGreeting(item: unknown): item is Greeting {
-    return reflection.isInstance(item, Greeting);
+export type RMLObject_RMLBoolean = 'RMLBoolean';
+
+export type RMLObject_RMLDouble = 'RMLDouble';
+
+export type RMLObject_RMLFloat = 'RMLFloat';
+
+export type RMLObject_RMLInt = 'RMLInt';
+
+export type RMLObject_RMLString = 'RMLString';
+
+export type UnitMeasure = UnitMeasure_cm | UnitMeasure_dm | UnitMeasure_m | UnitMeasure_mm;
+
+export type UnitMeasure_cm = 'cm';
+
+export type UnitMeasure_dm = 'dm';
+
+export type UnitMeasure_m = 'm';
+
+export type UnitMeasure_mm = 'mm';
+
+export interface Entity extends AstNode {
+    readonly $type: 'ArithmeticExpression' | 'Entity' | 'FunctionCall' | 'GetValue' | 'VariableRef';
+    entityType?: RMLObject
 }
 
-export interface Model extends AstNode {
-    readonly $type: 'Model';
-    greetings: Array<Greeting>
-    persons: Array<Person>
+export const Entity = 'Entity';
+
+export function isEntity(item: unknown): item is Entity {
+    return reflection.isInstance(item, Entity);
 }
 
-export const Model = 'Model';
-
-export function isModel(item: unknown): item is Model {
-    return reflection.isInstance(item, Model);
+export interface FunctionDec extends AstNode {
+    readonly $container: RoboMLProgram;
+    readonly $type: 'FunctionDec';
+    instruction: Array<Statement>
+    newAttribute?: RMLObject
+    returnType?: RMLObject
+    variable: Array<Variable>
 }
 
-export interface Person extends AstNode {
-    readonly $container: Model;
-    readonly $type: 'Person';
-    name: string
+export const FunctionDec = 'FunctionDec';
+
+export function isFunctionDec(item: unknown): item is FunctionDec {
+    return reflection.isInstance(item, FunctionDec);
 }
 
-export const Person = 'Person';
+export interface RoboMLProgram extends AstNode {
+    readonly $type: 'RoboMLProgram';
+    function: Array<FunctionDec>
+}
 
-export function isPerson(item: unknown): item is Person {
-    return reflection.isInstance(item, Person);
+export const RoboMLProgram = 'RoboMLProgram';
+
+export function isRoboMLProgram(item: unknown): item is RoboMLProgram {
+    return reflection.isInstance(item, RoboMLProgram);
+}
+
+export interface Statement extends AstNode {
+    readonly $type: 'Assignement' | 'Condition' | 'Deplacement' | 'Loop' | 'Rotation' | 'SetValue' | 'Statement';
+}
+
+export const Statement = 'Statement';
+
+export function isStatement(item: unknown): item is Statement {
+    return reflection.isInstance(item, Statement);
+}
+
+export interface Unit extends AstNode {
+    readonly $type: 'Unit';
+    Type?: UnitMeasure
+}
+
+export const Unit = 'Unit';
+
+export function isUnit(item: unknown): item is Unit {
+    return reflection.isInstance(item, Unit);
+}
+
+export interface Variable extends AstNode {
+    readonly $container: ArithmeticExpression | Condition | FunctionDec | Loop;
+    readonly $type: 'Variable';
+    variableName?: RMLObject
+    variableref: Array<VariableRef>
+    variableValue?: RMLObject
+}
+
+export const Variable = 'Variable';
+
+export function isVariable(item: unknown): item is Variable {
+    return reflection.isInstance(item, Variable);
+}
+
+export interface ArithmeticExpression extends Entity {
+    readonly $type: 'ArithmeticExpression';
+    arithmeticOperator?: ArithmeticOperators
+    elementA: Reference<Entity>
+    elementB?: Reference<Entity>
+    variable: Array<Variable>
+}
+
+export const ArithmeticExpression = 'ArithmeticExpression';
+
+export function isArithmeticExpression(item: unknown): item is ArithmeticExpression {
+    return reflection.isInstance(item, ArithmeticExpression);
+}
+
+export interface FunctionCall extends Entity {
+    readonly $type: 'FunctionCall';
+    function: Reference<FunctionDec>
+}
+
+export const FunctionCall = 'FunctionCall';
+
+export function isFunctionCall(item: unknown): item is FunctionCall {
+    return reflection.isInstance(item, FunctionCall);
+}
+
+export interface GetValue extends Entity {
+    readonly $type: 'GetValue';
+}
+
+export const GetValue = 'GetValue';
+
+export function isGetValue(item: unknown): item is GetValue {
+    return reflection.isInstance(item, GetValue);
+}
+
+export interface VariableRef extends Entity {
+    readonly $container: Variable;
+    readonly $type: 'VariableRef';
+}
+
+export const VariableRef = 'VariableRef';
+
+export function isVariableRef(item: unknown): item is VariableRef {
+    return reflection.isInstance(item, VariableRef);
+}
+
+export interface Assignement extends Statement {
+    readonly $type: 'Assignement';
+    assignableVariable?: Reference<Variable>
+    entity: Reference<Entity>
+}
+
+export const Assignement = 'Assignement';
+
+export function isAssignement(item: unknown): item is Assignement {
+    return reflection.isInstance(item, Assignement);
+}
+
+export interface Condition extends Statement {
+    readonly $type: 'Condition';
+    booleanExpression?: Reference<Entity>
+    statementElse: Array<Statement>
+    statementIf: Array<Statement>
+    variable: Array<Variable>
+}
+
+export const Condition = 'Condition';
+
+export function isCondition(item: unknown): item is Condition {
+    return reflection.isInstance(item, Condition);
+}
+
+export interface Deplacement extends Statement {
+    readonly $type: 'Deplacement';
+    deplacementDistance?: Reference<Entity>
+    movementType?: Direction
+    unit: Reference<Unit>
+}
+
+export const Deplacement = 'Deplacement';
+
+export function isDeplacement(item: unknown): item is Deplacement {
+    return reflection.isInstance(item, Deplacement);
+}
+
+export interface Loop extends Statement {
+    readonly $type: 'Loop';
+    booleanExpression?: Reference<Entity>
+    instruction: Array<Statement>
+    variable: Array<Variable>
+}
+
+export const Loop = 'Loop';
+
+export function isLoop(item: unknown): item is Loop {
+    return reflection.isInstance(item, Loop);
+}
+
+export interface Rotation extends Statement {
+    readonly $type: 'Rotation';
+    rotationAngle: Reference<Entity>
+    rotationSens: Reference<Entity>
+}
+
+export const Rotation = 'Rotation';
+
+export function isRotation(item: unknown): item is Rotation {
+    return reflection.isInstance(item, Rotation);
+}
+
+export interface SetValue extends Statement {
+    readonly $type: 'SetValue';
+    entityToSet: Reference<Entity>
+}
+
+export const SetValue = 'SetValue';
+
+export function isSetValue(item: unknown): item is SetValue {
+    return reflection.isInstance(item, SetValue);
 }
 
 export type RoboMlAstType = {
-    Greeting: Greeting
-    Model: Model
-    Person: Person
+    ArithmeticExpression: ArithmeticExpression
+    Assignement: Assignement
+    Condition: Condition
+    Deplacement: Deplacement
+    Entity: Entity
+    FunctionCall: FunctionCall
+    FunctionDec: FunctionDec
+    GetValue: GetValue
+    Loop: Loop
+    RoboMLProgram: RoboMLProgram
+    Rotation: Rotation
+    SetValue: SetValue
+    Statement: Statement
+    Unit: Unit
+    Variable: Variable
+    VariableRef: VariableRef
 }
 
 export class RoboMlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['Greeting', 'Model', 'Person'];
+        return ['ArithmeticExpression', 'Assignement', 'Condition', 'Deplacement', 'Entity', 'FunctionCall', 'FunctionDec', 'GetValue', 'Loop', 'RoboMLProgram', 'Rotation', 'SetValue', 'Statement', 'Unit', 'Variable', 'VariableRef'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
         switch (subtype) {
+            case ArithmeticExpression:
+            case FunctionCall:
+            case GetValue:
+            case VariableRef: {
+                return this.isSubtype(Entity, supertype);
+            }
+            case Assignement:
+            case Condition:
+            case Deplacement:
+            case Loop:
+            case Rotation:
+            case SetValue: {
+                return this.isSubtype(Statement, supertype);
+            }
             default: {
                 return false;
             }
@@ -73,8 +310,25 @@ export class RoboMlAstReflection extends AbstractAstReflection {
     getReferenceType(refInfo: ReferenceInfo): string {
         const referenceId = `${refInfo.container.$type}:${refInfo.property}`;
         switch (referenceId) {
-            case 'Greeting:person': {
-                return Person;
+            case 'ArithmeticExpression:elementA':
+            case 'ArithmeticExpression:elementB':
+            case 'Assignement:entity':
+            case 'Condition:booleanExpression':
+            case 'Deplacement:deplacementDistance':
+            case 'Loop:booleanExpression':
+            case 'Rotation:rotationAngle':
+            case 'Rotation:rotationSens':
+            case 'SetValue:entityToSet': {
+                return Entity;
+            }
+            case 'Assignement:assignableVariable': {
+                return Variable;
+            }
+            case 'Deplacement:unit': {
+                return Unit;
+            }
+            case 'FunctionCall:function': {
+                return FunctionDec;
             }
             default: {
                 throw new Error(`${referenceId} is not a valid reference id.`);
@@ -84,12 +338,55 @@ export class RoboMlAstReflection extends AbstractAstReflection {
 
     getTypeMetaData(type: string): TypeMetaData {
         switch (type) {
-            case 'Model': {
+            case 'FunctionDec': {
                 return {
-                    name: 'Model',
+                    name: 'FunctionDec',
                     mandatory: [
-                        { name: 'greetings', type: 'array' },
-                        { name: 'persons', type: 'array' }
+                        { name: 'instruction', type: 'array' },
+                        { name: 'variable', type: 'array' }
+                    ]
+                };
+            }
+            case 'RoboMLProgram': {
+                return {
+                    name: 'RoboMLProgram',
+                    mandatory: [
+                        { name: 'function', type: 'array' }
+                    ]
+                };
+            }
+            case 'Variable': {
+                return {
+                    name: 'Variable',
+                    mandatory: [
+                        { name: 'variableref', type: 'array' }
+                    ]
+                };
+            }
+            case 'ArithmeticExpression': {
+                return {
+                    name: 'ArithmeticExpression',
+                    mandatory: [
+                        { name: 'variable', type: 'array' }
+                    ]
+                };
+            }
+            case 'Condition': {
+                return {
+                    name: 'Condition',
+                    mandatory: [
+                        { name: 'statementElse', type: 'array' },
+                        { name: 'statementIf', type: 'array' },
+                        { name: 'variable', type: 'array' }
+                    ]
+                };
+            }
+            case 'Loop': {
+                return {
+                    name: 'Loop',
+                    mandatory: [
+                        { name: 'instruction', type: 'array' },
+                        { name: 'variable', type: 'array' }
                     ]
                 };
             }

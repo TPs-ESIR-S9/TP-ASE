@@ -2,20 +2,16 @@ grammar MyDsl
 import 'Terminals'
 import 'roboML-types'
 
-entry RoboMLProgram returns RoboMLProgram:
-    {RoboMLProgram} 'RoboMLProgram' '{' ('function' '{' function+=Function  ("," function+=Function  )* '}' )? '}'  
-;
-
-Statement returns Statement:
-    Deplacement | Rotation | Loop | Assignement | SetValue | Condition 
+entry ArithmeticExpression returns ArithmeticExpression:
+    'ArithmeticExpression' '{' ('entityType' entityType=RMLObject  )? ('arithmeticOperator' arithmeticOperator=ArithmeticOperators  )? 'elementA' elementA=[Entity:EString ] ('elementB' elementB=[Entity:EString ] )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
 ;
 
 Entity returns Entity:
     Entity_Impl | FunctionCall | ArithmeticExpression | GetValue | VariableRef 
 ;
 
-Function returns Function:
-    {Function} 'Function' '{' ('newAttribute' newAttribute=RMLObject  )? ('returnType' returnType=RMLObject  )? ('instruction' '{' instruction+=Statement  ("," instruction+=Statement  )* '}' )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+Statement returns Statement:
+    Deplacement | Rotation | Loop | Assignement | SetValue | Condition 
 ;
 
 RMLObject returns RMLObject:
@@ -29,6 +25,36 @@ RMLObject_RMLBoolean returns RMLObject_RMLBoolean: 'RMLBoolean' ;
 
 Variable returns Variable:
     {Variable} 'Variable' '{' ('variableName' variableName=RMLObject  )? ('variableValue' variableValue=RMLObject  )? ('variableref' '{' variableref+=VariableRef  ("," variableref+=VariableRef  )* '}' )? '}'  
+;
+
+Entity_Impl returns Entity:
+    {Entity} 'Entity' '{' ('entityType' entityType=RMLObject  )? '}'  
+;
+
+ArithmeticOperators returns ArithmeticOperators:
+    ArithmeticOperators_Plus | ArithmeticOperators_Minus | ArithmeticOperators_Multiplie | ArithmeticOperators_Divide | ArithmeticOperators_Modulo | ArithmeticOperators_Power
+;
+ArithmeticOperators_Plus returns ArithmeticOperators_Plus: 'Plus' ;
+ArithmeticOperators_Minus returns ArithmeticOperators_Minus: 'Minus' ;
+ArithmeticOperators_Multiplie returns ArithmeticOperators_Multiplie: 'Multiplie' ;
+ArithmeticOperators_Divide returns ArithmeticOperators_Divide: 'Divide' ;
+ArithmeticOperators_Modulo returns ArithmeticOperators_Modulo: 'Modulo' ;
+ArithmeticOperators_Power returns ArithmeticOperators_Power: 'Power' ;
+
+VariableRef returns VariableRef:
+    {VariableRef} 'VariableRef' '{' ('entityType' entityType=RMLObject  )? '}'  
+;
+
+FunctionCall returns FunctionCall:
+    'FunctionCall' '{' ('entityType' entityType=RMLObject  )? 'function' function=[FunctionDec:EString ] '}'  
+;
+
+GetValue returns GetValue:
+    {GetValue} 'GetValue' '{' ('entityType' entityType=RMLObject  )? '}'  
+;
+
+FunctionDec returns FunctionDec:
+    {FunctionDec} 'FunctionDec' '{' ('newAttribute' newAttribute=RMLObject  )? ('returnType' returnType=RMLObject  )? ('instruction' '{' instruction+=Statement  ("," instruction+=Statement  )* '}' )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
 ;
 
 Deplacement returns Deplacement:
@@ -59,10 +85,6 @@ Unit returns Unit:
     {Unit} 'Unit' '{' ('Type' Type=UnitMeasure  )? '}'  
 ;
 
-Entity_Impl returns Entity:
-    {Entity} 'Entity' '{' ('entityType' entityType=RMLObject  )? '}'  
-;
-
 Direction returns Direction:
     Direction_forward | Direction_backward | Direction_sideLeft | Direction_sideRight
 ;
@@ -78,32 +100,6 @@ UnitMeasure_m returns UnitMeasure_m: 'm' ;
 UnitMeasure_dm returns UnitMeasure_dm: 'dm' ;
 UnitMeasure_cm returns UnitMeasure_cm: 'cm' ;
 UnitMeasure_mm returns UnitMeasure_mm: 'mm' ;
-
-FunctionCall returns FunctionCall:
-    'FunctionCall' '{' ('entityType' entityType=RMLObject  )? 'function' function=[Function:EString ] '}'  
-;
-
-ArithmeticExpression returns ArithmeticExpression:
-    'ArithmeticExpression' '{' ('entityType' entityType=RMLObject  )? ('arithmeticOperator' arithmeticOperator=ArithmeticOperators  )? 'elementA' elementA=[Entity:EString ] ('elementB' elementB=[Entity:EString ] )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
-;
-
-GetValue returns GetValue:
-    {GetValue} 'GetValue' '{' ('entityType' entityType=RMLObject  )? '}'  
-;
-
-VariableRef returns VariableRef:
-    {VariableRef} 'VariableRef' '{' ('entityType' entityType=RMLObject  )? '}'  
-;
-
-ArithmeticOperators returns ArithmeticOperators:
-    ArithmeticOperators_Plus | ArithmeticOperators_Minus | ArithmeticOperators_Multiplie | ArithmeticOperators_Divide | ArithmeticOperators_Modulo | ArithmeticOperators_Power
-;
-ArithmeticOperators_Plus returns ArithmeticOperators_Plus: 'Plus' ;
-ArithmeticOperators_Minus returns ArithmeticOperators_Minus: 'Minus' ;
-ArithmeticOperators_Multiplie returns ArithmeticOperators_Multiplie: 'Multiplie' ;
-ArithmeticOperators_Divide returns ArithmeticOperators_Divide: 'Divide' ;
-ArithmeticOperators_Modulo returns ArithmeticOperators_Modulo: 'Modulo' ;
-ArithmeticOperators_Power returns ArithmeticOperators_Power: 'Power' ;
 
 EString returns string:
     STRING | ID 

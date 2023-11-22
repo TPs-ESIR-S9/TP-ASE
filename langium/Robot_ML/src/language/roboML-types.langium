@@ -6,6 +6,14 @@ type RMLObject_RMLFloat = 'RMLFloat';
 type RMLObject_RMLDouble = 'RMLDouble';
 type RMLObject_RMLBoolean = 'RMLBoolean';
 
+type ArithmeticOperators = ArithmeticOperators_Plus | ArithmeticOperators_Minus | ArithmeticOperators_Multiplie | ArithmeticOperators_Divide | ArithmeticOperators_Modulo | ArithmeticOperators_Power;
+type ArithmeticOperators_Plus = 'Plus';
+type ArithmeticOperators_Minus = 'Minus';
+type ArithmeticOperators_Multiplie = 'Multiplie';
+type ArithmeticOperators_Divide = 'Divide';
+type ArithmeticOperators_Modulo = 'Modulo';
+type ArithmeticOperators_Power = 'Power';
+
 type UnitMeasure = UnitMeasure_m | UnitMeasure_dm | UnitMeasure_cm | UnitMeasure_mm;
 type UnitMeasure_m = 'm';
 type UnitMeasure_dm = 'dm';
@@ -18,26 +26,15 @@ type Direction_backward = 'backward';
 type Direction_sideLeft = 'sideLeft';
 type Direction_sideRight = 'sideRight';
 
-type ArithmeticOperators = ArithmeticOperators_Plus | ArithmeticOperators_Minus | ArithmeticOperators_Multiplie | ArithmeticOperators_Divide | ArithmeticOperators_Modulo | ArithmeticOperators_Power;
-type ArithmeticOperators_Plus = 'Plus';
-type ArithmeticOperators_Minus = 'Minus';
-type ArithmeticOperators_Multiplie = 'Multiplie';
-type ArithmeticOperators_Divide = 'Divide';
-type ArithmeticOperators_Modulo = 'Modulo';
-type ArithmeticOperators_Power = 'Power';
-
-interface RoboMLProgram {
-	function: Function[]
-}
-
-interface Function {
-	instruction: Statement[]
-	newAttribute?: RMLObject
-	returnType?: RMLObject
+interface ArithmeticExpression extends Entity {
 	variable: Variable[]
+	elementA: @Entity
+	elementB?: @Entity
+	arithmeticOperator?: ArithmeticOperators
 }
 
-interface Statement {
+interface Entity {
+	entityType?: RMLObject
 }
 
 interface Variable {
@@ -49,8 +46,21 @@ interface Variable {
 interface VariableRef extends Entity {
 }
 
-interface Entity {
-	entityType?: RMLObject
+interface Statement {
+}
+
+interface FunctionCall extends Entity {
+	function: @FunctionDec
+}
+
+interface FunctionDec {
+	instruction: Statement[]
+	newAttribute?: RMLObject
+	returnType?: RMLObject
+	variable: Variable[]
+}
+
+interface GetValue extends Entity {
 }
 
 interface Deplacement extends Statement {
@@ -88,19 +98,5 @@ interface Condition extends Statement {
 	statementElse: Statement[]
 	variable: Variable[]
 	booleanExpression?: @Entity
-}
-
-interface FunctionCall extends Entity {
-	function: @Function
-}
-
-interface ArithmeticExpression extends Entity {
-	variable: Variable[]
-	elementA: @Entity
-	elementB?: @Entity
-	arithmeticOperator?: ArithmeticOperators
-}
-
-interface GetValue extends Entity {
 }
 

@@ -22,7 +22,6 @@ export class RoboMlValidator {
         throw new Error('Method not implemented.');
     }
 
-    
 
 //     checkPersonStartsWithCapital(person: Person, accept: ValidationAcceptor): void {
 //         if (person.name) {

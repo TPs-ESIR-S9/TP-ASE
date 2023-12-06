@@ -1,8 +1,7 @@
 
-type RMLObject = RMLObject_RMLInt | RMLObject_RMLString | RMLObject_RMLFloat | RMLObject_RMLDouble | RMLObject_RMLBoolean;
+type RMLObject = RMLObject_RMLInt | RMLObject_RMLString | RMLObject_RMLDouble | RMLObject_RMLBoolean;
 type RMLObject_RMLInt = 'RMLInt';
 type RMLObject_RMLString = 'RMLString';
-type RMLObject_RMLFloat = 'RMLFloat';
 type RMLObject_RMLDouble = 'RMLDouble';
 type RMLObject_RMLBoolean = 'RMLBoolean';
 
@@ -76,7 +75,7 @@ interface EntrySimple extends Entry {
 
 interface Deplacement extends Statement {
 	unitMeasure: UnitMeasure
-	deplacementDistance?: number
+	deplacementDistance?: Entry
 	movementType?: Direction
 }
 
@@ -85,7 +84,7 @@ interface Unit {
 }
 
 interface Rotation extends Statement {
-	rotationAngle: number
+	rotationAngle: Entry
 	rotationSens: RotationSens
 }
 
@@ -100,12 +99,12 @@ interface Assignement extends Statement {
 }
 
 interface SetSpeed extends Statement {
-	variableValue: number
+	variableValue: Entry
 	unitMeasure: UnitMeasure
 }
 
 interface SetRotation extends Statement {
-	variableValue: number
+	variableValue: Entry
 }
 
 interface Condition extends Statement {

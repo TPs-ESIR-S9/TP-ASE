@@ -3,23 +3,27 @@ grammar RoboMl
 import 'Terminals'
 import 'roboML-types'
 
-entry RoboMLProgram returns RoboMLProgram:
-    'test' {RoboMLProgram} 'RoboMLProgram' '{' ('function' '{' function+=FunctionDec  ("," function+=FunctionDec  )* '}' )? '}'  
+entry RoboMLProgram returns RoboMLProgram: //OK
+    {RoboMLProgram} ( function+=FunctionDec )+
 ;
 
-Statement returns Statement:
-    Deplacement | Rotation | Loop | Assignement | SetValue | Condition 
+Statement returns Statement:   //TODO
+    Deplacement | Rotation | Loop | Assignement | SetSpeed | SetRotation | Condition | VariableDef
 ;
 
-Entity returns Entity:
-    Entity_Impl | FunctionCall | ArithmeticExpression | GetValue | VariableRef 
+Entry returns Entry:    //TODO
+    FunctionCall | Expression | GetSpeed | VariableRef | STRING | INT
 ;
 
-FunctionDec returns FunctionDec:
-    {FunctionDec} 'FunctionDec' '{' ('newAttribute' newAttribute=RMLObject  )? ('returnType' returnType=RMLObject  )? ('instruction' '{' instruction+=Statement  ("," instruction+=Statement  )* '}' )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+EntrySimple returns EntrySimple:    //TODO
+    FunctionCall | GetSpeed | VariableRef | STRING | INT
 ;
 
-RMLObject returns RMLObject:
+FunctionDec returns FunctionDec: //OK
+    {FunctionDec} 'let' ( 'void' | returnType=RMLObject ) functionName=ID '(' ( variableFunDef+=VariableFunDef  ("," variableFunDef+=VariableFunDef  )* )? ')' '{' ( instruction+=Statement )+ '}'  
+;
+
+RMLObject returns RMLObject: //OK
     RMLObject_RMLInt | RMLObject_RMLString | RMLObject_RMLFloat | RMLObject_RMLDouble | RMLObject_RMLBoolean
 ;
 RMLObject_RMLInt returns RMLObject_RMLInt: 'RMLInt' ;
@@ -28,49 +32,54 @@ RMLObject_RMLFloat returns RMLObject_RMLFloat: 'RMLFloat' ;
 RMLObject_RMLDouble returns RMLObject_RMLDouble: 'RMLDouble' ;
 RMLObject_RMLBoolean returns RMLObject_RMLBoolean: 'RMLBoolean' ;
 
-Variable returns Variable:
-    {Variable} 'Variable' '{' ('variableName' variableName=RMLObject  )? ('variableValue' variableValue=RMLObject  )? ('variableref' '{' variableref+=VariableRef  ("," variableref+=VariableRef  )* '}' )? '}'  
+VariableDef returns VariableDef: //OK
+    {VariableDef} 'var' variableType=RMLObject variableName=ID '=' variableValue=Entry
 ;
 
-Deplacement returns Deplacement:
-    'Deplacement' '{' ('movementType' movementType=Direction  )? 'unit' unit=[Unit:EString ] ('deplacementDistance' deplacementDistance=[Entity:EString ] )? '}'  
+VariableFunDef returns VariableFunDef: //OK
+    {VariableFunDef} variableType=RMLObject variableName=ID 
 ;
 
-Rotation returns Rotation:
-    'Rotation' '{' 'rotationAngle' rotationAngle=[Entity:EString ] 'rotationSens' rotationSens=[Entity:EString ] '}'  
+Deplacement returns Deplacement: //OK
+    movementType=Direction deplacementDistance=INT unitMeasure=UnitMeasure
 ;
 
-Loop returns Loop:
-    {Loop} 'Loop' '{' ('booleanExpression' booleanExpression=[Entity:EString ] )? ('instruction' '{' instruction+=Statement  ("," instruction+=Statement  )* '}' )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+Rotation returns Rotation: //OK
+    rotationSens=RotationSens rotationAngle=INT 
+;
+RotationSens returns RotationSens: 'Clock' | 'AntiClock' ;
+
+Loop returns Loop:     //TODO
+    {Loop} 'loop' booleanExpression=Entry '{' ( instruction+=Statement )+ '}'  
 ;
 
 Assignement returns Assignement:
-    'Assignement' '{' ('assignableVariable' assignableVariable=[Variable:EString ] )? 'entity' entity=[Entity:EString ] '}'  
+    assignableVariable=[VariableRef:ID] '=' entry=Entry
 ;
 
-SetValue returns SetValue:
-    'SetValue' '{' 'entityToSet' entityToSet=[Entity:EString ] '}'  
+SetSpeed returns SetSpeed:
+    'setSpeed(' variableValue=INT unitMeasure=UnitMeasure ')'
+;
+
+SetRotation returns SetRotation:
+    'setRotation(' variableValue=INT ')'
 ;
 
 Condition returns Condition:
-    {Condition} 'Condition' '{' ('booleanExpression' booleanExpression=[Entity:EString ] )? ('statementIf' '{' statementIf+=Statement  ("," statementIf+=Statement  )* '}' )? ('statementElse' '{' statementElse+=Statement  ("," statementElse+=Statement  )* '}' )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+    {Condition} 'if' '(' ( booleanExpression=Entry )? ')' '{' statementIf+=Statement  ("," statementIf+=Statement  )* '}' ('else' '{' statementElse+=Statement  ("," statementElse+=Statement  )* '}' )?
 ;
 
 Unit returns Unit:
     {Unit} 'Unit' '{' ('Type' Type=UnitMeasure  )? '}'  
 ;
 
-Entity_Impl returns Entity:
-    {Entity} 'Entity' '{' ('entityType' entityType=RMLObject  )? '}'  
-;
-
 Direction returns Direction:
     Direction_forward | Direction_backward | Direction_sideLeft | Direction_sideRight
 ;
-Direction_forward returns Direction_forward: 'forward' ;
-Direction_backward returns Direction_backward: 'backward' ;
-Direction_sideLeft returns Direction_sideLeft: 'sideLeft' ;
-Direction_sideRight returns Direction_sideRight: 'sideRight' ;
+Direction_forward returns Direction_forward: 'Forward' ;
+Direction_backward returns Direction_backward: 'Backward' ;
+Direction_sideLeft returns Direction_sideLeft: 'SideLeft' ;
+Direction_sideRight returns Direction_sideRight: 'SideRight' ;
 
 UnitMeasure returns UnitMeasure:
     UnitMeasure_m | UnitMeasure_dm | UnitMeasure_cm | UnitMeasure_mm
@@ -81,30 +90,44 @@ UnitMeasure_cm returns UnitMeasure_cm: 'cm' ;
 UnitMeasure_mm returns UnitMeasure_mm: 'mm' ;
 
 FunctionCall returns FunctionCall:
-    'FunctionCall' '{' ('entityType' entityType=RMLObject  )? 'function' function=[FunctionDec:EString ] '}'  
+    function=[FunctionDec:ID ] '(' ( arguments+=Entry  ("," arguments+=Entry  )* )? ')'  
 ;
 
-ArithmeticExpression returns ArithmeticExpression:
-    'ArithmeticExpression' '{' ('entityType' entityType=RMLObject  )? ('arithmeticOperator' arithmeticOperator=ArithmeticOperators  )? 'elementA' elementA=[Entity:EString ] ('elementB' elementB=[Entity:EString ] )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+Expression returns Expression:
+    elementA=EntrySimple operator=Operators elementB=Entry
 ;
 
-GetValue returns GetValue:
-    {GetValue} 'GetValue' '{' ('entityType' entityType=RMLObject  )? '}'  
+GetSpeed returns GetSpeed:
+    {GetSpeed} 'getSpeed()'  
+;
+
+GetRotation returns GetRotation:
+    {GetRotation} 'getRotation()'
 ;
 
 VariableRef returns VariableRef:
-    {VariableRef} 'VariableRef' '{' ('entityType' entityType=RMLObject  )? '}'  
+    {VariableRef} variableDefinition=[VariableDef:ID]
 ;
 
-ArithmeticOperators returns ArithmeticOperators:
-    ArithmeticOperators_Plus | ArithmeticOperators_Minus | ArithmeticOperators_Multiplie | ArithmeticOperators_Divide | ArithmeticOperators_Modulo | ArithmeticOperators_Power
+Operators returns Operators:
+    Operators_Plus | Operators_Minus | Operators_Multiplie | Operators_Divide | Operators_Modulo | Operators_Power | Operators_Equal | Operators_NotEqual | Operators_Greater | Operators_Less | Operators_GreaterEqual | Operators_LessEqual | Operators_And | Operators_Or | Operators_Not
 ;
-ArithmeticOperators_Plus returns ArithmeticOperators_Plus: 'Plus' ;
-ArithmeticOperators_Minus returns ArithmeticOperators_Minus: 'Minus' ;
-ArithmeticOperators_Multiplie returns ArithmeticOperators_Multiplie: 'Multiplie' ;
-ArithmeticOperators_Divide returns ArithmeticOperators_Divide: 'Divide' ;
-ArithmeticOperators_Modulo returns ArithmeticOperators_Modulo: 'Modulo' ;
-ArithmeticOperators_Power returns ArithmeticOperators_Power: 'Power' ;
+Operators_Plus returns Operators_Plus: '+' ;
+Operators_Minus returns Operators_Minus: '-' ;
+Operators_Multiplie returns Operators_Multiplie: '*' ;
+Operators_Divide returns Operators_Divide: '/' ;
+Operators_Modulo returns Operators_Modulo: '%' ;
+Operators_Power returns Operators_Power: '**' ;
+Operators_Equal returns Operators_Equal: '==' ;
+Operators_NotEqual returns Operators_NotEqual: '!=' ;
+Operators_Greater returns Operators_Greater: '>' ;
+Operators_Less returns Operators_Less: '<' ;
+Operators_GreaterEqual returns Operators_GreaterEqual: '>=' ;
+Operators_LessEqual returns Operators_LessEqual: '<=' ;
+Operators_And returns Operators_And: '&&' ;
+Operators_Or returns Operators_Or: '||' ;
+Operators_Not returns Operators_Not: '!' ;
+
 
 EString returns string:
     STRING | ID 

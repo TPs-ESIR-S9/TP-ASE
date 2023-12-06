@@ -1,7 +1,6 @@
 
-type RMLObject = RMLObject_RMLInt | RMLObject_RMLString | RMLObject_RMLDouble | RMLObject_RMLBoolean;
+type RMLObject = RMLObject_RMLInt | RMLObject_RMLDouble | RMLObject_RMLBoolean;
 type RMLObject_RMLInt = 'RMLInt';
-type RMLObject_RMLString = 'RMLString';
 type RMLObject_RMLDouble = 'RMLDouble';
 type RMLObject_RMLBoolean = 'RMLBoolean';
 
@@ -63,11 +62,11 @@ interface VariableFunDef {
 	variableType: RMLObject
 }
 
-interface VariableRef extends Entry {
-	variableDefinition: @VariableDef
+interface Entry {
 }
 
-interface Entry {
+interface VariableRef extends Entry {
+	variableDefinition: @VariableDef
 }
 
 interface EntrySimple extends Entry {

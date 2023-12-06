@@ -12,11 +12,11 @@ Statement returns Statement:   //OK
 ;
 
 Entry returns Entry:    //OK
-    FunctionCall | Expression | GetSpeed | VariableRef | STRING | DOUBLE | INT | BOOLEAN
+    FunctionCall | Expression | GetSpeed | GetRotation | DOUBLE | INT | BOOLEAN | VariableRef
 ;
 
 EntrySimple returns EntrySimple:    //OK
-    FunctionCall | GetSpeed | VariableRef | STRING | DOUBLE | INT | BOOLEAN
+    FunctionCall | GetSpeed | GetRotation | DOUBLE | INT | BOOLEAN | VariableRef
 ;
 
 FunctionDec returns FunctionDec: //OK
@@ -24,10 +24,9 @@ FunctionDec returns FunctionDec: //OK
 ;
 
 RMLObject returns RMLObject: //OK
-    RMLObject_RMLInt | RMLObject_RMLString | RMLObject_RMLDouble | RMLObject_RMLBoolean
+    RMLObject_RMLInt | RMLObject_RMLDouble | RMLObject_RMLBoolean
 ;
 RMLObject_RMLInt returns RMLObject_RMLInt: 'RMLInt' ;
-RMLObject_RMLString returns RMLObject_RMLString: 'RMLString' ;
 RMLObject_RMLDouble returns RMLObject_RMLDouble: 'RMLDouble' ;
 RMLObject_RMLBoolean returns RMLObject_RMLBoolean: 'RMLBoolean' ;
 
@@ -126,9 +125,3 @@ Operators_LessEqual returns Operators_LessEqual: '<=' ;
 Operators_And returns Operators_And: '&&' ;
 Operators_Or returns Operators_Or: '||' ;
 Operators_Not returns Operators_Not: '!' ;
-
-
-EString returns string:
-    STRING | ID 
-;
-

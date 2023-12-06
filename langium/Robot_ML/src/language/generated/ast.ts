@@ -12,7 +12,6 @@ export const RoboMlTerminals = {
     INT: /[0-9]+/,
     DOUBLE: /([0-9]+(\.[0-9]+)?)/,
     BOOLEAN: /(true|false)/,
-    STRING: /(("((\\([\s\S]))|((?!(\\|"))[\s\S]*?))*")|('((\\([\s\S]))|((?!(\\|'))[\s\S]*?))*'))/,
     ML_COMMENT: /(\/\*([\s\S]*?\*\/))/,
     SL_COMMENT: /(\/\/((?!(\n|\r))[\s\S]*?)(\r?\n)?)/,
     WS: /((( |	)|\r)|\n)+/,
@@ -27,12 +26,6 @@ export type Direction_forward = 'Forward';
 export type Direction_sideLeft = 'SideLeft';
 
 export type Direction_sideRight = 'SideRight';
-
-export type EString = string;
-
-export function isEString(item: unknown): item is EString {
-    return (typeof item === 'string' && (/(("((\\([\s\S]))|((?!(\\|"))[\s\S]*?))*")|('((\\([\s\S]))|((?!(\\|'))[\s\S]*?))*'))/.test(item) || /(\^?(([a-z]|[A-Z])|_)((([a-z]|[A-Z])|_)|[0-9])*)/.test(item)));
-}
 
 export type Operators = Operators_And | Operators_Divide | Operators_Equal | Operators_Greater | Operators_GreaterEqual | Operators_Less | Operators_LessEqual | Operators_Minus | Operators_Modulo | Operators_Multiplie | Operators_Not | Operators_NotEqual | Operators_Or | Operators_Plus | Operators_Power;
 
@@ -66,15 +59,13 @@ export type Operators_Plus = '+';
 
 export type Operators_Power = '**';
 
-export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLInt | RMLObject_RMLString;
+export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLInt;
 
 export type RMLObject_RMLBoolean = 'RMLBoolean';
 
 export type RMLObject_RMLDouble = 'RMLDouble';
 
 export type RMLObject_RMLInt = 'RMLInt';
-
-export type RMLObject_RMLString = 'RMLString';
 
 export type Rotation_antiClock = 'AntiClock';
 

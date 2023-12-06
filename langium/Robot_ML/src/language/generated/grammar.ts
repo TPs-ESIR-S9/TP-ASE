@@ -62,6 +62,20 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@28"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@10"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@11"
             },
             "arguments": []
@@ -69,7 +83,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@12"
+              "$ref": "#/rules@13"
             },
             "arguments": []
           },
@@ -104,14 +118,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@18"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@9"
+              "$ref": "#/rules@8"
             },
             "arguments": []
           }
@@ -136,6 +143,20 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@28"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@29"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@30"
             },
             "arguments": []
@@ -150,42 +171,21 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@51"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@49"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@32"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@33"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@53"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@52"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@54"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@34"
             },
             "arguments": []
           }
@@ -210,6 +210,13 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@28"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@30"
             },
             "arguments": []
@@ -217,42 +224,28 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
+              "$ref": "#/rules@31"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@51"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@49"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
               "$ref": "#/rules@32"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@33"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@53"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@52"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@54"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@34"
             },
             "arguments": []
           }
@@ -312,7 +305,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@51"
+                "$ref": "#/rules@50"
               },
               "arguments": []
             }
@@ -331,7 +324,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@10"
+                    "$ref": "#/rules@9"
                   },
                   "arguments": []
                 }
@@ -350,7 +343,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@10"
+                        "$ref": "#/rules@9"
                       },
                       "arguments": []
                     }
@@ -381,6 +374,28 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
               "arguments": []
             },
             "cardinality": "+"
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Keyword",
+                "value": "return"
+              },
+              {
+                "$type": "Assignment",
+                "feature": "returnEntry",
+                "operator": "=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@2"
+                  },
+                  "arguments": []
+                }
+              }
+            ],
+            "cardinality": "?"
           },
           {
             "$type": "Keyword",
@@ -417,13 +432,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
               "$ref": "#/rules@7"
             },
             "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@8"
-            },
-            "arguments": []
           }
         ]
       },
@@ -453,26 +461,9 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
     },
     {
       "$type": "ParserRule",
-      "name": "RMLObject_RMLDouble",
-      "returnType": {
-        "$ref": "#/types@2"
-      },
-      "definition": {
-        "$type": "Keyword",
-        "value": "RMLDouble"
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
       "name": "RMLObject_RMLBoolean",
       "returnType": {
-        "$ref": "#/types@3"
+        "$ref": "#/types@2"
       },
       "definition": {
         "$type": "Keyword",
@@ -523,7 +514,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@51"
+                "$ref": "#/rules@50"
               },
               "arguments": []
             }
@@ -587,7 +578,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@51"
+                "$ref": "#/rules@50"
               },
               "arguments": []
             }
@@ -617,7 +608,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@20"
+                "$ref": "#/rules@18"
               },
               "arguments": []
             }
@@ -641,7 +632,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@25"
+                "$ref": "#/rules@23"
               },
               "arguments": []
             }
@@ -659,7 +650,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Rotation",
       "returnType": {
-        "$ref": "#/interfaces@10"
+        "$ref": "#/interfaces@9"
       },
       "definition": {
         "$type": "Group",
@@ -671,7 +662,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@13"
+                "$ref": "#/rules@12"
               },
               "arguments": []
             }
@@ -701,7 +692,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "RotationSens",
       "returnType": {
-        "$ref": "#/types@30"
+        "$ref": "#/types@29"
       },
       "definition": {
         "$type": "Alternatives",
@@ -727,7 +718,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Loop",
       "returnType": {
-        "$ref": "#/interfaces@11"
+        "$ref": "#/interfaces@10"
       },
       "definition": {
         "$type": "Group",
@@ -735,7 +726,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@11"
+              "$ref": "#/interfaces@10"
             }
           },
           {
@@ -788,7 +779,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Assignement",
       "returnType": {
-        "$ref": "#/interfaces@12"
+        "$ref": "#/interfaces@11"
       },
       "definition": {
         "$type": "Group",
@@ -798,18 +789,11 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "feature": "assignableVariable",
             "operator": "=",
             "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@6"
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@50"
               },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@51"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
+              "arguments": []
             }
           },
           {
@@ -841,7 +825,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "SetSpeed",
       "returnType": {
-        "$ref": "#/interfaces@13"
+        "$ref": "#/interfaces@12"
       },
       "definition": {
         "$type": "Group",
@@ -869,7 +853,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@25"
+                "$ref": "#/rules@23"
               },
               "arguments": []
             }
@@ -891,7 +875,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "SetRotation",
       "returnType": {
-        "$ref": "#/interfaces@14"
+        "$ref": "#/interfaces@13"
       },
       "definition": {
         "$type": "Group",
@@ -929,7 +913,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Condition",
       "returnType": {
-        "$ref": "#/interfaces@15"
+        "$ref": "#/interfaces@14"
       },
       "definition": {
         "$type": "Group",
@@ -937,7 +921,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@15"
+              "$ref": "#/interfaces@14"
             }
           },
           {
@@ -1028,71 +1012,27 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
     },
     {
       "$type": "ParserRule",
-      "name": "Unit",
-      "returnType": {
-        "$ref": "#/interfaces@9"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Action",
-            "type": {
-              "$ref": "#/interfaces@9"
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": "Unit"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "Type"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "Type",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@25"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
       "name": "Direction",
       "returnType": {
-        "$ref": "#/types@9"
+        "$ref": "#/types@8"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@19"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@20"
+            },
+            "arguments": []
+          },
           {
             "$type": "RuleCall",
             "rule": {
@@ -1104,20 +1044,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@22"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@23"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@24"
             },
             "arguments": []
           }
@@ -1134,7 +1060,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Direction_forward",
       "returnType": {
-        "$ref": "#/types@10"
+        "$ref": "#/types@9"
       },
       "definition": {
         "$type": "Keyword",
@@ -1151,7 +1077,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Direction_backward",
       "returnType": {
-        "$ref": "#/types@11"
+        "$ref": "#/types@10"
       },
       "definition": {
         "$type": "Keyword",
@@ -1168,7 +1094,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Direction_sideLeft",
       "returnType": {
-        "$ref": "#/types@12"
+        "$ref": "#/types@11"
       },
       "definition": {
         "$type": "Keyword",
@@ -1185,7 +1111,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Direction_sideRight",
       "returnType": {
-        "$ref": "#/types@13"
+        "$ref": "#/types@12"
       },
       "definition": {
         "$type": "Keyword",
@@ -1202,11 +1128,25 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "UnitMeasure",
       "returnType": {
-        "$ref": "#/types@4"
+        "$ref": "#/types@3"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@24"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@25"
+            },
+            "arguments": []
+          },
           {
             "$type": "RuleCall",
             "rule": {
@@ -1218,20 +1158,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@27"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@28"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@29"
             },
             "arguments": []
           }
@@ -1248,7 +1174,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "UnitMeasure_m",
       "returnType": {
-        "$ref": "#/types@5"
+        "$ref": "#/types@4"
       },
       "definition": {
         "$type": "Keyword",
@@ -1265,7 +1191,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "UnitMeasure_dm",
       "returnType": {
-        "$ref": "#/types@6"
+        "$ref": "#/types@5"
       },
       "definition": {
         "$type": "Keyword",
@@ -1282,7 +1208,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "UnitMeasure_cm",
       "returnType": {
-        "$ref": "#/types@7"
+        "$ref": "#/types@6"
       },
       "definition": {
         "$type": "Keyword",
@@ -1299,7 +1225,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "UnitMeasure_mm",
       "returnType": {
-        "$ref": "#/types@8"
+        "$ref": "#/types@7"
       },
       "definition": {
         "$type": "Keyword",
@@ -1316,7 +1242,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "FunctionCall",
       "returnType": {
-        "$ref": "#/interfaces@16"
+        "$ref": "#/interfaces@15"
       },
       "definition": {
         "$type": "Group",
@@ -1326,18 +1252,11 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "feature": "function",
             "operator": "=",
             "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@1"
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@50"
               },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@51"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
+              "arguments": []
             }
           },
           {
@@ -1401,7 +1320,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Expression",
       "returnType": {
-        "$ref": "#/interfaces@17"
+        "$ref": "#/interfaces@16"
       },
       "definition": {
         "$type": "Group",
@@ -1425,7 +1344,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "terminal": {
               "$type": "RuleCall",
               "rule": {
-                "$ref": "#/rules@35"
+                "$ref": "#/rules@33"
               },
               "arguments": []
             }
@@ -1455,7 +1374,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "GetSpeed",
       "returnType": {
-        "$ref": "#/interfaces@18"
+        "$ref": "#/interfaces@17"
       },
       "definition": {
         "$type": "Group",
@@ -1463,7 +1382,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@18"
+              "$ref": "#/interfaces@17"
             }
           },
           {
@@ -1483,7 +1402,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "GetRotation",
       "returnType": {
-        "$ref": "#/interfaces@19"
+        "$ref": "#/interfaces@18"
       },
       "definition": {
         "$type": "Group",
@@ -1491,7 +1410,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@19"
+              "$ref": "#/interfaces@18"
             }
           },
           {
@@ -1527,18 +1446,11 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "feature": "variableDefinition",
             "operator": "=",
             "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@3"
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@50"
               },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@51"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
+              "arguments": []
             }
           }
         ]
@@ -1554,11 +1466,25 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators",
       "returnType": {
-        "$ref": "#/types@14"
+        "$ref": "#/types@13"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@34"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@35"
+            },
+            "arguments": []
+          },
           {
             "$type": "RuleCall",
             "rule": {
@@ -1649,20 +1575,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
               "$ref": "#/rules@48"
             },
             "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@49"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@50"
-            },
-            "arguments": []
           }
         ]
       },
@@ -1677,7 +1589,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Plus",
       "returnType": {
-        "$ref": "#/types@15"
+        "$ref": "#/types@14"
       },
       "definition": {
         "$type": "Keyword",
@@ -1694,7 +1606,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Minus",
       "returnType": {
-        "$ref": "#/types@16"
+        "$ref": "#/types@15"
       },
       "definition": {
         "$type": "Keyword",
@@ -1711,7 +1623,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Multiplie",
       "returnType": {
-        "$ref": "#/types@17"
+        "$ref": "#/types@16"
       },
       "definition": {
         "$type": "Keyword",
@@ -1728,7 +1640,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Divide",
       "returnType": {
-        "$ref": "#/types@18"
+        "$ref": "#/types@17"
       },
       "definition": {
         "$type": "Keyword",
@@ -1745,7 +1657,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Modulo",
       "returnType": {
-        "$ref": "#/types@19"
+        "$ref": "#/types@18"
       },
       "definition": {
         "$type": "Keyword",
@@ -1762,7 +1674,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Power",
       "returnType": {
-        "$ref": "#/types@20"
+        "$ref": "#/types@19"
       },
       "definition": {
         "$type": "Keyword",
@@ -1779,7 +1691,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Equal",
       "returnType": {
-        "$ref": "#/types@21"
+        "$ref": "#/types@20"
       },
       "definition": {
         "$type": "Keyword",
@@ -1796,7 +1708,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_NotEqual",
       "returnType": {
-        "$ref": "#/types@22"
+        "$ref": "#/types@21"
       },
       "definition": {
         "$type": "Keyword",
@@ -1813,7 +1725,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Greater",
       "returnType": {
-        "$ref": "#/types@23"
+        "$ref": "#/types@22"
       },
       "definition": {
         "$type": "Keyword",
@@ -1830,7 +1742,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Less",
       "returnType": {
-        "$ref": "#/types@24"
+        "$ref": "#/types@23"
       },
       "definition": {
         "$type": "Keyword",
@@ -1847,7 +1759,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_GreaterEqual",
       "returnType": {
-        "$ref": "#/types@25"
+        "$ref": "#/types@24"
       },
       "definition": {
         "$type": "Keyword",
@@ -1864,7 +1776,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_LessEqual",
       "returnType": {
-        "$ref": "#/types@26"
+        "$ref": "#/types@25"
       },
       "definition": {
         "$type": "Keyword",
@@ -1881,7 +1793,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_And",
       "returnType": {
-        "$ref": "#/types@27"
+        "$ref": "#/types@26"
       },
       "definition": {
         "$type": "Keyword",
@@ -1898,7 +1810,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Or",
       "returnType": {
-        "$ref": "#/types@28"
+        "$ref": "#/types@27"
       },
       "definition": {
         "$type": "Keyword",
@@ -1915,11 +1827,35 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Operators_Not",
       "returnType": {
-        "$ref": "#/types@29"
+        "$ref": "#/types@28"
       },
       "definition": {
         "$type": "Keyword",
         "value": "!"
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "Boolean",
+      "dataType": "boolean",
+      "definition": {
+        "$type": "Alternatives",
+        "elements": [
+          {
+            "$type": "Keyword",
+            "value": "true"
+          },
+          {
+            "$type": "Keyword",
+            "value": "false"
+          }
+        ]
       },
       "definesHiddenTokens": false,
       "entry": false,
@@ -2064,87 +2000,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "value": "9"
         },
         "cardinality": "+"
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "DOUBLE",
-      "type": {
-        "$type": "ReturnType",
-        "name": "number"
-      },
-      "definition": {
-        "$type": "TerminalGroup",
-        "elements": [
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "0"
-            },
-            "right": {
-              "$type": "Keyword",
-              "value": "9"
-            },
-            "cardinality": "+"
-          },
-          {
-            "$type": "TerminalGroup",
-            "elements": [
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "."
-                }
-              },
-              {
-                "$type": "CharacterRange",
-                "left": {
-                  "$type": "Keyword",
-                  "value": "0"
-                },
-                "right": {
-                  "$type": "Keyword",
-                  "value": "9"
-                },
-                "cardinality": "+"
-              }
-            ],
-            "cardinality": "?"
-          }
-        ]
-      },
-      "fragment": false,
-      "hidden": false
-    },
-    {
-      "$type": "TerminalRule",
-      "name": "BOOLEAN",
-      "type": {
-        "$type": "ReturnType",
-        "name": "boolean"
-      },
-      "definition": {
-        "$type": "TerminalAlternatives",
-        "elements": [
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "true"
-            }
-          },
-          {
-            "$type": "CharacterRange",
-            "left": {
-              "$type": "Keyword",
-              "value": "false"
-            }
-          }
-        ]
       },
       "fragment": false,
       "hidden": false
@@ -2388,6 +2243,17 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             }
           },
           "isOptional": false
+        },
+        {
+          "$type": "TypeAttribute",
+          "name": "returnEntry",
+          "isOptional": true,
+          "type": {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/interfaces@5"
+            }
+          }
         }
       ],
       "name": "FunctionDec",
@@ -2477,13 +2343,8 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "$type": "TypeAttribute",
           "name": "variableDefinition",
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@3"
-              }
-            }
+            "$type": "SimpleType",
+            "primitiveType": "string"
           },
           "isOptional": false
         }
@@ -2514,7 +2375,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/types@4"
+              "$ref": "#/types@3"
             }
           },
           "isOptional": false
@@ -2537,7 +2398,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/types@9"
+              "$ref": "#/types@8"
             }
           }
         }
@@ -2548,24 +2409,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "$ref": "#/interfaces@2"
         }
       ]
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "Type",
-          "isOptional": true,
-          "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/types@4"
-            }
-          }
-        }
-      ],
-      "name": "Unit",
-      "superTypes": []
     },
     {
       "$type": "Interface",
@@ -2587,7 +2430,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/types@30"
+              "$ref": "#/types@29"
             }
           },
           "isOptional": false
@@ -2644,13 +2487,8 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "name": "assignableVariable",
           "isOptional": true,
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@6"
-              }
-            }
+            "$type": "SimpleType",
+            "primitiveType": "string"
           }
         },
         {
@@ -2692,7 +2530,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/types@4"
+              "$ref": "#/types@3"
             }
           },
           "isOptional": false
@@ -2798,13 +2636,8 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "$type": "TypeAttribute",
           "name": "function",
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@1"
-              }
-            }
+            "$type": "SimpleType",
+            "primitiveType": "string"
           },
           "isOptional": false
         }
@@ -2848,7 +2681,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/types@14"
+              "$ref": "#/types@13"
             }
           }
         }
@@ -2899,12 +2732,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "typeRef": {
               "$ref": "#/types@2"
             }
-          },
-          {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/types@3"
-            }
           }
         ]
       }
@@ -2915,14 +2742,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "type": {
         "$type": "SimpleType",
         "stringType": "RMLInt"
-      }
-    },
-    {
-      "$type": "Type",
-      "name": "RMLObject_RMLDouble",
-      "type": {
-        "$type": "SimpleType",
-        "stringType": "RMLDouble"
       }
     },
     {
@@ -2942,6 +2761,12 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "SimpleType",
             "typeRef": {
+              "$ref": "#/types@4"
+            }
+          },
+          {
+            "$type": "SimpleType",
+            "typeRef": {
               "$ref": "#/types@5"
             }
           },
@@ -2955,12 +2780,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "SimpleType",
             "typeRef": {
               "$ref": "#/types@7"
-            }
-          },
-          {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/types@8"
             }
           }
         ]
@@ -3007,6 +2826,12 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "SimpleType",
             "typeRef": {
+              "$ref": "#/types@9"
+            }
+          },
+          {
+            "$type": "SimpleType",
+            "typeRef": {
               "$ref": "#/types@10"
             }
           },
@@ -3020,12 +2845,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "SimpleType",
             "typeRef": {
               "$ref": "#/types@12"
-            }
-          },
-          {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/types@13"
             }
           }
         ]
@@ -3069,6 +2888,12 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "type": {
         "$type": "UnionType",
         "types": [
+          {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/types@14"
+            }
+          },
           {
             "$type": "SimpleType",
             "typeRef": {
@@ -3151,12 +2976,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "SimpleType",
             "typeRef": {
               "$ref": "#/types@28"
-            }
-          },
-          {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/types@29"
             }
           }
         ]
@@ -3291,13 +3110,13 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/types@31"
+              "$ref": "#/types@30"
             }
           },
           {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/types@32"
+              "$ref": "#/types@31"
             }
           }
         ]

@@ -1,7 +1,6 @@
 
-type RMLObject = RMLObject_RMLInt | RMLObject_RMLDouble | RMLObject_RMLBoolean;
+type RMLObject = RMLObject_RMLInt | RMLObject_RMLBoolean;
 type RMLObject_RMLInt = 'RMLInt';
-type RMLObject_RMLDouble = 'RMLDouble';
 type RMLObject_RMLBoolean = 'RMLBoolean';
 
 type UnitMeasure = UnitMeasure_m | UnitMeasure_dm | UnitMeasure_cm | UnitMeasure_mm;
@@ -46,6 +45,7 @@ interface FunctionDec {
 	functionName: string
 	returnType?: RMLObject
 	variableFunDef: VariableFunDef[]
+	returnEntry?: Entry
 }
 
 interface Statement {
@@ -66,7 +66,7 @@ interface Entry {
 }
 
 interface VariableRef extends Entry {
-	variableDefinition: @VariableDef
+	variableDefinition: string
 }
 
 interface EntrySimple extends Entry {
@@ -76,10 +76,6 @@ interface Deplacement extends Statement {
 	unitMeasure: UnitMeasure
 	deplacementDistance?: Entry
 	movementType?: Direction
-}
-
-interface Unit {
-	Type?: UnitMeasure
 }
 
 interface Rotation extends Statement {
@@ -93,7 +89,7 @@ interface Loop extends Statement {
 }
 
 interface Assignement extends Statement {
-	assignableVariable?: @VariableRef
+	assignableVariable?: string
 	entry: Entry
 }
 
@@ -114,7 +110,7 @@ interface Condition extends Statement {
 
 interface FunctionCall extends Entry {
 	arguments: Entry[]
-	function: @FunctionDec
+	function: string
 }
 
 interface Expression extends Entry {

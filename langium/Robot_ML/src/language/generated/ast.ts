@@ -4,19 +4,22 @@
  ******************************************************************************/
 
 /* eslint-disable */
-import type { AstNode, Reference, ReferenceInfo, TypeMetaData } from 'langium';
+import type { AstNode, ReferenceInfo, TypeMetaData } from 'langium';
 import { AbstractAstReflection } from 'langium';
 
 export const RoboMlTerminals = {
     ID: /(\^?(([a-z]|[A-Z])|_)((([a-z]|[A-Z])|_)|[0-9])*)/,
     INT: /[0-9]+/,
-    DOUBLE: /([0-9]+(\.[0-9]+)?)/,
-    BOOLEAN: /(true|false)/,
-    STRING: /(("((\\([\s\S]))|((?!(\\|"))[\s\S]*?))*")|('((\\([\s\S]))|((?!(\\|'))[\s\S]*?))*'))/,
     ML_COMMENT: /(\/\*([\s\S]*?\*\/))/,
     SL_COMMENT: /(\/\/((?!(\n|\r))[\s\S]*?)(\r?\n)?)/,
     WS: /((( |	)|\r)|\n)+/,
 };
+
+export type Boolean = boolean;
+
+export function isBoolean(item: unknown): item is Boolean {
+    return typeof item === 'boolean';
+}
 
 export type Direction = Direction_backward | Direction_forward | Direction_sideLeft | Direction_sideRight;
 
@@ -27,12 +30,6 @@ export type Direction_forward = 'Forward';
 export type Direction_sideLeft = 'SideLeft';
 
 export type Direction_sideRight = 'SideRight';
-
-export type EString = string;
-
-export function isEString(item: unknown): item is EString {
-    return (typeof item === 'string' && (/(("((\\([\s\S]))|((?!(\\|"))[\s\S]*?))*")|('((\\([\s\S]))|((?!(\\|'))[\s\S]*?))*'))/.test(item) || /(\^?(([a-z]|[A-Z])|_)((([a-z]|[A-Z])|_)|[0-9])*)/.test(item)));
-}
 
 export type Operators = Operators_And | Operators_Divide | Operators_Equal | Operators_Greater | Operators_GreaterEqual | Operators_Less | Operators_LessEqual | Operators_Minus | Operators_Modulo | Operators_Multiplie | Operators_Not | Operators_NotEqual | Operators_Or | Operators_Plus | Operators_Power;
 
@@ -66,15 +63,11 @@ export type Operators_Plus = '+';
 
 export type Operators_Power = '**';
 
-export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLInt | RMLObject_RMLString;
+export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLInt;
 
 export type RMLObject_RMLBoolean = 'RMLBoolean';
 
-export type RMLObject_RMLDouble = 'RMLDouble';
-
 export type RMLObject_RMLInt = 'RMLInt';
-
-export type RMLObject_RMLString = 'RMLString';
 
 export type Rotation_antiClock = 'AntiClock';
 
@@ -107,6 +100,7 @@ export interface FunctionDec extends AstNode {
     readonly $type: 'FunctionDec';
     functionName: string
     instruction: Array<Statement>
+    returnEntry?: Entry
     returnType?: RMLObject
     variableFunDef: Array<VariableFunDef>
 }
@@ -136,17 +130,6 @@ export const Statement = 'Statement';
 
 export function isStatement(item: unknown): item is Statement {
     return reflection.isInstance(item, Statement);
-}
-
-export interface Unit extends AstNode {
-    readonly $type: 'Unit';
-    Type?: UnitMeasure
-}
-
-export const Unit = 'Unit';
-
-export function isUnit(item: unknown): item is Unit {
-    return reflection.isInstance(item, Unit);
 }
 
 export interface VariableDef extends AstNode {
@@ -201,7 +184,7 @@ export function isExpression(item: unknown): item is Expression {
 export interface FunctionCall extends Entry {
     readonly $type: 'FunctionCall';
     arguments: Array<Entry>
-    function: Reference<FunctionDec>
+    function: string
 }
 
 export const FunctionCall = 'FunctionCall';
@@ -232,7 +215,7 @@ export function isGetSpeed(item: unknown): item is GetSpeed {
 
 export interface VariableRef extends Entry {
     readonly $type: 'VariableRef';
-    variableDefinition: Reference<VariableDef>
+    variableDefinition: string
 }
 
 export const VariableRef = 'VariableRef';
@@ -243,7 +226,7 @@ export function isVariableRef(item: unknown): item is VariableRef {
 
 export interface Assignement extends Statement {
     readonly $type: 'Assignement';
-    assignableVariable?: Reference<VariableRef>
+    assignableVariable?: string
     entry: Entry
 }
 
@@ -343,7 +326,6 @@ export type RoboMlAstType = {
     SetRotation: SetRotation
     SetSpeed: SetSpeed
     Statement: Statement
-    Unit: Unit
     VariableDef: VariableDef
     VariableFunDef: VariableFunDef
     VariableRef: VariableRef
@@ -352,7 +334,7 @@ export type RoboMlAstType = {
 export class RoboMlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['Assignement', 'Condition', 'Deplacement', 'Entry', 'EntrySimple', 'Expression', 'FunctionCall', 'FunctionDec', 'GetRotation', 'GetSpeed', 'Loop', 'RoboMLProgram', 'Rotation', 'SetRotation', 'SetSpeed', 'Statement', 'Unit', 'VariableDef', 'VariableFunDef', 'VariableRef'];
+        return ['Assignement', 'Condition', 'Deplacement', 'Entry', 'EntrySimple', 'Expression', 'FunctionCall', 'FunctionDec', 'GetRotation', 'GetSpeed', 'Loop', 'RoboMLProgram', 'Rotation', 'SetRotation', 'SetSpeed', 'Statement', 'VariableDef', 'VariableFunDef', 'VariableRef'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -383,15 +365,6 @@ export class RoboMlAstReflection extends AbstractAstReflection {
     getReferenceType(refInfo: ReferenceInfo): string {
         const referenceId = `${refInfo.container.$type}:${refInfo.property}`;
         switch (referenceId) {
-            case 'Assignement:assignableVariable': {
-                return VariableRef;
-            }
-            case 'FunctionCall:function': {
-                return FunctionDec;
-            }
-            case 'VariableRef:variableDefinition': {
-                return VariableDef;
-            }
             default: {
                 throw new Error(`${referenceId} is not a valid reference id.`);
             }

@@ -2,13 +2,15 @@ import type { DefaultSharedModuleContext, LangiumServices, LangiumSharedServices
 import { createDefaultModule, createDefaultSharedModule, inject } from 'langium';
 import { RoboMlGeneratedModule, RoboMlGeneratedSharedModule } from './generated/module.js';
 import { RoboMlValidator, registerValidationChecks } from './robo-ml-validator.js';
+import { RoboMlAcceptWeaver, weaveAcceptMethods } from './accept-weaver.js';
 
 /**
  * Declaration of custom services - add your own service classes here.
  */
 export type RoboMlAddedServices = {
     validation: {
-        RoboMlValidator: RoboMlValidator
+        RoboMlValidator: RoboMlValidator,
+        RoboMlAcceptWeaver: RoboMlAcceptWeaver
     }
 }
 
@@ -25,7 +27,8 @@ export type RoboMlServices = LangiumServices & RoboMlAddedServices
  */
 export const RoboMlModule: Module<RoboMlServices, PartialLangiumServices & RoboMlAddedServices> = {
     validation: {
-        RoboMlValidator: () => new RoboMlValidator()
+        RoboMlValidator: () => new RoboMlValidator(),
+        RoboMlAcceptWeaver: () => new RoboMlAcceptWeaver()
     }
 };
 
@@ -59,5 +62,6 @@ export function createRoboMlServices(context: DefaultSharedModuleContext): {
     );
     shared.ServiceRegistry.register(RoboMl);
     registerValidationChecks(RoboMl);
+    weaveAcceptMethods(RoboMl);
     return { shared, RoboMl };
 }

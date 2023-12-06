@@ -7,16 +7,16 @@ entry RoboMLProgram returns RoboMLProgram: //OK
     {RoboMLProgram} ( function+=FunctionDec )+
 ;
 
-Statement returns Statement:   //TODO
+Statement returns Statement:   //OK
     Deplacement | Rotation | Loop | Assignement | SetSpeed | SetRotation | Condition | VariableDef
 ;
 
-Entry returns Entry:    //TODO
-    FunctionCall | Expression | GetSpeed | VariableRef | STRING | INT
+Entry returns Entry:    //OK
+    FunctionCall | Expression | GetSpeed | VariableRef | STRING | DOUBLE | INT | BOOLEAN
 ;
 
-EntrySimple returns EntrySimple:    //TODO
-    FunctionCall | GetSpeed | VariableRef | STRING | INT
+EntrySimple returns EntrySimple:    //OK
+    FunctionCall | GetSpeed | VariableRef | STRING | DOUBLE | INT | BOOLEAN
 ;
 
 FunctionDec returns FunctionDec: //OK
@@ -24,11 +24,10 @@ FunctionDec returns FunctionDec: //OK
 ;
 
 RMLObject returns RMLObject: //OK
-    RMLObject_RMLInt | RMLObject_RMLString | RMLObject_RMLFloat | RMLObject_RMLDouble | RMLObject_RMLBoolean
+    RMLObject_RMLInt | RMLObject_RMLString | RMLObject_RMLDouble | RMLObject_RMLBoolean
 ;
 RMLObject_RMLInt returns RMLObject_RMLInt: 'RMLInt' ;
 RMLObject_RMLString returns RMLObject_RMLString: 'RMLString' ;
-RMLObject_RMLFloat returns RMLObject_RMLFloat: 'RMLFloat' ;
 RMLObject_RMLDouble returns RMLObject_RMLDouble: 'RMLDouble' ;
 RMLObject_RMLBoolean returns RMLObject_RMLBoolean: 'RMLBoolean' ;
 
@@ -41,32 +40,32 @@ VariableFunDef returns VariableFunDef: //OK
 ;
 
 Deplacement returns Deplacement: //OK
-    movementType=Direction deplacementDistance=INT unitMeasure=UnitMeasure
+    movementType=Direction deplacementDistance=Entry unitMeasure=UnitMeasure
 ;
 
 Rotation returns Rotation: //OK
-    rotationSens=RotationSens rotationAngle=INT 
+    rotationSens=RotationSens rotationAngle=Entry
 ;
 RotationSens returns RotationSens: 'Clock' | 'AntiClock' ;
 
-Loop returns Loop:     //TODO
+Loop returns Loop: //OK
     {Loop} 'loop' booleanExpression=Entry '{' ( instruction+=Statement )+ '}'  
 ;
 
-Assignement returns Assignement:
+Assignement returns Assignement: //OK
     assignableVariable=[VariableRef:ID] '=' entry=Entry
 ;
 
-SetSpeed returns SetSpeed:
-    'setSpeed(' variableValue=INT unitMeasure=UnitMeasure ')'
+SetSpeed returns SetSpeed: //OK
+    'setSpeed(' variableValue=Entry unitMeasure=UnitMeasure ')'
 ;
 
-SetRotation returns SetRotation:
-    'setRotation(' variableValue=INT ')'
+SetRotation returns SetRotation: //OK
+    'setRotation(' variableValue=Entry ')'
 ;
 
 Condition returns Condition:
-    {Condition} 'if' '(' ( booleanExpression=Entry )? ')' '{' statementIf+=Statement  ("," statementIf+=Statement  )* '}' ('else' '{' statementElse+=Statement  ("," statementElse+=Statement  )* '}' )?
+    {Condition} 'if' '(' ( booleanExpression=Entry )? ')' '{' ( statementIf+=Statement )* '}' ('else' '{' ( statementElse+=Statement )* '}' )?
 ;
 
 Unit returns Unit:

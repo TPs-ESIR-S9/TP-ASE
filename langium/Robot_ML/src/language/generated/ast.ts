@@ -10,6 +10,8 @@ import { AbstractAstReflection } from 'langium';
 export const RoboMlTerminals = {
     ID: /(\^?(([a-z]|[A-Z])|_)((([a-z]|[A-Z])|_)|[0-9])*)/,
     INT: /[0-9]+/,
+    DOUBLE: /([0-9]+(\.[0-9]+)?)/,
+    BOOLEAN: /(true|false)/,
     STRING: /(("((\\([\s\S]))|((?!(\\|"))[\s\S]*?))*")|('((\\([\s\S]))|((?!(\\|'))[\s\S]*?))*'))/,
     ML_COMMENT: /(\/\*([\s\S]*?\*\/))/,
     SL_COMMENT: /(\/\/((?!(\n|\r))[\s\S]*?)(\r?\n)?)/,
@@ -64,13 +66,11 @@ export type Operators_Plus = '+';
 
 export type Operators_Power = '**';
 
-export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLFloat | RMLObject_RMLInt | RMLObject_RMLString;
+export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLInt | RMLObject_RMLString;
 
 export type RMLObject_RMLBoolean = 'RMLBoolean';
 
 export type RMLObject_RMLDouble = 'RMLDouble';
-
-export type RMLObject_RMLFloat = 'RMLFloat';
 
 export type RMLObject_RMLInt = 'RMLInt';
 
@@ -268,7 +268,7 @@ export function isCondition(item: unknown): item is Condition {
 
 export interface Deplacement extends Statement {
     readonly $type: 'Deplacement';
-    deplacementDistance?: number
+    deplacementDistance?: Entry
     movementType?: Direction
     unitMeasure: UnitMeasure
 }
@@ -293,7 +293,7 @@ export function isLoop(item: unknown): item is Loop {
 
 export interface Rotation extends Statement {
     readonly $type: 'Rotation';
-    rotationAngle: number
+    rotationAngle: Entry
     rotationSens: RotationSens
 }
 
@@ -305,7 +305,7 @@ export function isRotation(item: unknown): item is Rotation {
 
 export interface SetRotation extends Statement {
     readonly $type: 'SetRotation';
-    variableValue: number
+    variableValue: Entry
 }
 
 export const SetRotation = 'SetRotation';
@@ -317,7 +317,7 @@ export function isSetRotation(item: unknown): item is SetRotation {
 export interface SetSpeed extends Statement {
     readonly $type: 'SetSpeed';
     unitMeasure: UnitMeasure
-    variableValue: number
+    variableValue: Entry
 }
 
 export const SetSpeed = 'SetSpeed';

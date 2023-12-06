@@ -8,11 +8,11 @@ entry RoboMLProgram returns RoboMLProgram: //OK
 ;
 
 Statement returns Statement:   //TODO
-    Deplacement | Rotation | Loop | Assignement | SetSpeed | Condition | VariableDef
+    Deplacement | Rotation | Loop | Assignement | SetSpeed | SetRotation | Condition | VariableDef
 ;
 
 Entry returns Entry:    //TODO
-    FunctionCall | ArithmeticExpression | GetSpeed | VariableRef | STRING | INT
+    FunctionCall | Expression | GetSpeed | VariableRef | STRING | INT
 ;
 
 EntrySimple returns EntrySimple:    //TODO
@@ -33,11 +33,11 @@ RMLObject_RMLDouble returns RMLObject_RMLDouble: 'RMLDouble' ;
 RMLObject_RMLBoolean returns RMLObject_RMLBoolean: 'RMLBoolean' ;
 
 VariableDef returns VariableDef: //OK
-    {VariableDef} 'var' variableType=RMLObject variableName=ID '=' variableValue=RMLObject  
+    {VariableDef} 'var' variableType=RMLObject variableName=ID '=' variableValue=Entry
 ;
 
 VariableFunDef returns VariableFunDef: //OK
-    {VariableFunDef} variableName=ID ':' variableType=RMLObject
+    {VariableFunDef} variableType=RMLObject variableName=ID 
 ;
 
 Deplacement returns Deplacement: //OK
@@ -50,15 +50,19 @@ Rotation returns Rotation: //OK
 RotationSens returns RotationSens: 'Clock' | 'AntiClock' ;
 
 Loop returns Loop:     //TODO
-    {Loop} 'Loop' booleanExpression=Entry '{' ( instruction+=Statement  (";" instruction+=Statement  )* )? '}'  
+    {Loop} 'loop' booleanExpression=Entry '{' ( instruction+=Statement )+ '}'  
 ;
 
 Assignement returns Assignement:
-    assignableVariable=[VariableRef:ID ] '=' entry=Entry
+    assignableVariable=[VariableRef:ID] '=' entry=Entry
 ;
 
 SetSpeed returns SetSpeed:
-    'SetSpeed(' variableValue=INT unitMeasure=UnitMeasure ')'
+    'setSpeed(' variableValue=INT unitMeasure=UnitMeasure ')'
+;
+
+SetRotation returns SetRotation:
+    'setRotation(' variableValue=INT ')'
 ;
 
 Condition returns Condition:
@@ -89,27 +93,41 @@ FunctionCall returns FunctionCall:
     function=[FunctionDec:ID ] '(' ( arguments+=Entry  ("," arguments+=Entry  )* )? ')'  
 ;
 
-ArithmeticExpression returns ArithmeticExpression:
-    elementA=EntrySimple arithmeticOperator=ArithmeticOperators elementB=Entry
+Expression returns Expression:
+    elementA=EntrySimple operator=Operators elementB=Entry
 ;
 
 GetSpeed returns GetSpeed:
-    {GetSpeed} 'GetSpeed()'  
+    {GetSpeed} 'getSpeed()'  
+;
+
+GetRotation returns GetRotation:
+    {GetRotation} 'getRotation()'
 ;
 
 VariableRef returns VariableRef:
-    {VariableRef} VariableDef=[VariableDef:ID ]
+    {VariableRef} variableDefinition=[VariableDef:ID]
 ;
 
-ArithmeticOperators returns ArithmeticOperators:
-    ArithmeticOperators_Plus | ArithmeticOperators_Minus | ArithmeticOperators_Multiplie | ArithmeticOperators_Divide | ArithmeticOperators_Modulo | ArithmeticOperators_Power
+Operators returns Operators:
+    Operators_Plus | Operators_Minus | Operators_Multiplie | Operators_Divide | Operators_Modulo | Operators_Power | Operators_Equal | Operators_NotEqual | Operators_Greater | Operators_Less | Operators_GreaterEqual | Operators_LessEqual | Operators_And | Operators_Or | Operators_Not
 ;
-ArithmeticOperators_Plus returns ArithmeticOperators_Plus: 'Plus' ;
-ArithmeticOperators_Minus returns ArithmeticOperators_Minus: 'Minus' ;
-ArithmeticOperators_Multiplie returns ArithmeticOperators_Multiplie: 'Multiplie' ;
-ArithmeticOperators_Divide returns ArithmeticOperators_Divide: 'Divide' ;
-ArithmeticOperators_Modulo returns ArithmeticOperators_Modulo: 'Modulo' ;
-ArithmeticOperators_Power returns ArithmeticOperators_Power: 'Power' ;
+Operators_Plus returns Operators_Plus: '+' ;
+Operators_Minus returns Operators_Minus: '-' ;
+Operators_Multiplie returns Operators_Multiplie: '*' ;
+Operators_Divide returns Operators_Divide: '/' ;
+Operators_Modulo returns Operators_Modulo: '%' ;
+Operators_Power returns Operators_Power: '**' ;
+Operators_Equal returns Operators_Equal: '==' ;
+Operators_NotEqual returns Operators_NotEqual: '!=' ;
+Operators_Greater returns Operators_Greater: '>' ;
+Operators_Less returns Operators_Less: '<' ;
+Operators_GreaterEqual returns Operators_GreaterEqual: '>=' ;
+Operators_LessEqual returns Operators_LessEqual: '<=' ;
+Operators_And returns Operators_And: '&&' ;
+Operators_Or returns Operators_Or: '||' ;
+Operators_Not returns Operators_Not: '!' ;
+
 
 EString returns string:
     STRING | ID 

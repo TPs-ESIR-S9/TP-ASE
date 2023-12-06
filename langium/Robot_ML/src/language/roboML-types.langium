@@ -18,13 +18,22 @@ type Direction_backward = 'Backward';
 type Direction_sideLeft = 'SideLeft';
 type Direction_sideRight = 'SideRight';
 
-type ArithmeticOperators = ArithmeticOperators_Plus | ArithmeticOperators_Minus | ArithmeticOperators_Multiplie | ArithmeticOperators_Divide | ArithmeticOperators_Modulo | ArithmeticOperators_Power;
-type ArithmeticOperators_Plus = 'Plus';
-type ArithmeticOperators_Minus = 'Minus';
-type ArithmeticOperators_Multiplie = 'Multiplie';
-type ArithmeticOperators_Divide = 'Divide';
-type ArithmeticOperators_Modulo = 'Modulo';
-type ArithmeticOperators_Power = 'Power';
+type Operators = Operators_Plus | Operators_Minus | Operators_Multiplie | Operators_Divide | Operators_Modulo | Operators_Power | Operators_Equal | Operators_NotEqual | Operators_Greater | Operators_Less | Operators_GreaterEqual | Operators_LessEqual | Operators_And | Operators_Or | Operators_Not;
+type Operators_Plus = '+';
+type Operators_Minus = '-';
+type Operators_Multiplie = '*';
+type Operators_Divide = '/';
+type Operators_Modulo = '%';
+type Operators_Power = '**';
+type Operators_Equal = '==';
+type Operators_NotEqual = '!=';
+type Operators_Greater = '>';
+type Operators_Less = '<';
+type Operators_GreaterEqual = '>=';
+type Operators_LessEqual = '<=';
+type Operators_And = '&&';
+type Operators_Or = '||';
+type Operators_Not = '!';
 
 type RotationSens = Rotation_clock | Rotation_antiClock;
 type Rotation_clock = 'Clock';
@@ -46,8 +55,8 @@ interface Statement {
 
 interface VariableDef {
 	variableName: string
-	variableValue: RMLObject
 	variableType: RMLObject
+	variableValue: Entry
 }
 
 interface VariableFunDef {
@@ -56,7 +65,7 @@ interface VariableFunDef {
 }
 
 interface VariableRef extends Entry {
-	VariableDef: @VariableDef
+	variableDefinition: @VariableDef
 }
 
 interface Entry {
@@ -95,6 +104,10 @@ interface SetSpeed extends Statement {
 	unitMeasure: UnitMeasure
 }
 
+interface SetRotation extends Statement {
+	variableValue: number
+}
+
 interface Condition extends Statement {
 	statementIf: Statement[]
 	statementElse: Statement[]
@@ -106,12 +119,15 @@ interface FunctionCall extends Entry {
 	function: @FunctionDec
 }
 
-interface ArithmeticExpression extends Entry {
+interface Expression extends Entry {
 	elementA: Entry
 	elementB?: Entry
-	arithmeticOperator?: ArithmeticOperators
+	operator?: Operators
 }
 
 interface GetSpeed extends Entry {
+}
+
+interface GetRotation extends Entry {
 }
 

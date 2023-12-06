@@ -116,11 +116,6 @@ export class RoboMlAcceptWeaver {
         };
     }
     
-    weaveUnit(node: InterfaceAST.Unit, accept: ValidationAcceptor): void {
-        (node as any).accept = (visitor: RoboMLVisitor) => {
-            return visitor.visitUnit(node as unknown as ClassAST.Unit);
-        };
-    }
     
     weaveVariableDef(node: InterfaceAST.VariableDef, accept: ValidationAcceptor): void {
         (node as any).accept = (visitor: RoboMLVisitor) => {
@@ -158,7 +153,6 @@ export class RoboMlAcceptWeaver {
         SetRotation: this.weaveSetRotation,
         SetSpeed: this.weaveSetSpeed,
         Statement: this.weaveStatement,
-        Unit: this.weaveUnit,
         VariableDef: this.weaveVariableDef,
         VariableFunDef: this.weaveVariableFunDef,
         VariableRef: this.weaveVariableRef,

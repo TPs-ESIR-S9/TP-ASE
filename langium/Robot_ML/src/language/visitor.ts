@@ -19,7 +19,6 @@ export interface RoboMLVisitor {
     visitSetRotation(node: ASTInterfaces.SetRotation): any;
     visitSetSpeed(node: ASTInterfaces.SetSpeed): any;
     visitStatement(node: Statement): any;
-    visitUnit(node: Unit): any;
     visitVariableDef(node: VariableDef): any;
     visitVariableFunDef(node: VariableFunDef): any;
     visitVariableRef(node: VariableRef): any;
@@ -90,15 +89,6 @@ export class DirectionVisitor {
     }
 }
 
-export class Unit implements ASTInterfaces.Unit {
-    readonly $type: 'Unit' = 'Unit';
-    Type?: UnitMeasure;
-    $document?: LangiumDocument<AstNode> | undefined;
-
-    accept(visitor: RoboMLVisitor): any {
-        return visitor.visitUnit(this);
-    }
-}
 
 export type UnitMeasure = UnitMeasure_cm | UnitMeasure_dm | UnitMeasure_m | UnitMeasure_mm;
 export type UnitMeasure_cm = 'cm';
@@ -214,7 +204,7 @@ export class Rotation implements ASTInterfaces.Rotation {
 
 export class Assignement implements ASTInterfaces.Assignement {
     $type!: 'Assignement';
-    assignableVariable?: Reference<VariableRef>;
+    assignableVariable?: string;
     entry!: Entry;
 
     accept(visitor: RoboMLVisitor): any {
@@ -225,8 +215,8 @@ export class Assignement implements ASTInterfaces.Assignement {
 
 export class FunctionCall implements ASTInterfaces.FunctionCall {
     $type!: 'FunctionCall';
-    arguments!: Array<Entry>;
-    function!: Reference<FunctionDec>;  
+    arguments!: Array<Entry>
+    function!: string
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitFunctionCall(this);
@@ -263,7 +253,7 @@ export class GetValue implements ASTInterfaces.GetValue {
 
 export class VariableRef implements ASTInterfaces.VariableRef {
     $type!: 'VariableRef';
-    variableDefinition!: Reference<VariableDef>;
+    variableDefinition!: string;
 }
 
 export class VariableDef implements ASTInterfaces.VariableDef {
@@ -275,7 +265,6 @@ export class VariableDef implements ASTInterfaces.VariableDef {
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitVariableDef(this);
     }
-
 }
 
 /*

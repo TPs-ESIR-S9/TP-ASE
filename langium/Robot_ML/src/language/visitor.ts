@@ -26,9 +26,7 @@ export interface RoboMLVisitor {
 
 
     //visitEntity(node: Entity): any;
-    
-    visitRMLObject(node: RMLObject): any;
-  
+      
     //visitVariable(node: Variable): any;
   
     //visitSetValue(node: SetValue): any;  
@@ -60,7 +58,7 @@ export class EntrySimple implements ASTInterfaces.EntrySimple {
 export class SetSpeed implements ASTInterfaces.SetSpeed {
     $type!: 'SetSpeed';
     unitMeasure!: UnitMeasure;
-    variableValue!: number;
+    variableValue!: Entry;
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitSetSpeed(this);
@@ -69,7 +67,7 @@ export class SetSpeed implements ASTInterfaces.SetSpeed {
 
 export class SetRotation implements ASTInterfaces.SetRotation {
     $type!: 'SetRotation';
-    variableValue!: number;
+    variableValue!: Entry;
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitSetRotation(this);
@@ -109,9 +107,8 @@ export type UnitMeasure_m = 'm';
 export type UnitMeasure_mm = 'mm';
 
 export class RoboMLProgram implements ASTInterfaces.RoboMLProgram {
-    readonly $type: 'RoboMLProgram' = 'RoboMLProgram';
-    function: Array<FunctionDec> = [];
-    $document?: LangiumDocument<AstNode> | undefined;
+    readonly $type!: 'RoboMLProgram';
+    function!: ASTInterfaces.FunctionDec[];
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitRoboMLProgram(this);
@@ -145,19 +142,21 @@ export class Statement implements ASTInterfaces.Statement {
     }
 }
 
+/*
 export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLFloat | RMLObject_RMLInt | RMLObject_RMLString;
 export type RMLObject_RMLBoolean = 'RMLBoolean';
 export type RMLObject_RMLDouble = 'RMLDouble';
 export type RMLObject_RMLFloat = 'RMLFloat';
 export type RMLObject_RMLInt = 'RMLInt';
 export type RMLObject_RMLString = 'RMLString';
+*/
 
 export class VariableFunDef implements ASTInterfaces.VariableFunDef {
 
     $container!: FunctionDec;
-    readonly $type!: 'VariableFunDef';
+    $type!: 'VariableFunDef';
     variableName!: string;
-    variableType!: RMLObject;
+    variableType!: ASTInterfaces.RMLObject;
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitVariableFunDef(this);
@@ -167,12 +166,12 @@ export class VariableFunDef implements ASTInterfaces.VariableFunDef {
 
 export class FunctionDec implements ASTInterfaces.FunctionDec {
 
-    $container!: ASTInterfaces.RoboMLProgram;
-    $type!: 'FunctionDec';
+    readonly $container!: RoboMLProgram;
+    readonly $type!: 'FunctionDec';
     functionName!: string;
-    instruction!: ASTInterfaces.Statement[];
-    returnType?: RMLObject
-    variableFunDef!: Array<VariableFunDef>;
+    instruction!: Array<Statement>;
+    returnType?: ASTInterfaces.RMLObject;
+    variableFunDef!: Array<VariableFunDef>
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitFunctionDec(this);
@@ -194,7 +193,7 @@ export class Loop implements ASTInterfaces.Loop {
 
 export class Deplacement implements ASTInterfaces.Deplacement {
     $type!: 'Deplacement';
-    deplacementDistance?: number;
+    deplacementDistance?: Entry;
     movementType?: ASTInterfaces.Direction;
     unitMeasure!: ASTInterfaces.UnitMeasure;
 
@@ -205,7 +204,7 @@ export class Deplacement implements ASTInterfaces.Deplacement {
 
 export class Rotation implements ASTInterfaces.Rotation {
     $type!: 'Rotation';
-    rotationAngle!: number;
+    rotationAngle!: Entry
     rotationSens!: ASTInterfaces.RotationSens;
 
     accept(visitor: RoboMLVisitor): any {
@@ -270,7 +269,7 @@ export class VariableRef implements ASTInterfaces.VariableRef {
 export class VariableDef implements ASTInterfaces.VariableDef {
     $type!: 'VariableDef';
     variableName!: string;
-    variableType!: RMLObject;
+    variableType!: ASTInterfaces.RMLObject;
     variableValue!: Entry;
 
     accept(visitor: RoboMLVisitor): any {

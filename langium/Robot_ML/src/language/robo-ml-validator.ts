@@ -18,6 +18,9 @@ export function registerValidationChecks(services: RoboMlServices) {
  * Implementation of custom validations.
  */
 export class RoboMlValidator {
+    checks(checks: any, weaver: RoboMlValidator) {
+        throw new Error('Method not implemented.');
+    }
 
     
 

@@ -24,78 +24,23 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
         "$type": "Group",
         "elements": [
           {
-            "$type": "Keyword",
-            "value": "test"
-          },
-          {
             "$type": "Action",
             "type": {
               "$ref": "#/interfaces@0"
             }
           },
           {
-            "$type": "Keyword",
-            "value": "RoboMLProgram"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "function"
+            "$type": "Assignment",
+            "feature": "function",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@4"
               },
-              {
-                "$type": "Keyword",
-                "value": "{"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "function",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@3"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "function",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@3"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
+              "arguments": []
+            },
+            "cardinality": "+"
           }
         ]
       },
@@ -117,20 +62,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@11"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@12"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
               "$ref": "#/rules@13"
             },
             "arguments": []
@@ -145,14 +76,35 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@15"
+              "$ref": "#/rules@16"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@16"
+              "$ref": "#/rules@17"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@18"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@19"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@11"
             },
             "arguments": []
           }
@@ -167,34 +119,13 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
     },
     {
       "$type": "ParserRule",
-      "name": "Entity",
+      "name": "Entry",
       "returnType": {
-        "$ref": "#/interfaces@5"
+        "$ref": "#/interfaces@6"
       },
       "definition": {
         "$type": "Alternatives",
         "elements": [
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@18"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@29"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@30"
-            },
-            "arguments": []
-          },
           {
             "$type": "RuleCall",
             "rule": {
@@ -206,6 +137,87 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@32"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@33"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@34"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@45"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@44"
+            },
+            "arguments": []
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "EntrySimple",
+      "returnType": {
+        "$ref": "#/interfaces@7"
+      },
+      "definition": {
+        "$type": "Alternatives",
+        "elements": [
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@31"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@33"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@34"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@45"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@44"
             },
             "arguments": []
           }
@@ -235,40 +247,14 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           },
           {
             "$type": "Keyword",
-            "value": "FunctionDec"
+            "value": "let"
           },
           {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
+            "$type": "Alternatives",
             "elements": [
               {
                 "$type": "Keyword",
-                "value": "newAttribute"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "newAttribute",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@4"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "returnType"
+                "value": "void"
               },
               {
                 "$type": "Assignment",
@@ -277,33 +263,40 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@4"
+                    "$ref": "#/rules@5"
                   },
                   "arguments": []
                 }
               }
-            ],
-            "cardinality": "?"
+            ]
+          },
+          {
+            "$type": "Assignment",
+            "feature": "functionName",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@43"
+              },
+              "arguments": []
+            }
+          },
+          {
+            "$type": "Keyword",
+            "value": "("
           },
           {
             "$type": "Group",
             "elements": [
               {
-                "$type": "Keyword",
-                "value": "instruction"
-              },
-              {
-                "$type": "Keyword",
-                "value": "{"
-              },
-              {
                 "$type": "Assignment",
-                "feature": "instruction",
+                "feature": "variableFunDef",
                 "operator": "+=",
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@1"
+                    "$ref": "#/rules@12"
                   },
                   "arguments": []
                 }
@@ -317,77 +310,42 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
                   },
                   {
                     "$type": "Assignment",
-                    "feature": "instruction",
+                    "feature": "variableFunDef",
                     "operator": "+=",
                     "terminal": {
                       "$type": "RuleCall",
                       "rule": {
-                        "$ref": "#/rules@1"
+                        "$ref": "#/rules@12"
                       },
                       "arguments": []
                     }
                   }
                 ],
                 "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
               }
             ],
             "cardinality": "?"
           },
           {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "variable"
+            "$type": "Keyword",
+            "value": ")"
+          },
+          {
+            "$type": "Keyword",
+            "value": "{"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "instruction",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@1"
               },
-              {
-                "$type": "Keyword",
-                "value": "{"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "variable",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@10"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "variable",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@10"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
-              }
-            ],
-            "cardinality": "?"
+              "arguments": []
+            },
+            "cardinality": "+"
           },
           {
             "$type": "Keyword",
@@ -414,13 +372,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@5"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
               "$ref": "#/rules@6"
             },
             "arguments": []
@@ -443,6 +394,13 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@9"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@10"
             },
             "arguments": []
           }
@@ -542,7 +500,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
     },
     {
       "$type": "ParserRule",
-      "name": "Variable",
+      "name": "VariableDef",
       "returnType": {
         "$ref": "#/interfaces@3"
       },
@@ -557,111 +515,99 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           },
           {
             "$type": "Keyword",
-            "value": "Variable"
+            "value": "var"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "variableType",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@5"
+              },
+              "arguments": []
+            }
+          },
+          {
+            "$type": "Assignment",
+            "feature": "variableName",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@43"
+              },
+              "arguments": []
+            }
           },
           {
             "$type": "Keyword",
-            "value": "{"
+            "value": "="
           },
           {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "variableName"
+            "$type": "Assignment",
+            "feature": "variableValue",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@5"
               },
-              {
-                "$type": "Assignment",
-                "feature": "variableName",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@4"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
+              "arguments": []
+            }
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "VariableFunDef",
+      "returnType": {
+        "$ref": "#/interfaces@4"
+      },
+      "definition": {
+        "$type": "Group",
+        "elements": [
+          {
+            "$type": "Action",
+            "type": {
+              "$ref": "#/interfaces@4"
+            }
           },
           {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "variableValue"
+            "$type": "Assignment",
+            "feature": "variableName",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@43"
               },
-              {
-                "$type": "Assignment",
-                "feature": "variableValue",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@4"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "variableref"
-              },
-              {
-                "$type": "Keyword",
-                "value": "{"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "variableref",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@32"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "variableref",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@32"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
-              }
-            ],
-            "cardinality": "?"
+              "arguments": []
+            }
           },
           {
             "$type": "Keyword",
-            "value": "}"
+            "value": ":"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "variableType",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@5"
+              },
+              "arguments": []
+            }
           }
         ]
       },
@@ -676,96 +622,46 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Deplacement",
       "returnType": {
-        "$ref": "#/interfaces@6"
+        "$ref": "#/interfaces@8"
       },
       "definition": {
         "$type": "Group",
         "elements": [
           {
-            "$type": "Keyword",
-            "value": "Deplacement"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "movementType"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "movementType",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@19"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "unit"
-          },
-          {
             "$type": "Assignment",
-            "feature": "unit",
+            "feature": "movementType",
             "operator": "=",
             "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@7"
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@21"
               },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@40"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
+              "arguments": []
             }
           },
           {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "deplacementDistance"
+            "$type": "Assignment",
+            "feature": "deplacementDistance",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@44"
               },
-              {
-                "$type": "Assignment",
-                "feature": "deplacementDistance",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@5"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@40"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ],
-            "cardinality": "?"
+              "arguments": []
+            }
           },
           {
-            "$type": "Keyword",
-            "value": "}"
+            "$type": "Assignment",
+            "feature": "unitMeasure",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@26"
+              },
+              "arguments": []
+            }
           }
         ]
       },
@@ -780,68 +676,60 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Rotation",
       "returnType": {
-        "$ref": "#/interfaces@8"
+        "$ref": "#/interfaces@10"
       },
       "definition": {
         "$type": "Group",
         "elements": [
           {
-            "$type": "Keyword",
-            "value": "Rotation"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Keyword",
-            "value": "rotationAngle"
+            "$type": "Assignment",
+            "feature": "rotationSens",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@15"
+              },
+              "arguments": []
+            }
           },
           {
             "$type": "Assignment",
             "feature": "rotationAngle",
             "operator": "=",
             "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@5"
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@44"
               },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@40"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
+              "arguments": []
             }
+          }
+        ]
+      },
+      "definesHiddenTokens": false,
+      "entry": false,
+      "fragment": false,
+      "hiddenTokens": [],
+      "parameters": [],
+      "wildcard": false
+    },
+    {
+      "$type": "ParserRule",
+      "name": "RotationSens",
+      "returnType": {
+        "$ref": "#/types@23"
+      },
+      "definition": {
+        "$type": "Alternatives",
+        "elements": [
+          {
+            "$type": "Keyword",
+            "value": "Clock"
           },
           {
             "$type": "Keyword",
-            "value": "rotationSens"
-          },
-          {
-            "$type": "Assignment",
-            "feature": "rotationSens",
-            "operator": "=",
-            "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@5"
-              },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@40"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
+            "value": "AntiClock"
           }
         ]
       },
@@ -856,7 +744,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Loop",
       "returnType": {
-        "$ref": "#/interfaces@9"
+        "$ref": "#/interfaces@11"
       },
       "definition": {
         "$type": "Group",
@@ -864,12 +752,24 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@9"
+              "$ref": "#/interfaces@11"
             }
           },
           {
             "$type": "Keyword",
             "value": "Loop"
+          },
+          {
+            "$type": "Assignment",
+            "feature": "booleanExpression",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@2"
+              },
+              "arguments": []
+            }
           },
           {
             "$type": "Keyword",
@@ -878,43 +778,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Group",
             "elements": [
-              {
-                "$type": "Keyword",
-                "value": "booleanExpression"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "booleanExpression",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@5"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@40"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "instruction"
-              },
-              {
-                "$type": "Keyword",
-                "value": "{"
-              },
               {
                 "$type": "Assignment",
                 "feature": "instruction",
@@ -932,7 +795,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
                 "elements": [
                   {
                     "$type": "Keyword",
-                    "value": ","
+                    "value": ";"
                   },
                   {
                     "$type": "Assignment",
@@ -948,62 +811,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
                   }
                 ],
                 "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "variable"
-              },
-              {
-                "$type": "Keyword",
-                "value": "{"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "variable",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@10"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "variable",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@10"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
               }
             ],
             "cardinality": "?"
@@ -1025,55 +832,14 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Assignement",
       "returnType": {
-        "$ref": "#/interfaces@10"
+        "$ref": "#/interfaces@12"
       },
       "definition": {
         "$type": "Group",
         "elements": [
           {
-            "$type": "Keyword",
-            "value": "Assignement"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "assignableVariable"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "assignableVariable",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@3"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@40"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "entity"
-          },
-          {
             "$type": "Assignment",
-            "feature": "entity",
+            "feature": "assignableVariable",
             "operator": "=",
             "terminal": {
               "$type": "CrossReference",
@@ -1083,7 +849,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@40"
+                  "$ref": "#/rules@43"
                 },
                 "arguments": []
               },
@@ -1092,7 +858,19 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           },
           {
             "$type": "Keyword",
-            "value": "}"
+            "value": "="
+          },
+          {
+            "$type": "Assignment",
+            "feature": "entry",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@2"
+              },
+              "arguments": []
+            }
           }
         ]
       },
@@ -1105,47 +883,44 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
     },
     {
       "$type": "ParserRule",
-      "name": "SetValue",
+      "name": "SetSpeed",
       "returnType": {
-        "$ref": "#/interfaces@11"
+        "$ref": "#/interfaces@13"
       },
       "definition": {
         "$type": "Group",
         "elements": [
           {
             "$type": "Keyword",
-            "value": "SetValue"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Keyword",
-            "value": "entityToSet"
+            "value": "SetSpeed("
           },
           {
             "$type": "Assignment",
-            "feature": "entityToSet",
+            "feature": "variableValue",
             "operator": "=",
             "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@5"
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@44"
               },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@40"
-                },
-                "arguments": []
+              "arguments": []
+            }
+          },
+          {
+            "$type": "Assignment",
+            "feature": "unitMeasure",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@26"
               },
-              "deprecatedSyntax": false
+              "arguments": []
             }
           },
           {
             "$type": "Keyword",
-            "value": "}"
+            "value": ")"
           }
         ]
       },
@@ -1160,7 +935,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Condition",
       "returnType": {
-        "$ref": "#/interfaces@12"
+        "$ref": "#/interfaces@14"
       },
       "definition": {
         "$type": "Group",
@@ -1168,56 +943,56 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@12"
+              "$ref": "#/interfaces@14"
             }
           },
           {
             "$type": "Keyword",
-            "value": "Condition"
+            "value": "if"
+          },
+          {
+            "$type": "Keyword",
+            "value": "("
+          },
+          {
+            "$type": "Assignment",
+            "feature": "booleanExpression",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@2"
+              },
+              "arguments": []
+            },
+            "cardinality": "?"
+          },
+          {
+            "$type": "Keyword",
+            "value": ")"
           },
           {
             "$type": "Keyword",
             "value": "{"
           },
           {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "booleanExpression"
+            "$type": "Assignment",
+            "feature": "statementIf",
+            "operator": "+=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@1"
               },
-              {
-                "$type": "Assignment",
-                "feature": "booleanExpression",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@5"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@40"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ],
-            "cardinality": "?"
+              "arguments": []
+            }
           },
           {
             "$type": "Group",
             "elements": [
               {
                 "$type": "Keyword",
-                "value": "statementIf"
-              },
-              {
-                "$type": "Keyword",
-                "value": "{"
+                "value": ","
               },
               {
                 "$type": "Assignment",
@@ -1230,42 +1005,20 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
                   },
                   "arguments": []
                 }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "statementIf",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@1"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
               }
             ],
-            "cardinality": "?"
+            "cardinality": "*"
+          },
+          {
+            "$type": "Keyword",
+            "value": "}"
           },
           {
             "$type": "Group",
             "elements": [
               {
                 "$type": "Keyword",
-                "value": "statementElse"
+                "value": "else"
               },
               {
                 "$type": "Keyword",
@@ -1311,62 +1064,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
               }
             ],
             "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "variable"
-              },
-              {
-                "$type": "Keyword",
-                "value": "{"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "variable",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@10"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "variable",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@10"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
           }
         ]
       },
@@ -1381,7 +1078,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "Unit",
       "returnType": {
-        "$ref": "#/interfaces@7"
+        "$ref": "#/interfaces@9"
       },
       "definition": {
         "$type": "Group",
@@ -1389,7 +1086,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@7"
+              "$ref": "#/interfaces@9"
             }
           },
           {
@@ -1414,65 +1111,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
                 "terminal": {
                   "$type": "RuleCall",
                   "rule": {
-                    "$ref": "#/rules@24"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
-          }
-        ]
-      },
-      "definesHiddenTokens": false,
-      "entry": false,
-      "fragment": false,
-      "hiddenTokens": [],
-      "parameters": [],
-      "wildcard": false
-    },
-    {
-      "$type": "ParserRule",
-      "name": "Entity_Impl",
-      "returnType": {
-        "$ref": "#/interfaces@5"
-      },
-      "definition": {
-        "$type": "Group",
-        "elements": [
-          {
-            "$type": "Action",
-            "type": {
-              "$ref": "#/interfaces@5"
-            }
-          },
-          {
-            "$type": "Keyword",
-            "value": "Entity"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "entityType"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "entityType",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@4"
+                    "$ref": "#/rules@26"
                   },
                   "arguments": []
                 }
@@ -1505,20 +1144,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@20"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@21"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
               "$ref": "#/rules@22"
             },
             "arguments": []
@@ -1527,6 +1152,20 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@23"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@24"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@25"
             },
             "arguments": []
           }
@@ -1547,7 +1186,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       },
       "definition": {
         "$type": "Keyword",
-        "value": "forward"
+        "value": "Forward"
       },
       "definesHiddenTokens": false,
       "entry": false,
@@ -1564,7 +1203,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       },
       "definition": {
         "$type": "Keyword",
-        "value": "backward"
+        "value": "Backward"
       },
       "definesHiddenTokens": false,
       "entry": false,
@@ -1581,7 +1220,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       },
       "definition": {
         "$type": "Keyword",
-        "value": "sideLeft"
+        "value": "SideLeft"
       },
       "definesHiddenTokens": false,
       "entry": false,
@@ -1598,7 +1237,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       },
       "definition": {
         "$type": "Keyword",
-        "value": "sideRight"
+        "value": "SideRight"
       },
       "definesHiddenTokens": false,
       "entry": false,
@@ -1619,20 +1258,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@25"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@26"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
               "$ref": "#/rules@27"
             },
             "arguments": []
@@ -1641,6 +1266,20 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@28"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@29"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@30"
             },
             "arguments": []
           }
@@ -1725,45 +1364,11 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "FunctionCall",
       "returnType": {
-        "$ref": "#/interfaces@13"
+        "$ref": "#/interfaces@15"
       },
       "definition": {
         "$type": "Group",
         "elements": [
-          {
-            "$type": "Keyword",
-            "value": "FunctionCall"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "entityType"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "entityType",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@4"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "function"
-          },
           {
             "$type": "Assignment",
             "feature": "function",
@@ -1776,7 +1381,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
               "terminal": {
                 "$type": "RuleCall",
                 "rule": {
-                  "$ref": "#/rules@40"
+                  "$ref": "#/rules@43"
                 },
                 "arguments": []
               },
@@ -1785,7 +1390,51 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           },
           {
             "$type": "Keyword",
-            "value": "}"
+            "value": "("
+          },
+          {
+            "$type": "Group",
+            "elements": [
+              {
+                "$type": "Assignment",
+                "feature": "arguments",
+                "operator": "+=",
+                "terminal": {
+                  "$type": "RuleCall",
+                  "rule": {
+                    "$ref": "#/rules@2"
+                  },
+                  "arguments": []
+                }
+              },
+              {
+                "$type": "Group",
+                "elements": [
+                  {
+                    "$type": "Keyword",
+                    "value": ","
+                  },
+                  {
+                    "$type": "Assignment",
+                    "feature": "arguments",
+                    "operator": "+=",
+                    "terminal": {
+                      "$type": "RuleCall",
+                      "rule": {
+                        "$ref": "#/rules@2"
+                      },
+                      "arguments": []
+                    }
+                  }
+                ],
+                "cardinality": "*"
+              }
+            ],
+            "cardinality": "?"
+          },
+          {
+            "$type": "Keyword",
+            "value": ")"
           }
         ]
       },
@@ -1800,170 +1449,46 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "ArithmeticExpression",
       "returnType": {
-        "$ref": "#/interfaces@14"
+        "$ref": "#/interfaces@16"
       },
       "definition": {
         "$type": "Group",
         "elements": [
           {
-            "$type": "Keyword",
-            "value": "ArithmeticExpression"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "entityType"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "entityType",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@4"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "arithmeticOperator"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "arithmeticOperator",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@33"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "elementA"
-          },
-          {
             "$type": "Assignment",
             "feature": "elementA",
             "operator": "=",
             "terminal": {
-              "$type": "CrossReference",
-              "type": {
-                "$ref": "#/interfaces@5"
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@3"
               },
-              "terminal": {
-                "$type": "RuleCall",
-                "rule": {
-                  "$ref": "#/rules@40"
-                },
-                "arguments": []
-              },
-              "deprecatedSyntax": false
+              "arguments": []
             }
           },
           {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "elementB"
+            "$type": "Assignment",
+            "feature": "arithmeticOperator",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@35"
               },
-              {
-                "$type": "Assignment",
-                "feature": "elementB",
-                "operator": "=",
-                "terminal": {
-                  "$type": "CrossReference",
-                  "type": {
-                    "$ref": "#/interfaces@5"
-                  },
-                  "terminal": {
-                    "$type": "RuleCall",
-                    "rule": {
-                      "$ref": "#/rules@40"
-                    },
-                    "arguments": []
-                  },
-                  "deprecatedSyntax": false
-                }
-              }
-            ],
-            "cardinality": "?"
+              "arguments": []
+            }
           },
           {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "variable"
+            "$type": "Assignment",
+            "feature": "elementB",
+            "operator": "=",
+            "terminal": {
+              "$type": "RuleCall",
+              "rule": {
+                "$ref": "#/rules@2"
               },
-              {
-                "$type": "Keyword",
-                "value": "{"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "variable",
-                "operator": "+=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@10"
-                  },
-                  "arguments": []
-                }
-              },
-              {
-                "$type": "Group",
-                "elements": [
-                  {
-                    "$type": "Keyword",
-                    "value": ","
-                  },
-                  {
-                    "$type": "Assignment",
-                    "feature": "variable",
-                    "operator": "+=",
-                    "terminal": {
-                      "$type": "RuleCall",
-                      "rule": {
-                        "$ref": "#/rules@10"
-                      },
-                      "arguments": []
-                    }
-                  }
-                ],
-                "cardinality": "*"
-              },
-              {
-                "$type": "Keyword",
-                "value": "}"
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
+              "arguments": []
+            }
           }
         ]
       },
@@ -1976,9 +1501,9 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
     },
     {
       "$type": "ParserRule",
-      "name": "GetValue",
+      "name": "GetSpeed",
       "returnType": {
-        "$ref": "#/interfaces@15"
+        "$ref": "#/interfaces@17"
       },
       "definition": {
         "$type": "Group",
@@ -1986,42 +1511,12 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@15"
+              "$ref": "#/interfaces@17"
             }
           },
           {
             "$type": "Keyword",
-            "value": "GetValue"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "entityType"
-              },
-              {
-                "$type": "Assignment",
-                "feature": "entityType",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@4"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
+            "value": "GetSpeed()"
           }
         ]
       },
@@ -2036,7 +1531,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "$type": "ParserRule",
       "name": "VariableRef",
       "returnType": {
-        "$ref": "#/interfaces@4"
+        "$ref": "#/interfaces@5"
       },
       "definition": {
         "$type": "Group",
@@ -2044,42 +1539,27 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "Action",
             "type": {
-              "$ref": "#/interfaces@4"
+              "$ref": "#/interfaces@5"
             }
           },
           {
-            "$type": "Keyword",
-            "value": "VariableRef"
-          },
-          {
-            "$type": "Keyword",
-            "value": "{"
-          },
-          {
-            "$type": "Group",
-            "elements": [
-              {
-                "$type": "Keyword",
-                "value": "entityType"
+            "$type": "Assignment",
+            "feature": "VariableDef",
+            "operator": "=",
+            "terminal": {
+              "$type": "CrossReference",
+              "type": {
+                "$ref": "#/interfaces@3"
               },
-              {
-                "$type": "Assignment",
-                "feature": "entityType",
-                "operator": "=",
-                "terminal": {
-                  "$type": "RuleCall",
-                  "rule": {
-                    "$ref": "#/rules@4"
-                  },
-                  "arguments": []
-                }
-              }
-            ],
-            "cardinality": "?"
-          },
-          {
-            "$type": "Keyword",
-            "value": "}"
+              "terminal": {
+                "$type": "RuleCall",
+                "rule": {
+                  "$ref": "#/rules@43"
+                },
+                "arguments": []
+              },
+              "deprecatedSyntax": false
+            }
           }
         ]
       },
@@ -2099,20 +1579,6 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "definition": {
         "$type": "Alternatives",
         "elements": [
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@34"
-            },
-            "arguments": []
-          },
-          {
-            "$type": "RuleCall",
-            "rule": {
-              "$ref": "#/rules@35"
-            },
-            "arguments": []
-          },
           {
             "$type": "RuleCall",
             "rule": {
@@ -2138,6 +1604,20 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "$type": "RuleCall",
             "rule": {
               "$ref": "#/rules@39"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@40"
+            },
+            "arguments": []
+          },
+          {
+            "$type": "RuleCall",
+            "rule": {
+              "$ref": "#/rules@41"
             },
             "arguments": []
           }
@@ -2262,14 +1742,14 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@43"
+              "$ref": "#/rules@45"
             },
             "arguments": []
           },
           {
             "$type": "RuleCall",
             "rule": {
-              "$ref": "#/rules@41"
+              "$ref": "#/rules@43"
             },
             "arguments": []
           }
@@ -2769,14 +2249,12 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
         },
         {
           "$type": "TypeAttribute",
-          "name": "newAttribute",
-          "isOptional": true,
+          "name": "functionName",
           "type": {
             "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/types@0"
-            }
-          }
+            "primitiveType": "string"
+          },
+          "isOptional": false
         },
         {
           "$type": "TypeAttribute",
@@ -2791,13 +2269,13 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
         },
         {
           "$type": "TypeAttribute",
-          "name": "variable",
+          "name": "variableFunDef",
           "type": {
             "$type": "ArrayType",
             "elementType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@3"
+                "$ref": "#/interfaces@4"
               }
             }
           },
@@ -2819,49 +2297,102 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
         {
           "$type": "TypeAttribute",
           "name": "variableName",
-          "isOptional": true,
           "type": {
             "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/types@0"
-            }
-          }
+            "primitiveType": "string"
+          },
+          "isOptional": false
         },
         {
           "$type": "TypeAttribute",
           "name": "variableValue",
-          "isOptional": true,
           "type": {
             "$type": "SimpleType",
             "typeRef": {
               "$ref": "#/types@0"
             }
-          }
+          },
+          "isOptional": false
         },
         {
           "$type": "TypeAttribute",
-          "name": "variableref",
+          "name": "variableType",
           "type": {
-            "$type": "ArrayType",
-            "elementType": {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/types@0"
+            }
+          },
+          "isOptional": false
+        }
+      ],
+      "name": "VariableDef",
+      "superTypes": []
+    },
+    {
+      "$type": "Interface",
+      "attributes": [
+        {
+          "$type": "TypeAttribute",
+          "name": "variableName",
+          "type": {
+            "$type": "SimpleType",
+            "primitiveType": "string"
+          },
+          "isOptional": false
+        },
+        {
+          "$type": "TypeAttribute",
+          "name": "variableType",
+          "type": {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/types@0"
+            }
+          },
+          "isOptional": false
+        }
+      ],
+      "name": "VariableFunDef",
+      "superTypes": []
+    },
+    {
+      "$type": "Interface",
+      "attributes": [
+        {
+          "$type": "TypeAttribute",
+          "name": "VariableDef",
+          "type": {
+            "$type": "ReferenceType",
+            "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@4"
+                "$ref": "#/interfaces@3"
               }
             }
           },
           "isOptional": false
         }
       ],
-      "name": "Variable",
+      "name": "VariableRef",
+      "superTypes": [
+        {
+          "$ref": "#/interfaces@6"
+        }
+      ]
+    },
+    {
+      "$type": "Interface",
+      "name": "Entry",
+      "attributes": [],
       "superTypes": []
     },
     {
       "$type": "Interface",
-      "name": "VariableRef",
+      "name": "EntrySimple",
       "superTypes": [
         {
-          "$ref": "#/interfaces@5"
+          "$ref": "#/interfaces@6"
         }
       ],
       "attributes": []
@@ -2871,32 +2402,11 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "attributes": [
         {
           "$type": "TypeAttribute",
-          "name": "entityType",
-          "isOptional": true,
+          "name": "unitMeasure",
           "type": {
             "$type": "SimpleType",
             "typeRef": {
-              "$ref": "#/types@0"
-            }
-          }
-        }
-      ],
-      "name": "Entity",
-      "superTypes": []
-    },
-    {
-      "$type": "Interface",
-      "attributes": [
-        {
-          "$type": "TypeAttribute",
-          "name": "unit",
-          "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@7"
-              }
+              "$ref": "#/types@6"
             }
           },
           "isOptional": false
@@ -2906,13 +2416,8 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "name": "deplacementDistance",
           "isOptional": true,
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
-            }
+            "$type": "SimpleType",
+            "primitiveType": "number"
           }
         },
         {
@@ -2959,13 +2464,8 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "$type": "TypeAttribute",
           "name": "rotationAngle",
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
-            }
+            "$type": "SimpleType",
+            "primitiveType": "number"
           },
           "isOptional": false
         },
@@ -2973,12 +2473,9 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "$type": "TypeAttribute",
           "name": "rotationSens",
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/types@23"
             }
           },
           "isOptional": false
@@ -3010,29 +2507,12 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
         },
         {
           "$type": "TypeAttribute",
-          "name": "variable",
-          "type": {
-            "$type": "ArrayType",
-            "elementType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@3"
-              }
-            }
-          },
-          "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
           "name": "booleanExpression",
           "isOptional": true,
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/interfaces@6"
             }
           }
         }
@@ -3056,21 +2536,18 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
             "referenceType": {
               "$type": "SimpleType",
               "typeRef": {
-                "$ref": "#/interfaces@3"
+                "$ref": "#/interfaces@5"
               }
             }
           }
         },
         {
           "$type": "TypeAttribute",
-          "name": "entity",
+          "name": "entry",
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/interfaces@6"
             }
           },
           "isOptional": false
@@ -3088,20 +2565,26 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "attributes": [
         {
           "$type": "TypeAttribute",
-          "name": "entityToSet",
+          "name": "variableValue",
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
+            "$type": "SimpleType",
+            "primitiveType": "number"
+          },
+          "isOptional": false
+        },
+        {
+          "$type": "TypeAttribute",
+          "name": "unitMeasure",
+          "type": {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/types@6"
             }
           },
           "isOptional": false
         }
       ],
-      "name": "SetValue",
+      "name": "SetSpeed",
       "superTypes": [
         {
           "$ref": "#/interfaces@2"
@@ -3141,29 +2624,12 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
         },
         {
           "$type": "TypeAttribute",
-          "name": "variable",
-          "type": {
-            "$type": "ArrayType",
-            "elementType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@3"
-              }
-            }
-          },
-          "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
           "name": "booleanExpression",
           "isOptional": true,
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/interfaces@6"
             }
           }
         }
@@ -3178,6 +2644,20 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
     {
       "$type": "Interface",
       "attributes": [
+        {
+          "$type": "TypeAttribute",
+          "name": "arguments",
+          "type": {
+            "$type": "ArrayType",
+            "elementType": {
+              "$type": "SimpleType",
+              "typeRef": {
+                "$ref": "#/interfaces@6"
+              }
+            }
+          },
+          "isOptional": false
+        },
         {
           "$type": "TypeAttribute",
           "name": "function",
@@ -3196,7 +2676,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "name": "FunctionCall",
       "superTypes": [
         {
-          "$ref": "#/interfaces@5"
+          "$ref": "#/interfaces@6"
         }
       ]
     },
@@ -3205,28 +2685,11 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "attributes": [
         {
           "$type": "TypeAttribute",
-          "name": "variable",
-          "type": {
-            "$type": "ArrayType",
-            "elementType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@3"
-              }
-            }
-          },
-          "isOptional": false
-        },
-        {
-          "$type": "TypeAttribute",
           "name": "elementA",
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/interfaces@6"
             }
           },
           "isOptional": false
@@ -3236,12 +2699,9 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "name": "elementB",
           "isOptional": true,
           "type": {
-            "$type": "ReferenceType",
-            "referenceType": {
-              "$type": "SimpleType",
-              "typeRef": {
-                "$ref": "#/interfaces@5"
-              }
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/interfaces@6"
             }
           }
         },
@@ -3260,16 +2720,16 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "name": "ArithmeticExpression",
       "superTypes": [
         {
-          "$ref": "#/interfaces@5"
+          "$ref": "#/interfaces@6"
         }
       ]
     },
     {
       "$type": "Interface",
-      "name": "GetValue",
+      "name": "GetSpeed",
       "superTypes": [
         {
-          "$ref": "#/interfaces@5"
+          "$ref": "#/interfaces@6"
         }
       ],
       "attributes": []
@@ -3458,7 +2918,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "name": "Direction_forward",
       "type": {
         "$type": "SimpleType",
-        "stringType": "forward"
+        "stringType": "Forward"
       }
     },
     {
@@ -3466,7 +2926,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "name": "Direction_backward",
       "type": {
         "$type": "SimpleType",
-        "stringType": "backward"
+        "stringType": "Backward"
       }
     },
     {
@@ -3474,7 +2934,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "name": "Direction_sideLeft",
       "type": {
         "$type": "SimpleType",
-        "stringType": "sideLeft"
+        "stringType": "SideLeft"
       }
     },
     {
@@ -3482,7 +2942,7 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "name": "Direction_sideRight",
       "type": {
         "$type": "SimpleType",
-        "stringType": "sideRight"
+        "stringType": "SideRight"
       }
     },
     {
@@ -3576,6 +3036,43 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
       "type": {
         "$type": "SimpleType",
         "stringType": "Power"
+      }
+    },
+    {
+      "$type": "Type",
+      "name": "RotationSens",
+      "type": {
+        "$type": "UnionType",
+        "types": [
+          {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/types@24"
+            }
+          },
+          {
+            "$type": "SimpleType",
+            "typeRef": {
+              "$ref": "#/types@25"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "$type": "Type",
+      "name": "Rotation_clock",
+      "type": {
+        "$type": "SimpleType",
+        "stringType": "Clock"
+      }
+    },
+    {
+      "$type": "Type",
+      "name": "Rotation_antiClock",
+      "type": {
+        "$type": "SimpleType",
+        "stringType": "AntiClock"
       }
     }
   ],

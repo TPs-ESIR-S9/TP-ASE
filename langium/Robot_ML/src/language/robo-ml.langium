@@ -3,23 +3,27 @@ grammar RoboMl
 import 'Terminals'
 import 'roboML-types'
 
-entry RoboMLProgram returns RoboMLProgram:
-    'test' {RoboMLProgram} 'RoboMLProgram' '{' ('function' '{' function+=FunctionDec  ("," function+=FunctionDec  )* '}' )? '}'  
+entry RoboMLProgram returns RoboMLProgram: //OK
+    {RoboMLProgram} ( function+=FunctionDec )+
 ;
 
-Statement returns Statement:
-    Deplacement | Rotation | Loop | Assignement | SetValue | Condition 
+Statement returns Statement:   //TODO
+    Deplacement | Rotation | Loop | Assignement | SetSpeed | Condition | VariableDef
 ;
 
-Entity returns Entity:
-    Entity_Impl | FunctionCall | ArithmeticExpression | GetValue | VariableRef 
+Entry returns Entry:    //TODO
+    FunctionCall | ArithmeticExpression | GetSpeed | VariableRef | STRING | INT
 ;
 
-FunctionDec returns FunctionDec:
-    {FunctionDec} 'FunctionDec' '{' ('newAttribute' newAttribute=RMLObject  )? ('returnType' returnType=RMLObject  )? ('instruction' '{' instruction+=Statement  ("," instruction+=Statement  )* '}' )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+EntrySimple returns EntrySimple:    //TODO
+    FunctionCall | GetSpeed | VariableRef | STRING | INT
 ;
 
-RMLObject returns RMLObject:
+FunctionDec returns FunctionDec: //OK
+    {FunctionDec} 'let' ( 'void' | returnType=RMLObject ) functionName=ID '(' ( variableFunDef+=VariableFunDef  ("," variableFunDef+=VariableFunDef  )* )? ')' '{' ( instruction+=Statement )+ '}'  
+;
+
+RMLObject returns RMLObject: //OK
     RMLObject_RMLInt | RMLObject_RMLString | RMLObject_RMLFloat | RMLObject_RMLDouble | RMLObject_RMLBoolean
 ;
 RMLObject_RMLInt returns RMLObject_RMLInt: 'RMLInt' ;
@@ -28,49 +32,50 @@ RMLObject_RMLFloat returns RMLObject_RMLFloat: 'RMLFloat' ;
 RMLObject_RMLDouble returns RMLObject_RMLDouble: 'RMLDouble' ;
 RMLObject_RMLBoolean returns RMLObject_RMLBoolean: 'RMLBoolean' ;
 
-Variable returns Variable:
-    {Variable} 'Variable' '{' ('variableName' variableName=RMLObject  )? ('variableValue' variableValue=RMLObject  )? ('variableref' '{' variableref+=VariableRef  ("," variableref+=VariableRef  )* '}' )? '}'  
+VariableDef returns VariableDef: //OK
+    {VariableDef} 'var' variableType=RMLObject variableName=ID '=' variableValue=RMLObject  
 ;
 
-Deplacement returns Deplacement:
-    'Deplacement' '{' ('movementType' movementType=Direction  )? 'unit' unit=[Unit:EString ] ('deplacementDistance' deplacementDistance=[Entity:EString ] )? '}'  
+VariableFunDef returns VariableFunDef: //OK
+    {VariableFunDef} variableName=ID ':' variableType=RMLObject
 ;
 
-Rotation returns Rotation:
-    'Rotation' '{' 'rotationAngle' rotationAngle=[Entity:EString ] 'rotationSens' rotationSens=[Entity:EString ] '}'  
+Deplacement returns Deplacement: //OK
+    movementType=Direction deplacementDistance=INT unitMeasure=UnitMeasure
 ;
 
-Loop returns Loop:
-    {Loop} 'Loop' '{' ('booleanExpression' booleanExpression=[Entity:EString ] )? ('instruction' '{' instruction+=Statement  ("," instruction+=Statement  )* '}' )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+Rotation returns Rotation: //OK
+    rotationSens=RotationSens rotationAngle=INT 
+;
+RotationSens returns RotationSens: 'Clock' | 'AntiClock' ;
+
+Loop returns Loop:     //TODO
+    {Loop} 'Loop' booleanExpression=Entry '{' ( instruction+=Statement  (";" instruction+=Statement  )* )? '}'  
 ;
 
 Assignement returns Assignement:
-    'Assignement' '{' ('assignableVariable' assignableVariable=[Variable:EString ] )? 'entity' entity=[Entity:EString ] '}'  
+    assignableVariable=[VariableRef:ID ] '=' entry=Entry
 ;
 
-SetValue returns SetValue:
-    'SetValue' '{' 'entityToSet' entityToSet=[Entity:EString ] '}'  
+SetSpeed returns SetSpeed:
+    'SetSpeed(' variableValue=INT unitMeasure=UnitMeasure ')'
 ;
 
 Condition returns Condition:
-    {Condition} 'Condition' '{' ('booleanExpression' booleanExpression=[Entity:EString ] )? ('statementIf' '{' statementIf+=Statement  ("," statementIf+=Statement  )* '}' )? ('statementElse' '{' statementElse+=Statement  ("," statementElse+=Statement  )* '}' )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+    {Condition} 'if' '(' ( booleanExpression=Entry )? ')' '{' statementIf+=Statement  ("," statementIf+=Statement  )* '}' ('else' '{' statementElse+=Statement  ("," statementElse+=Statement  )* '}' )?
 ;
 
 Unit returns Unit:
     {Unit} 'Unit' '{' ('Type' Type=UnitMeasure  )? '}'  
 ;
 
-Entity_Impl returns Entity:
-    {Entity} 'Entity' '{' ('entityType' entityType=RMLObject  )? '}'  
-;
-
 Direction returns Direction:
     Direction_forward | Direction_backward | Direction_sideLeft | Direction_sideRight
 ;
-Direction_forward returns Direction_forward: 'forward' ;
-Direction_backward returns Direction_backward: 'backward' ;
-Direction_sideLeft returns Direction_sideLeft: 'sideLeft' ;
-Direction_sideRight returns Direction_sideRight: 'sideRight' ;
+Direction_forward returns Direction_forward: 'Forward' ;
+Direction_backward returns Direction_backward: 'Backward' ;
+Direction_sideLeft returns Direction_sideLeft: 'SideLeft' ;
+Direction_sideRight returns Direction_sideRight: 'SideRight' ;
 
 UnitMeasure returns UnitMeasure:
     UnitMeasure_m | UnitMeasure_dm | UnitMeasure_cm | UnitMeasure_mm
@@ -81,19 +86,19 @@ UnitMeasure_cm returns UnitMeasure_cm: 'cm' ;
 UnitMeasure_mm returns UnitMeasure_mm: 'mm' ;
 
 FunctionCall returns FunctionCall:
-    'FunctionCall' '{' ('entityType' entityType=RMLObject  )? 'function' function=[FunctionDec:EString ] '}'  
+    function=[FunctionDec:ID ] '(' ( arguments+=Entry  ("," arguments+=Entry  )* )? ')'  
 ;
 
 ArithmeticExpression returns ArithmeticExpression:
-    'ArithmeticExpression' '{' ('entityType' entityType=RMLObject  )? ('arithmeticOperator' arithmeticOperator=ArithmeticOperators  )? 'elementA' elementA=[Entity:EString ] ('elementB' elementB=[Entity:EString ] )? ('variable' '{' variable+=Variable  ("," variable+=Variable  )* '}' )? '}'  
+    elementA=EntrySimple arithmeticOperator=ArithmeticOperators elementB=Entry
 ;
 
-GetValue returns GetValue:
-    {GetValue} 'GetValue' '{' ('entityType' entityType=RMLObject  )? '}'  
+GetSpeed returns GetSpeed:
+    {GetSpeed} 'GetSpeed()'  
 ;
 
 VariableRef returns VariableRef:
-    {VariableRef} 'VariableRef' '{' ('entityType' entityType=RMLObject  )? '}'  
+    {VariableRef} VariableDef=[VariableDef:ID ]
 ;
 
 ArithmeticOperators returns ArithmeticOperators:

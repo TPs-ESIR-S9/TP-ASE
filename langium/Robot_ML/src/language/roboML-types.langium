@@ -13,10 +13,10 @@ type UnitMeasure_cm = 'cm';
 type UnitMeasure_mm = 'mm';
 
 type Direction = Direction_forward | Direction_backward | Direction_sideLeft | Direction_sideRight;
-type Direction_forward = 'forward';
-type Direction_backward = 'backward';
-type Direction_sideLeft = 'sideLeft';
-type Direction_sideRight = 'sideRight';
+type Direction_forward = 'Forward';
+type Direction_backward = 'Backward';
+type Direction_sideLeft = 'SideLeft';
+type Direction_sideRight = 'SideRight';
 
 type ArithmeticOperators = ArithmeticOperators_Plus | ArithmeticOperators_Minus | ArithmeticOperators_Multiplie | ArithmeticOperators_Divide | ArithmeticOperators_Modulo | ArithmeticOperators_Power;
 type ArithmeticOperators_Plus = 'Plus';
@@ -26,36 +26,48 @@ type ArithmeticOperators_Divide = 'Divide';
 type ArithmeticOperators_Modulo = 'Modulo';
 type ArithmeticOperators_Power = 'Power';
 
+type RotationSens = Rotation_clock | Rotation_antiClock;
+type Rotation_clock = 'Clock';
+type Rotation_antiClock = 'AntiClock';
+
 interface RoboMLProgram {
 	function: FunctionDec[]
 }
 
 interface FunctionDec {
 	instruction: Statement[]
-	newAttribute?: RMLObject
+	functionName: string
 	returnType?: RMLObject
-	variable: Variable[]
+	variableFunDef: VariableFunDef[]
 }
 
 interface Statement {
 }
 
-interface Variable {
-	variableName?: RMLObject
-	variableValue?: RMLObject
-	variableref: VariableRef[]
+interface VariableDef {
+	variableName: string
+	variableValue: RMLObject
+	variableType: RMLObject
 }
 
-interface VariableRef extends Entity {
+interface VariableFunDef {
+	variableName: string
+	variableType: RMLObject
 }
 
-interface Entity {
-	entityType?: RMLObject
+interface VariableRef extends Entry {
+	VariableDef: @VariableDef
+}
+
+interface Entry {
+}
+
+interface EntrySimple extends Entry {
 }
 
 interface Deplacement extends Statement {
-	unit: @Unit
-	deplacementDistance?: @Entity
+	unitMeasure: UnitMeasure
+	deplacementDistance?: number
 	movementType?: Direction
 }
 
@@ -64,43 +76,42 @@ interface Unit {
 }
 
 interface Rotation extends Statement {
-	rotationAngle: @Entity
-	rotationSens: @Entity
+	rotationAngle: number
+	rotationSens: RotationSens
 }
 
 interface Loop extends Statement {
 	instruction: Statement[]
-	variable: Variable[]
-	booleanExpression?: @Entity
+	booleanExpression?: Entry
 }
 
 interface Assignement extends Statement {
-	assignableVariable?: @Variable
-	entity: @Entity
+	assignableVariable?: @VariableRef
+	entry: Entry
 }
 
-interface SetValue extends Statement {
-	entityToSet: @Entity
+interface SetSpeed extends Statement {
+	variableValue: number
+	unitMeasure: UnitMeasure
 }
 
 interface Condition extends Statement {
 	statementIf: Statement[]
 	statementElse: Statement[]
-	variable: Variable[]
-	booleanExpression?: @Entity
+	booleanExpression?: Entry
 }
 
-interface FunctionCall extends Entity {
+interface FunctionCall extends Entry {
+	arguments: Entry[]
 	function: @FunctionDec
 }
 
-interface ArithmeticExpression extends Entity {
-	variable: Variable[]
-	elementA: @Entity
-	elementB?: @Entity
+interface ArithmeticExpression extends Entry {
+	elementA: Entry
+	elementB?: Entry
 	arithmeticOperator?: ArithmeticOperators
 }
 
-interface GetValue extends Entity {
+interface GetSpeed extends Entry {
 }
 

@@ -9,6 +9,7 @@ import { AbstractAstReflection } from 'langium';
 
 export const RoboMlTerminals = {
     ID: /(\^?(([a-z]|[A-Z])|_)((([a-z]|[A-Z])|_)|[0-9])*)/,
+    INT: /[0-9]+/,
     STRING: /(("((\\([\s\S]))|((?!(\\|"))[\s\S]*?))*")|('((\\([\s\S]))|((?!(\\|'))[\s\S]*?))*'))/,
     ML_COMMENT: /(\/\*([\s\S]*?\*\/))/,
     SL_COMMENT: /(\/\/((?!(\n|\r))[\s\S]*?)(\r?\n)?)/,
@@ -31,13 +32,13 @@ export type ArithmeticOperators_Power = 'Power';
 
 export type Direction = Direction_backward | Direction_forward | Direction_sideLeft | Direction_sideRight;
 
-export type Direction_backward = 'backward';
+export type Direction_backward = 'Backward';
 
-export type Direction_forward = 'forward';
+export type Direction_forward = 'Forward';
 
-export type Direction_sideLeft = 'sideLeft';
+export type Direction_sideLeft = 'SideLeft';
 
-export type Direction_sideRight = 'sideRight';
+export type Direction_sideRight = 'SideRight';
 
 export type EString = string;
 
@@ -57,6 +58,12 @@ export type RMLObject_RMLInt = 'RMLInt';
 
 export type RMLObject_RMLString = 'RMLString';
 
+export type Rotation_antiClock = 'AntiClock';
+
+export type Rotation_clock = 'Clock';
+
+export type RotationSens = Rotation_antiClock | Rotation_clock;
+
 export type UnitMeasure = UnitMeasure_cm | UnitMeasure_dm | UnitMeasure_m | UnitMeasure_mm;
 
 export type UnitMeasure_cm = 'cm';
@@ -67,24 +74,23 @@ export type UnitMeasure_m = 'm';
 
 export type UnitMeasure_mm = 'mm';
 
-export interface Entity extends AstNode {
-    readonly $type: 'ArithmeticExpression' | 'Entity' | 'FunctionCall' | 'GetValue' | 'VariableRef';
-    entityType?: RMLObject
+export interface Entry extends AstNode {
+    readonly $type: 'ArithmeticExpression' | 'Entry' | 'EntrySimple' | 'FunctionCall' | 'GetSpeed' | 'VariableRef';
 }
 
-export const Entity = 'Entity';
+export const Entry = 'Entry';
 
-export function isEntity(item: unknown): item is Entity {
-    return reflection.isInstance(item, Entity);
+export function isEntry(item: unknown): item is Entry {
+    return reflection.isInstance(item, Entry);
 }
 
 export interface FunctionDec extends AstNode {
     readonly $container: RoboMLProgram;
     readonly $type: 'FunctionDec';
+    functionName: string
     instruction: Array<Statement>
-    newAttribute?: RMLObject
     returnType?: RMLObject
-    variable: Array<Variable>
+    variableFunDef: Array<VariableFunDef>
 }
 
 export const FunctionDec = 'FunctionDec';
@@ -105,7 +111,7 @@ export function isRoboMLProgram(item: unknown): item is RoboMLProgram {
 }
 
 export interface Statement extends AstNode {
-    readonly $type: 'Assignement' | 'Condition' | 'Deplacement' | 'Loop' | 'Rotation' | 'SetValue' | 'Statement';
+    readonly $type: 'Assignement' | 'Condition' | 'Deplacement' | 'Loop' | 'Rotation' | 'SetSpeed' | 'Statement';
 }
 
 export const Statement = 'Statement';
@@ -125,26 +131,37 @@ export function isUnit(item: unknown): item is Unit {
     return reflection.isInstance(item, Unit);
 }
 
-export interface Variable extends AstNode {
-    readonly $container: ArithmeticExpression | Condition | FunctionDec | Loop;
-    readonly $type: 'Variable';
-    variableName?: RMLObject
-    variableref: Array<VariableRef>
-    variableValue?: RMLObject
+export interface VariableDef extends AstNode {
+    readonly $type: 'VariableDef';
+    variableName: string
+    variableType: RMLObject
+    variableValue: RMLObject
 }
 
-export const Variable = 'Variable';
+export const VariableDef = 'VariableDef';
 
-export function isVariable(item: unknown): item is Variable {
-    return reflection.isInstance(item, Variable);
+export function isVariableDef(item: unknown): item is VariableDef {
+    return reflection.isInstance(item, VariableDef);
 }
 
-export interface ArithmeticExpression extends Entity {
+export interface VariableFunDef extends AstNode {
+    readonly $container: FunctionDec;
+    readonly $type: 'VariableFunDef';
+    variableName: string
+    variableType: RMLObject
+}
+
+export const VariableFunDef = 'VariableFunDef';
+
+export function isVariableFunDef(item: unknown): item is VariableFunDef {
+    return reflection.isInstance(item, VariableFunDef);
+}
+
+export interface ArithmeticExpression extends Entry {
     readonly $type: 'ArithmeticExpression';
     arithmeticOperator?: ArithmeticOperators
-    elementA: Reference<Entity>
-    elementB?: Reference<Entity>
-    variable: Array<Variable>
+    elementA: Entry
+    elementB?: Entry
 }
 
 export const ArithmeticExpression = 'ArithmeticExpression';
@@ -153,8 +170,19 @@ export function isArithmeticExpression(item: unknown): item is ArithmeticExpress
     return reflection.isInstance(item, ArithmeticExpression);
 }
 
-export interface FunctionCall extends Entity {
+export interface EntrySimple extends Entry {
+    readonly $type: 'EntrySimple';
+}
+
+export const EntrySimple = 'EntrySimple';
+
+export function isEntrySimple(item: unknown): item is EntrySimple {
+    return reflection.isInstance(item, EntrySimple);
+}
+
+export interface FunctionCall extends Entry {
     readonly $type: 'FunctionCall';
+    arguments: Array<Entry>
     function: Reference<FunctionDec>
 }
 
@@ -164,19 +192,19 @@ export function isFunctionCall(item: unknown): item is FunctionCall {
     return reflection.isInstance(item, FunctionCall);
 }
 
-export interface GetValue extends Entity {
-    readonly $type: 'GetValue';
+export interface GetSpeed extends Entry {
+    readonly $type: 'GetSpeed';
 }
 
-export const GetValue = 'GetValue';
+export const GetSpeed = 'GetSpeed';
 
-export function isGetValue(item: unknown): item is GetValue {
-    return reflection.isInstance(item, GetValue);
+export function isGetSpeed(item: unknown): item is GetSpeed {
+    return reflection.isInstance(item, GetSpeed);
 }
 
-export interface VariableRef extends Entity {
-    readonly $container: Variable;
+export interface VariableRef extends Entry {
     readonly $type: 'VariableRef';
+    VariableDef: Reference<VariableDef>
 }
 
 export const VariableRef = 'VariableRef';
@@ -187,8 +215,8 @@ export function isVariableRef(item: unknown): item is VariableRef {
 
 export interface Assignement extends Statement {
     readonly $type: 'Assignement';
-    assignableVariable?: Reference<Variable>
-    entity: Reference<Entity>
+    assignableVariable?: Reference<VariableRef>
+    entry: Entry
 }
 
 export const Assignement = 'Assignement';
@@ -199,10 +227,9 @@ export function isAssignement(item: unknown): item is Assignement {
 
 export interface Condition extends Statement {
     readonly $type: 'Condition';
-    booleanExpression?: Reference<Entity>
+    booleanExpression?: Entry
     statementElse: Array<Statement>
     statementIf: Array<Statement>
-    variable: Array<Variable>
 }
 
 export const Condition = 'Condition';
@@ -213,9 +240,9 @@ export function isCondition(item: unknown): item is Condition {
 
 export interface Deplacement extends Statement {
     readonly $type: 'Deplacement';
-    deplacementDistance?: Reference<Entity>
+    deplacementDistance?: number
     movementType?: Direction
-    unit: Reference<Unit>
+    unitMeasure: UnitMeasure
 }
 
 export const Deplacement = 'Deplacement';
@@ -226,9 +253,8 @@ export function isDeplacement(item: unknown): item is Deplacement {
 
 export interface Loop extends Statement {
     readonly $type: 'Loop';
-    booleanExpression?: Reference<Entity>
+    booleanExpression?: Entry
     instruction: Array<Statement>
-    variable: Array<Variable>
 }
 
 export const Loop = 'Loop';
@@ -239,8 +265,8 @@ export function isLoop(item: unknown): item is Loop {
 
 export interface Rotation extends Statement {
     readonly $type: 'Rotation';
-    rotationAngle: Reference<Entity>
-    rotationSens: Reference<Entity>
+    rotationAngle: number
+    rotationSens: RotationSens
 }
 
 export const Rotation = 'Rotation';
@@ -249,15 +275,16 @@ export function isRotation(item: unknown): item is Rotation {
     return reflection.isInstance(item, Rotation);
 }
 
-export interface SetValue extends Statement {
-    readonly $type: 'SetValue';
-    entityToSet: Reference<Entity>
+export interface SetSpeed extends Statement {
+    readonly $type: 'SetSpeed';
+    unitMeasure: UnitMeasure
+    variableValue: number
 }
 
-export const SetValue = 'SetValue';
+export const SetSpeed = 'SetSpeed';
 
-export function isSetValue(item: unknown): item is SetValue {
-    return reflection.isInstance(item, SetValue);
+export function isSetSpeed(item: unknown): item is SetSpeed {
+    return reflection.isInstance(item, SetSpeed);
 }
 
 export type RoboMlAstType = {
@@ -265,40 +292,43 @@ export type RoboMlAstType = {
     Assignement: Assignement
     Condition: Condition
     Deplacement: Deplacement
-    Entity: Entity
+    Entry: Entry
+    EntrySimple: EntrySimple
     FunctionCall: FunctionCall
     FunctionDec: FunctionDec
-    GetValue: GetValue
+    GetSpeed: GetSpeed
     Loop: Loop
     RoboMLProgram: RoboMLProgram
     Rotation: Rotation
-    SetValue: SetValue
+    SetSpeed: SetSpeed
     Statement: Statement
     Unit: Unit
-    Variable: Variable
+    VariableDef: VariableDef
+    VariableFunDef: VariableFunDef
     VariableRef: VariableRef
 }
 
 export class RoboMlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['ArithmeticExpression', 'Assignement', 'Condition', 'Deplacement', 'Entity', 'FunctionCall', 'FunctionDec', 'GetValue', 'Loop', 'RoboMLProgram', 'Rotation', 'SetValue', 'Statement', 'Unit', 'Variable', 'VariableRef'];
+        return ['ArithmeticExpression', 'Assignement', 'Condition', 'Deplacement', 'Entry', 'EntrySimple', 'FunctionCall', 'FunctionDec', 'GetSpeed', 'Loop', 'RoboMLProgram', 'Rotation', 'SetSpeed', 'Statement', 'Unit', 'VariableDef', 'VariableFunDef', 'VariableRef'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
         switch (subtype) {
             case ArithmeticExpression:
+            case EntrySimple:
             case FunctionCall:
-            case GetValue:
+            case GetSpeed:
             case VariableRef: {
-                return this.isSubtype(Entity, supertype);
+                return this.isSubtype(Entry, supertype);
             }
             case Assignement:
             case Condition:
             case Deplacement:
             case Loop:
             case Rotation:
-            case SetValue: {
+            case SetSpeed: {
                 return this.isSubtype(Statement, supertype);
             }
             default: {
@@ -310,25 +340,14 @@ export class RoboMlAstReflection extends AbstractAstReflection {
     getReferenceType(refInfo: ReferenceInfo): string {
         const referenceId = `${refInfo.container.$type}:${refInfo.property}`;
         switch (referenceId) {
-            case 'ArithmeticExpression:elementA':
-            case 'ArithmeticExpression:elementB':
-            case 'Assignement:entity':
-            case 'Condition:booleanExpression':
-            case 'Deplacement:deplacementDistance':
-            case 'Loop:booleanExpression':
-            case 'Rotation:rotationAngle':
-            case 'Rotation:rotationSens':
-            case 'SetValue:entityToSet': {
-                return Entity;
-            }
             case 'Assignement:assignableVariable': {
-                return Variable;
-            }
-            case 'Deplacement:unit': {
-                return Unit;
+                return VariableRef;
             }
             case 'FunctionCall:function': {
                 return FunctionDec;
+            }
+            case 'VariableRef:VariableDef': {
+                return VariableDef;
             }
             default: {
                 throw new Error(`${referenceId} is not a valid reference id.`);
@@ -343,7 +362,7 @@ export class RoboMlAstReflection extends AbstractAstReflection {
                     name: 'FunctionDec',
                     mandatory: [
                         { name: 'instruction', type: 'array' },
-                        { name: 'variable', type: 'array' }
+                        { name: 'variableFunDef', type: 'array' }
                     ]
                 };
             }
@@ -355,19 +374,11 @@ export class RoboMlAstReflection extends AbstractAstReflection {
                     ]
                 };
             }
-            case 'Variable': {
+            case 'FunctionCall': {
                 return {
-                    name: 'Variable',
+                    name: 'FunctionCall',
                     mandatory: [
-                        { name: 'variableref', type: 'array' }
-                    ]
-                };
-            }
-            case 'ArithmeticExpression': {
-                return {
-                    name: 'ArithmeticExpression',
-                    mandatory: [
-                        { name: 'variable', type: 'array' }
+                        { name: 'arguments', type: 'array' }
                     ]
                 };
             }
@@ -376,8 +387,7 @@ export class RoboMlAstReflection extends AbstractAstReflection {
                     name: 'Condition',
                     mandatory: [
                         { name: 'statementElse', type: 'array' },
-                        { name: 'statementIf', type: 'array' },
-                        { name: 'variable', type: 'array' }
+                        { name: 'statementIf', type: 'array' }
                     ]
                 };
             }
@@ -385,8 +395,7 @@ export class RoboMlAstReflection extends AbstractAstReflection {
                 return {
                     name: 'Loop',
                     mandatory: [
-                        { name: 'instruction', type: 'array' },
-                        { name: 'variable', type: 'array' }
+                        { name: 'instruction', type: 'array' }
                     ]
                 };
             }

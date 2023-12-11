@@ -98,7 +98,7 @@ export type UnitMeasure_mm = 'mm';
 
 export class RoboMLProgram implements ASTInterfaces.RoboMLProgram {
     readonly $type!: 'RoboMLProgram';
-    function!: ASTInterfaces.FunctionDec[];
+    function!: FunctionDec[];
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitRoboMLProgram(this);
@@ -115,9 +115,9 @@ export class Entry implements ASTInterfaces.Entry {
 
 export class Condition implements ASTInterfaces.Condition {
     $type!: 'Condition';
-    booleanExpression?: Entry;
-    statementElse!: ASTInterfaces.Statement[];
-    statementIf!: ASTInterfaces.Statement[]; 
+    booleanExpression!: Entry;
+    statementElse!: Statement[];
+    statementIf!: Statement[]; 
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitCondition(this);
@@ -170,7 +170,7 @@ export class FunctionDec implements ASTInterfaces.FunctionDec {
 
 export class Loop implements ASTInterfaces.Loop {
     $type!: 'Loop';
-    booleanExpression?: Entry;
+    booleanExpression!: Entry;
     instruction!: Array<Statement>; /*ASTInterfaces.Statement[];*/
     
     //variable!: Array<Variable>;

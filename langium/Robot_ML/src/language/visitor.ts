@@ -1,4 +1,3 @@
-import { AstNode, CstNode, LangiumDocument, Reference } from 'langium';
 import * as ASTInterfaces from './generated/ast.js';// Remplacez le chemin d'accès par le chemin réel de votre fichier visitor.ts
 
 export interface RoboMLVisitor {
@@ -23,19 +22,6 @@ export interface RoboMLVisitor {
     visitVariableFunDef(node: VariableFunDef): any;
     visitVariableRef(node: VariableRef): any;
 
-
-    //visitEntity(node: Entity): any;
-      
-    //visitVariable(node: Variable): any;
-  
-    //visitSetValue(node: SetValue): any;  
-
-    //visitDirection(node: Direction): any;
-    // visitUnitMeasure(node: UnitMeasure): any;
-    
-    //visitGetValue(node: GetValue): any;
-    
-    //visitArithmeticOperators(node: ArithmeticOperators): any;
 }
 
 export class GetRotation implements ASTInterfaces.GetRotation {
@@ -132,14 +118,6 @@ export class Statement implements ASTInterfaces.Statement {
     }
 }
 
-/*
-export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLFloat | RMLObject_RMLInt | RMLObject_RMLString;
-export type RMLObject_RMLBoolean = 'RMLBoolean';
-export type RMLObject_RMLDouble = 'RMLDouble';
-export type RMLObject_RMLFloat = 'RMLFloat';
-export type RMLObject_RMLInt = 'RMLInt';
-export type RMLObject_RMLString = 'RMLString';
-*/
 
 export class VariableFunDef implements ASTInterfaces.VariableFunDef {
 
@@ -242,15 +220,6 @@ export class Expression implements ASTInterfaces.Expression {
     }
 }
 
-/*
-export class GetValue implements ASTInterfaces.GetValue {
-    $type!: 'GetValue';
-    accept(visitor: RoboMLVisitor): any {
-        return visitor.visitGetValue(this);
-    }
-}
-*/
-
 export class VariableRef implements ASTInterfaces.VariableRef {
     $type!: 'VariableRef';
     variableDefinition!: string;
@@ -266,10 +235,3 @@ export class VariableDef implements ASTInterfaces.VariableDef {
         return visitor.visitVariableDef(this);
     }
 }
-
-/*
-export class Entity implements ASTInterfaces.Entity {
-    $type!: 'ArithmeticExpression' | 'Entity' | 'FunctionCall' | 'GetValue' | 'VariableRef';
-    entityType?: ASTInterfaces.RMLObject | undefined;
-}
-*/

@@ -1,4 +1,4 @@
-import { AstNode, CstNode, LangiumDocument, Reference } from 'langium';
+// import { AstNode, CstNode, LangiumDocument, Reference } from 'langium';
 import * as ASTInterfaces from './generated/ast.js';// Remplacez le chemin d'accès par le chemin réel de votre fichier visitor.ts
 
 export interface RoboMLVisitor {

@@ -1,4 +1,4 @@
-let void entry () {
+let void main() {
     setSpeed(150 dm)
     var RMLInt count = 0
     var RMLInt test = count

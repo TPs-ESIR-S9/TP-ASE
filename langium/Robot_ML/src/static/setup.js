@@ -2,6 +2,10 @@ import { MonacoEditorLanguageClientWrapper, vscode } from './monaco-editor-wrapp
 import { buildWorkerDefinition } from "./monaco-editor-workers/index.js";
 import monarchSyntax from "./syntaxes/robo-ml.monarch.js";
 
+import { createRoboMlServices } from './services/robo-ml-module.js';
+
+import { extractDocument } from './cli/cli-util.js';
+
 buildWorkerDefinition('./monaco-editor-workers/workers', new URL('', window.location.href).href, false);
 
 MonacoEditorLanguageClientWrapper.addMonacoStyles('monaco-editor-styles');
@@ -53,15 +57,40 @@ const typecheck = (async () => {
     }
 });
 
+
 const parseAndValidate = (async () => {
-    console.info('validating current code...');
-    // To implement
+    
+    console.info('testttt...');
+    
+    
+    const services = createRoboMlServices(NodeFile);
+    const document = extractDocument(code);
+    const parseResult = document.parseResult;
+    if(parseResult.lexerrors.length > 0 || parseResult.parseerrors.length > 0){
+        console.log(chalk.red(`Failed to parse and validate ${fileName}!`));
+        const modal = document.getElementById("errorModal");
+        modal.style.display = "block";
+        return;
+    }
+    
+    console.info("mais wesh")
+    
 });
 
 const execute = (async () => {
     console.info('running current code...');
-    // To implement
+    
+
+    
 });
+
+const resetSimulation = (async () => {
+    console.info('running current code...');
+    
+
+    
+});
+
 
 const setupSimulator = (scene) => {
     const wideSide = max(scene.size.x, scene.size.y);
@@ -99,6 +128,8 @@ const setupSimulator = (scene) => {
 }
 
 window.execute = execute;
+window.parseAndValidate = parseAndValidate;
+window.resetSimulation = resetSimulation;  
 window.typecheck = typecheck;
 
 var errorModal = document.getElementById("errorModal");
@@ -120,6 +151,7 @@ window.onclick = function(event) {
     }
   } 
 
+/*
 const workerURL = new URL('./robo-ml-server-worker.js', import.meta.url); // WARNING Dependent of your project
 console.log(workerURL.href);
 
@@ -128,6 +160,7 @@ const lsWorker = new Worker(workerURL.href, {
     name: 'RoboMl Language Server'
 });
 client.setWorker(lsWorker);
+*/
 
 // keep a reference to a promise for when the editor is finished starting, we'll use this to setup the canvas on load
 const startingPromise = client.startEditor(document.getElementById("monaco-editor-root"));

@@ -19,7 +19,7 @@ export type GenerateOptions = {
 export default function(): void {
     const program = new Command();
 
-    program
+    //program
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         // .version(require('../../package.json').version); BROKEN
         .version(JSON.parse(packageJson).version);

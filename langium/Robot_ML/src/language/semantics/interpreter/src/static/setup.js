@@ -2,6 +2,9 @@ import { MonacoEditorLanguageClientWrapper, vscode } from './monaco-editor-wrapp
 import { buildWorkerDefinition } from "./monaco-editor-workers/index.js";
 import monarchSyntax from "./syntaxes/robo-ml.monarch.js";
 
+import { extractDocument } from './cli-util';
+import { createRoboMlServices } from './services';
+
 buildWorkerDefinition('./monaco-editor-workers/workers', new URL('', window.location.href).href, false);
 
 MonacoEditorLanguageClientWrapper.addMonacoStyles('monaco-editor-styles');
@@ -54,12 +57,25 @@ const typecheck = (async () => {
 });
 
 const parseAndValidate = (async () => {
+
     console.info('validating current code...');
-    // To implement
+    
+    /*
+    const services = createRoboMlServices(NodeFile);
+    const document = extractDocument(code);
+    const parseResult = document.parseResult;
+    if(parseResult.lexerrors.length > 0 || parseResult.parseerrors.length > 0){
+        console.log(chalk.red(`Failed to parse and validate ${fileName}!`));
+        const modal = document.getElementById("errorModal");
+        modal.style.display = "block";
+        return;
+    }
+    */
 });
 
 const execute = (async () => {
     console.info('running current code...');
+    // TODO
     // To implement
 });
 

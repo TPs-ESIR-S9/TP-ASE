@@ -22,19 +22,6 @@ export interface RoboMLVisitor {
     visitVariableFunDef(node: VariableFunDef): any;
     visitVariableRef(node: VariableRef): any;
 
-
-    //visitEntity(node: Entity): any;
-      
-    //visitVariable(node: Variable): any;
-  
-    //visitSetValue(node: SetValue): any;  
-
-    //visitDirection(node: Direction): any;
-    // visitUnitMeasure(node: UnitMeasure): any;
-    
-    //visitGetValue(node: GetValue): any;
-    
-    //visitArithmeticOperators(node: ArithmeticOperators): any;
 }
 
 export class GetRotation implements ASTInterfaces.GetRotation {
@@ -130,6 +117,7 @@ export class Statement implements ASTInterfaces.Statement {
         return visitor.visitStatement(this);
     }
 }
+
 
 export class VariableFunDef implements ASTInterfaces.VariableFunDef {
 
@@ -232,15 +220,6 @@ export class Expression implements ASTInterfaces.Expression {
     }
 }
 
-/*
-export class GetValue implements ASTInterfaces.GetValue {
-    $type!: 'GetValue';
-    accept(visitor: RoboMLVisitor): any {
-        return visitor.visitGetValue(this);
-    }
-}
-*/
-
 export class VariableRef implements ASTInterfaces.VariableRef {
     $type!: 'VariableRef';
     variableDefinition!: string;
@@ -256,10 +235,3 @@ export class VariableDef implements ASTInterfaces.VariableDef {
         return visitor.visitVariableDef(this);
     }
 }
-
-/*
-export class Entity implements ASTInterfaces.Entity {
-    $type!: 'ArithmeticExpression' | 'Entity' | 'FunctionCall' | 'GetValue' | 'VariableRef';
-    entityType?: ASTInterfaces.RMLObject | undefined;
-}
-*/

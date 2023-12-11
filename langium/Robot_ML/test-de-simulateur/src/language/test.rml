@@ -1,0 +1,30 @@
+let void entry () {
+    setSpeed(150 dm)
+    var RMLInt count = 0
+    var RMLInt test = count
+    loop count < 5 
+    {	
+        count = count + 1
+        square()
+    }
+}
+
+let void square(){
+    Forward 30 cm
+    Clock 90
+    Forward 300 mm
+    Clock 90
+    Forward 30 cm
+    Clock 90
+    Forward 300 mm
+    Clock 90
+}
+
+let RMLInt variables(RMLInt test){
+    variables(4)
+    var RMLBoolean test = true < true + true
+    if ( true ) {
+        setRotation(90)
+    }
+    return 1
+}

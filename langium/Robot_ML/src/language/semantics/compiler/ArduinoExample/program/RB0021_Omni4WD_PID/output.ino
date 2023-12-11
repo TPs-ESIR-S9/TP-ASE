@@ -64,6 +64,7 @@ void setup() {
 
 void loop() {
   Omni.demoActions(30,1500,500,false);
+  main();
 }
 
 

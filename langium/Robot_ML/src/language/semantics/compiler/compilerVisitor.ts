@@ -8,15 +8,18 @@ export class CompilerVisitor implements RoboMLVisitor {
     codeProgram: string = "\n\n";
 
     visitRoboMLProgram(node: RoboMLProgram){
-        this.codeProgram += "hello world";
+        node.function.forEach(func => {
+            const funcDec = func as FunctionDec;
+            this.codeProgram += funcDec.accept(this);
+        });
         fs.readFile(this.pathInitFile, 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
                 return;
             }
-
+            
             let finalProgram = data + this.codeProgram;
-
+            
             fs.writeFile(this.pathOutputFile, finalProgram, 'utf8', (err) => {
                 if (err) {
                     console.error(err);
@@ -27,77 +30,78 @@ export class CompilerVisitor implements RoboMLVisitor {
         });
         return this.codeProgram;
     }
+    
+    visitFunctionDec(node: FunctionDec) {
+        return (node.returnType === "RMLInt" ? "int" : node.returnType === "RMLBoolean" ? "bool" : "void") + " " + node.functionName + "(" + node.variableFunDef.map((variableFunDef) => (variableFunDef.variableType === "RMLInt" ? "int" : variableFunDef.variableType === "RMLBoolean" ? "bool" : "void") + variableFunDef.variableName).join(", ") + ") {\n" 
+        + node.instruction.map((instruction) => instruction.accept(this)).join("\n") + "\n}";
+    }
 
     visitAssignement(node: Assignement) {
-        // TODO: assignement
+        return node.assignableVariable + " = " + node.entry.accept(this) + ";";
     }
 
     visitCondition(node: ASTInterfaces.Condition) {
-        // TODO: condition
+        return "if (" + node.booleanExpression.accept(this) + ") {\n" + node.statementIf.map((statement) => statement.accept(this)).join("\n") + "\n} else {\n" + node.statementElse.map((statement) => statement.accept(this)).join("\n") + "\n}";
     }
 
     visitDeplacement(node: Deplacement) {
-        // TODO: deplacement
+        return "Omni.setMotorAll(" + "" + ")"; // TODO: deplacement
     }
 
     visitEntry(node: ASTInterfaces.Entry) {
-        // TODO: entry
+        return node.accept(this);
     }
 
     visitEntrySimple(node: EntrySimple) {
-        //TODO
+        return node.accept(this);
     }
 
     visitExpression(node: Expression) {
-        //TODO
+        return node.accept(this);
     }
 
     visitFunctionCall(node: FunctionCall) {
-        //TODO
-    }
-
-    visitFunctionDec(node: FunctionDec) {
-        //TODO
+        return node.function + "(" + node.arguments.map((variableRef) => variableRef.accept(this)).join(", ") + ")";
     }
 
     visitGetRotation(node: GetRotation) {
-        //TODO
+        return "global_rotation";
     }
-
+    
     visitGetSpeed(node: ASTInterfaces.GetSpeed) {
-        //TODO
+        return "global_speed";
     }
 
     visitLoop(node: Loop) {
-        //TODO
+        return "while (" + node.booleanExpression.accept(this) + ") {\n" + node.instruction.map((statement) => statement.accept(this)).join("\n") + "\n}";
     }
 
     visitRotation(node: Rotation) {
-        //TODO
+        return (node.rotationSens === "Clock" ? "Omni.setCarRotate(" : "Omni.setCarRotate(-") + node.rotationAngle.accept(this) + ")";
     }
 
     visitSetRotation(node: ASTInterfaces.SetRotation) {
-        //TODO
+        return "global_rotation = " + node.variableValue.accept(this);
     }
 
     visitSetSpeed(node: ASTInterfaces.SetSpeed) {
-        //TODO
+        return "global_speed = " + node.variableValue.accept(this);
     }
 
     visitStatement(node: Statement) {
-        //TODO
+        return node.accept(this);
     }
 
     visitVariableDef(node: VariableDef) {
-        //TODO
+        return (node.variableType === "RMLInt" ? "int" : node.variableType === "RMLBoolean" ? "bool" : "void") + " " + node.variableName + " = " + node.variableValue.accept(this) + ";";
     }
 
     visitVariableFunDef(node: VariableFunDef) {
-        //TODO
+        return (node.variableType === "RMLInt" ? "int" : node.variableType === "RMLBoolean" ? "bool" : "void") + " " + node.variableName;
     }
 
     visitVariableRef(node: VariableRef) {
-        //TODO
+        return node.variableDefinition.accept(this);
     }
 
 }

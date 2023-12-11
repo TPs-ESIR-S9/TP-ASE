@@ -9,7 +9,7 @@ import { createRoboMlServices } from '../language/robo-ml-module.js';
 import { extractAstNode } from './cli-util.js';
 import { generateJavaScript } from './generator.js';
 import { NodeFileSystem } from 'langium/node';
-import { compile } from '../language/semantics/compiler/compiler.js';
+import { Compile } from '../language/semantics/compiler/compiler.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const packageJson = await fs.readFile(path.resolve(__dirname, '..', '..', 'package.json'), 'utf-8');
 
@@ -46,7 +46,7 @@ export default function(): void {
         console.log(`Compiling ${fileName}`);
         const services = createRoboMlServices(NodeFileSystem).RoboMl;
         const model = await extractAstNode(fileName, services);
-        compile.compileArduino(model);
+        Compile.compileArduino(model);
     });
     program.parse(process.argv);
 }

@@ -5,7 +5,7 @@ import { RoboMlLanguageMetaData } from '../language/generated/module.js';
 import { createRoboMlServices } from '../language/robo-ml-module.js';
 import { extractAstNode } from './cli-util.js';
 import { generateJavaScript } from './generator.js';
-import { NodeFileSystem } from 'langium/node';
+import { NodeFileSystem } from 'langium';
 
 export const generateAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
     const services = createRoboMlServices(NodeFileSystem).RoboMl;

@@ -36,6 +36,11 @@ export class RoboMLValidator {
         return expression.elementA !== null && expression.elementB !== null;
     }
     */
+
+    // private isValidExpression(expression: InterfaceAST.Expression): boolean {
+
+    //     return expression.elementA !== null && expression.elementB !== null;
+    // }
 }
 
 

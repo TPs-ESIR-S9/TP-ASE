@@ -7,9 +7,10 @@ export class CompilerVisitor implements RoboMLVisitor {
     codeProgram: string = "\n\n";
 
     visitRoboMLProgram(node: RoboMLProgram){
-        for (let func of node.function) {
+        node.function.forEach(func => {
+            console.log(func);
             this.codeProgram += func.accept(this);
-        }
+        });
         fs.readFile(this.pathInitFile, 'utf8', (err, data) => {
             if (err) {
                 console.error(err);

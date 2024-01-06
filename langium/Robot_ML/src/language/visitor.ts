@@ -131,15 +131,6 @@ export class Statement implements ASTInterfaces.Statement {
     }
 }
 
-/*
-export type RMLObject = RMLObject_RMLBoolean | RMLObject_RMLDouble | RMLObject_RMLFloat | RMLObject_RMLInt | RMLObject_RMLString;
-export type RMLObject_RMLBoolean = 'RMLBoolean';
-export type RMLObject_RMLDouble = 'RMLDouble';
-export type RMLObject_RMLFloat = 'RMLFloat';
-export type RMLObject_RMLInt = 'RMLInt';
-export type RMLObject_RMLString = 'RMLString';
-*/
-
 export class VariableFunDef implements ASTInterfaces.VariableFunDef {
 
     $container!: FunctionDec;

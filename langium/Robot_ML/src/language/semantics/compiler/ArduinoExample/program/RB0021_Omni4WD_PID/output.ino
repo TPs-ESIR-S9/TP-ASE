@@ -54,6 +54,9 @@ MotorWheel wheel4(10, 7, 18, 19, &irq4);
 
 Omni4WD Omni(&wheel1, &wheel2, &wheel3, &wheel4);
 
+int global_speed = 0;
+int global_rotation = 0;
+
 void setup() {
   //TCCR0B=TCCR0B&0xf8|0x01;    // warning!! it will change millis()
   TCCR1B = TCCR1B & 0xf8 | 0x01; // Pin9,Pin10 PWM 31250Hz
@@ -68,4 +71,3 @@ void loop() {
 }
 
 
-hello world

@@ -1,6 +1,5 @@
-import * as ASTInterfaces from '../../generated/ast.js';
 import * as fs from 'fs';
-import { Assignement, Deplacement, EntrySimple, Expression, FunctionCall, FunctionDec, GetRotation, Loop, RoboMLProgram, RoboMLVisitor, Rotation, Statement, VariableDef, VariableFunDef, VariableRef } from '../../visitor.js';
+import { Assignement, Condition, Deplacement, Entry, EntrySimple, Expression, FunctionCall, FunctionDec, GetRotation, GetSpeed, Loop, RoboMLProgram, RoboMLVisitor, Rotation, SetRotation, SetSpeed, Statement, VariableDef, VariableFunDef, VariableRef } from '../../visitor.js';
 
 export class CompilerVisitor implements RoboMLVisitor {
     pathInitFile: string = "src/language/semantics/compiler/ArduinoExample/program/RB0021_Omni4WD_PID/RB0021_Omni4WD_PID.ino";
@@ -8,10 +7,9 @@ export class CompilerVisitor implements RoboMLVisitor {
     codeProgram: string = "\n\n";
 
     visitRoboMLProgram(node: RoboMLProgram){
-        node.function.forEach(func => {
-            const funcDec = func as FunctionDec;
-            this.codeProgram += funcDec.accept(this);
-        });
+        for (let func of node.function) {
+            this.codeProgram += func.accept(this);
+        }
         fs.readFile(this.pathInitFile, 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
@@ -40,7 +38,7 @@ export class CompilerVisitor implements RoboMLVisitor {
         return node.assignableVariable + " = " + node.entry.accept(this) + ";";
     }
 
-    visitCondition(node: ASTInterfaces.Condition) {
+    visitCondition(node: Condition) {
         return "if (" + node.booleanExpression.accept(this) + ") {\n" + node.statementIf.map((statement) => statement.accept(this)).join("\n") + "\n} else {\n" + node.statementElse.map((statement) => statement.accept(this)).join("\n") + "\n}";
     }
 
@@ -48,7 +46,7 @@ export class CompilerVisitor implements RoboMLVisitor {
         return "Omni.setMotorAll(" + "" + ")"; // TODO: deplacement
     }
 
-    visitEntry(node: ASTInterfaces.Entry) {
+    visitEntry(node: Entry) {
         return node.accept(this);
     }
 
@@ -68,7 +66,7 @@ export class CompilerVisitor implements RoboMLVisitor {
         return "global_rotation";
     }
     
-    visitGetSpeed(node: ASTInterfaces.GetSpeed) {
+    visitGetSpeed(node: GetSpeed) {
         return "global_speed";
     }
 
@@ -80,11 +78,11 @@ export class CompilerVisitor implements RoboMLVisitor {
         return (node.rotationSens === "Clock" ? "Omni.setCarRotate(" : "Omni.setCarRotate(-") + node.rotationAngle.accept(this) + ")";
     }
 
-    visitSetRotation(node: ASTInterfaces.SetRotation) {
+    visitSetRotation(node: SetRotation) {
         return "global_rotation = " + node.variableValue.accept(this);
     }
 
-    visitSetSpeed(node: ASTInterfaces.SetSpeed) {
+    visitSetSpeed(node: SetSpeed) {
         return "global_speed = " + node.variableValue.accept(this);
     }
 
@@ -101,7 +99,7 @@ export class CompilerVisitor implements RoboMLVisitor {
     }
 
     visitVariableRef(node: VariableRef) {
-        return node.variableDefinition.accept(this);
+        return node.variableDefinition;
     }
 
 }

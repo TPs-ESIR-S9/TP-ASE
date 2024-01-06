@@ -1,4 +1,3 @@
-// import { AstNode, CstNode, LangiumDocument, Reference } from 'langium';
 import * as ASTInterfaces from './generated/ast.js';// Remplacez le chemin d'accès par le chemin réel de votre fichier visitor.ts
 
 export interface RoboMLVisitor {
@@ -98,7 +97,7 @@ export type UnitMeasure_mm = 'mm';
 
 export class RoboMLProgram implements ASTInterfaces.RoboMLProgram {
     readonly $type!: 'RoboMLProgram';
-    function!: ASTInterfaces.FunctionDec[];
+    function!: Array<FunctionDec>;
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitRoboMLProgram(this);
@@ -115,9 +114,9 @@ export class Entry implements ASTInterfaces.Entry {
 
 export class Condition implements ASTInterfaces.Condition {
     $type!: 'Condition';
-    booleanExpression?: Entry;
-    statementElse!: ASTInterfaces.Statement[];
-    statementIf!: ASTInterfaces.Statement[]; 
+    booleanExpression!: Entry;
+    statementElse!: Array<Statement>;
+    statementIf!: Array<Statement>; 
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitCondition(this);
@@ -170,8 +169,8 @@ export class FunctionDec implements ASTInterfaces.FunctionDec {
 
 export class Loop implements ASTInterfaces.Loop {
     $type!: 'Loop';
-    booleanExpression?: Entry;
-    instruction!: Array<Statement>; /*ASTInterfaces.Statement[];*/
+    booleanExpression!: Entry;
+    instruction!: Array<Statement>;
     
     //variable!: Array<Variable>;
 

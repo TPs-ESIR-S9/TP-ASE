@@ -1,4 +1,4 @@
-import type { RoboMLProgram } from '../language/generated/ast.js';
+import { RoboMLProgram } from '../language/visitor.js';
 import chalk from 'chalk';
 import { Command } from 'commander';
 import * as fs from 'fs/promises';
@@ -45,7 +45,7 @@ export default function(): void {
         .action(async (fileName) => {
         console.log(`Compiling ${fileName}`);
         const services = createRoboMlServices(NodeFileSystem).RoboMl;
-        const model = await extractAstNode(fileName, services);
+        const model = await extractAstNode<RoboMLProgram>(fileName, services);
         Compile.compileArduino(model);
     });
     program.parse(process.argv);

@@ -4,7 +4,7 @@ import { RMLBoolean, RMLInt } from '../../generated/ast.js';
 
 export class CompilerVisitor implements RoboMLVisitor {
     pathInitFile: string = "src/language/semantics/compiler/ArduinoExample/program/RB0021_Omni4WD_PID/RB0021_Omni4WD_PID.ino";
-    pathOutputFile: string = "src/language/semantics/compiler/ArduinoExample/program/RB0021_Omni4WD_PID/output.ino";
+    pathOutputFile: string = "files/output.ino";
     codeProgram: string = "\n\n";
 
     visitRoboMLProgram(node: RoboMLProgram) : string {

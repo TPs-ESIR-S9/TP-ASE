@@ -7,18 +7,10 @@ import * as url from 'url';
 import { RoboMlLanguageMetaData } from '../language/generated/module.js';
 import { createRoboMlServices } from '../language/robo-ml-module.js';
 import { extractAstNode } from './cli-util.js';
-import { generateJavaScript } from './generator.js';
 import { NodeFileSystem } from 'langium/node';
 import { Compile } from '../language/semantics/compiler/compiler.js';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const packageJson = await fs.readFile(path.resolve(__dirname, '..', '..', 'package.json'), 'utf-8');
-
-export const generateAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
-    const services = createRoboMlServices(NodeFileSystem).RoboMl;
-    const model = await extractAstNode<RoboMLProgram>(fileName, services);
-    const generatedFilePath = generateJavaScript(model, fileName, opts.destination);
-    console.log(chalk.green(`JavaScript code generated successfully: ${generatedFilePath}`));
-};
 
 export type GenerateOptions = {
     destination?: string;
@@ -33,20 +25,17 @@ export default function(): void {
         .version(JSON.parse(packageJson).version);
 
     const fileExtensions = RoboMlLanguageMetaData.fileExtensions.join(', ');
+    
     program
-        .command('generate')
+        .command('compile')
         .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
-        .option('-d, --destination <dir>', 'destination directory of generating')
-        .description('generates JavaScript code that prints "Hello, {name}!" for each greeting in a source file')
-        .action(generateAction);
-    program
-        .command('compile').argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
         .description('compiles a source file to Arduino code')
         .action(async (fileName) => {
-        console.log(`Compiling ${fileName}`);
-        const services = createRoboMlServices(NodeFileSystem).RoboMl;
-        const model = await extractAstNode<RoboMLProgram>(fileName, services);
-        Compile.compileArduino(model);
+            console.log(`Compiling ${fileName}`);
+            const services = createRoboMlServices(NodeFileSystem).RoboMl;
+            const model = await extractAstNode<RoboMLProgram>(fileName, services);
+            Compile.compileArduino(model);
+            console.log(chalk.green(`Arduino code compiled successfully: ${fileName}`));
     });
     program.parse(process.argv);
 }

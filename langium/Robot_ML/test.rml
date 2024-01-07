@@ -1,4 +1,4 @@
-let void entry () {
+let void main() {
     setSpeed(150 dm)
     var RMLInt count = 0
     var RMLInt test = count
@@ -23,8 +23,12 @@ let void square(){
 let RMLInt variables(RMLInt test){
     variables(4)
     var RMLBoolean test = true < true + true
-    if ( true ) {
+    if ( test ) {
         setRotation(90)
+    } else {
+        if ( test == false ) {
+            setRotation(-90)
+        }
     }
     return 1
 }

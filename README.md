@@ -139,3 +139,37 @@ let void main() {
     }
 }
 ```
+<img src="assets/triangle.gif"> 
+
+<h4>Trajectoire de carré en marche arrière ​⏹️​​:</h4>
+
+```
+let void square() {
+    var RMLInt sideLength = 60
+    var RMLInt rotationAngle = 90
+    var RMLInt count = 0
+
+    loop count < 4 {
+        Clock rotationAngle
+
+        Backward sideLength cm
+        Backward sideLength cm
+        Backward sideLength cm
+        Backward sideLength cm
+
+        count = count + 1
+    }
+}
+
+let void main() {
+    setSpeed(250 dm)
+    var RMLInt count = 0
+
+    loop count < 1 {
+        count = count + 1
+        square()
+    }
+}
+```
+
+

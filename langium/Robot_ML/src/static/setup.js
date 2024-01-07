@@ -1,4 +1,4 @@
-import { MonacoEditorLanguageClientWrapper, vscode } from './monaco-editor-wrapper/index.js';
+import { MonacoEditorLanguageClientWrapper } from './monaco-editor-wrapper/index.js';
 import { buildWorkerDefinition } from "./monaco-editor-workers/index.js";
 import monarchSyntax from "./syntaxes/robo-ml.monarch.js";
 
@@ -89,11 +89,6 @@ const parseAndValidate = (async () => {
     // To implement
 });
 
-// const execute = (async () => {
-//     console.info('running current code...');
-//     // To implement
-// });
-
 const execute = (async () => {
     console.info('executing code...');
     client.getLanguageClient().sendNotification('browser/execute', { content: client.getEditor().getModel().getValue() });
@@ -168,9 +163,6 @@ client.setWorker(lsWorker);
 
 // keep a reference to a promise for when the editor is finished starting, we'll use this to setup the canvas on load
 const startingPromise = client.startEditor(document.getElementById("monaco-editor-root"));
-
-// console.log("default robot speed : ", window.p5robot.speed);
-// window.p5robot.speed = 200;
 
 client.getLanguageClient().onNotification('browser/sendStatements', async (params) => {
     console.log(params);

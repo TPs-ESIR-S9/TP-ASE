@@ -1,11 +1,8 @@
 import { EmptyFileSystem, URI, /*URI,*/ startLanguageServer } from 'langium';
 import { BrowserMessageReader, BrowserMessageWriter, createConnection } from 'vscode-languageserver/browser.js';
 import { createRoboMlServices } from './robo-ml-module.js';
-//import { weaveAcceptMethods } from './accept-weaver.js';
 import { Assignement, Condition, Deplacement, Entry, EntrySimple, Expression, FunctionCall, FunctionDec, GetRotation, GetSpeed, Loop, RoboMLProgram, RoboMLVisitor, Rotation, SetRotation, SetSpeed, Statement, VariableDef, VariableFunDef, VariableRef } from './visitor.js';
 import { RMLBoolean, RMLInt } from './generated/ast.js';
-//import { extractAstNode } from '../cli/cli-util.js';
-//import { RoboMLVisitor } from './visitor.js';
 
 declare const self: DedicatedWorkerGlobalScope;
 
@@ -19,23 +16,6 @@ const { shared, RoboMl } = createRoboMlServices({ connection, ...EmptyFileSystem
 const functionsDecs: FunctionDec[] = [];
 
 startLanguageServer(shared);
-
-    // const statements = [
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) },
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) },
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) }
-    //   ]
-
-    // // console.log(statements);
-    // connection.sendNotification('browser/sendStatements', statements);
-    
-//let myMap = new Map<string, Statement[]>();
-
-// const global_speed = 1;
-// const global_rotation = 1;
 
 export class InterpretorVisitor implements RoboMLVisitor {
     
@@ -79,11 +59,6 @@ export class InterpretorVisitor implements RoboMLVisitor {
             }
         }
 
-        //let vValue = (node.entry as string);
-        // if (typeof vValue !== 'string') {
-        //     vValue = vValue.accept(this);
-        // }
-        //console.log("vToAssing : ", vValue);
         console.log(this.variables);
 
     }
@@ -103,15 +78,6 @@ export class InterpretorVisitor implements RoboMLVisitor {
                 statement.accept(this);
             });
         }
-
-        // node.statementIf.forEach(statement => {
-        //     console.log(" : ", statement);
-        //     statement.accept(this);
-        // });
-        // node.statementElse.forEach(statement => {
-        //     console.log(" : ", statement);
-        //     statement.accept(this);
-        // });
     }
 
     // function to delay execution 
@@ -379,11 +345,6 @@ connection.onNotification('browser/execute', async params => {
     
     const program = params.content;
     const doc = shared.workspace.LangiumDocumentFactory.fromString<RoboMLProgram>(program, URI.parse("memory://Rob.document"));  
-   
-    //const parseResult = shared.workspace.LangiumDocumentFactory.fromString<RoboMLProgram>(params.content, URI.parse("memory://Rob.document"));
-    //await RoboMl.shared.workspace.DocumentBuilder.build([parseResult], { validation: true});
-
-    //const doc = RoboMl.shared.workspace.LangiumDocumentFactory.fromString<RoboMLProgram>;
 
     await RoboMl.shared.workspace.DocumentBuilder.build([doc], { validation: true});
     

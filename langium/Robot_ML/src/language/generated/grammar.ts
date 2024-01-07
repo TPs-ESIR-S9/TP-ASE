@@ -2497,10 +2497,19 @@ export const RoboMlGrammar = (): Grammar => loadedRoboMlGrammar ?? (loadedRoboMl
           "$type": "TypeAttribute",
           "name": "entry",
           "type": {
-            "$type": "SimpleType",
-            "typeRef": {
-              "$ref": "#/interfaces@5"
-            }
+            "$type": "UnionType",
+            "types": [
+              {
+                "$type": "SimpleType",
+                "typeRef": {
+                  "$ref": "#/interfaces@5"
+                }
+              },
+              {
+                "$type": "SimpleType",
+                "primitiveType": "string"
+              }
+            ]
           },
           "isOptional": false
         }

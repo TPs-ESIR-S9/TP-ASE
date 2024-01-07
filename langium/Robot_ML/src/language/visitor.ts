@@ -173,8 +173,8 @@ export class Loop implements ASTInterfaces.Loop {
 
 export class Deplacement implements ASTInterfaces.Deplacement {
     $type!: 'Deplacement';
-    deplacementDistance?: Entry;
-    movementType?: ASTInterfaces.Direction;
+    deplacementDistance!: Entry;
+    movementType!: ASTInterfaces.Direction;
     unitMeasure!: ASTInterfaces.UnitMeasure;
 
     accept(visitor: RoboMLVisitor): any {
@@ -194,7 +194,7 @@ export class Rotation implements ASTInterfaces.Rotation {
 
 export class Assignement implements ASTInterfaces.Assignement {
     $type!: 'Assignement';
-    assignableVariable?: string;
+    assignableVariable!: string;
     entry!: Entry;
 
     accept(visitor: RoboMLVisitor): any {

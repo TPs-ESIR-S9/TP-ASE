@@ -3,13 +3,17 @@
    <img src="https://img.shields.io/badge/v5.3.3-Typescript-blue">
    <img src="https://img.shields.io/badge/v2.1.3-Langium-orange" alt="Langium">
    <img src="https://img.shields.io/badge/v3.6.0-Monaco-red" alt="Langium">
-   <img src="https://img.shields.io/badge/-DSL-g" alt="DSL">
 </p>
 <h3 align="left">
-    <b>Autors : </b> DELAPART Thomas & BENJAMAA Yazid
+    <b>Autors : </b> <a href="https://github.com/Thomega35/">Thomas DELAPART</a> & <a href="
 </h4>
 
 > Le prjet est accessible sur le site : [RoboML](https://cv.thomega.fr/) 
+
+# Présentation du projet
+
+Le projet RoboML est un projet de langage de programmation permettant de définir le déploiement d'un robot. Le langage permet de controler les déplacements du robot ainsi que de gérer des variables et des fonctions. Ce langage inspiré du Python est compilé en Arduino C.
+
 
 ### Usefull links :
 

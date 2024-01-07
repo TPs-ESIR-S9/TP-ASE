@@ -176,25 +176,124 @@ const startingPromise = client.startEditor(document.getElementById("monaco-edito
 // console.log("default robot speed : ", window.p5robot.speed);
 // window.p5robot.speed = 200;
 
+//let movementEnCours = false;
+
+
 client.getLanguageClient().onNotification('browser/sendStatements', async (params) => {
-    for (let i = 0; i < params.length; i++) {
+    for(let i = 0  ; i < params.length ; i++ ) {
         const statement = params[i];
-                     
+
         if (statement.type === "Forward") {
-
-            for(let i = 0 ; i < statement.Value ; i+=0.5){
-                await new Promise(resolve => setTimeout(resolve, 500));
-                window.p5robot.move(i);
+            for(let j = 0 ; j < statement.Value ; j+=0.5){
+                await new Promise(resolve => setTimeout(resolve, 50));
+                window.p5robot.move(0.5);
             }
-            
+        } else {
+            for(let j = 0 ; j < statement.Value ; j+=0.5){
+                await new Promise(resolve => setTimeout(resolve, 50));
+                window.p5robot.turn(0.5);
+            }  
         }
-
-        if (statement.type === "Rotate") {
-            //await new Promise(resolve => setTimeout(resolve, 2000)); // Ajoute un délai de 2 secondes
-            for(let i = 0; i < statement.Value; i+=0.5) {
-                await new Promise(resolve => setTimeout(resolve, 500));
-                window.p5robot.turn(i);
-            }
-        }   
     }
-})
+});
+
+// client.getLanguageClient().onNotification('browser/sendStatements', async (params) => {
+    
+//     for (let i = 0; i < params.length; i++) {
+//         const statement = params[i];
+                     
+//         if (statement.type === "Forward" && !movementEnCours) {
+//             movementEnCours = true;
+//             for(let j = 0 ; j < statement.Value ; j+=0.3){
+//                 await new Promise(resolve => setTimeout(resolve, 50));
+//                 window.p5robot.move(0.3);
+//                 movementEnCours = false;
+//             }
+//         } else {
+//             if (statement.type === "Rotate" && !movementEnCours) {
+//                 movementEnCours = true;
+//                 for(let j = 0 ; j < statement.Value ; j+=0.3){
+//                     await new Promise(resolve => setTimeout(resolve, 50));
+//                     window.p5robot.turn(0.3);
+//                 }
+//                 movementEnCours = false;
+//             }
+//         }
+//     }
+// });
+
+// client.getLanguageClient().onNotification('browser/sendStatements', async (params) => {
+//     for (let i = 0; i < params.length; i++) {
+//         const statement = params[i];
+
+//         if (statement.type === "Forward") {
+//             await moveForward(0.3); // Utilise une fonction pour gérer le déplacement avec une promesse
+//         } else if (statement.type === "Rotate") {
+//             console.log("ça tourne ");
+//             window.p5robot.turn(statement.Value);
+//         }
+//     }
+// });
+
+// async function moveForward(distance) {
+//     const startTime = performance.now();
+//     const duration = 1000; // Durée du mouvement en millisecondes (ajustez selon vos besoins)
+
+//     await new Promise((resolve) => {
+//         function moveStep() {
+//             const currentTime = performance.now();
+//             const progress = (currentTime - startTime) / duration;
+
+//             if (progress < 1) {
+//                 window.p5robot.move(distance);
+//                 requestAnimationFrame(moveStep);
+//             } else {
+//                 resolve();
+//             }
+//         }
+
+//         moveStep();
+//     });
+// }
+
+// client.getLanguageClient().onNotification('browser/sendStatements', async (params) => {
+//     for (let i = 0; i < params.length; i++) {
+//         const statement = params[i];
+
+//         if (statement.type === "Forward") {
+//             await moveForward(0.3); // Attend que le mouvement en avant soit terminé
+//         } else if (statement.type === "Rotate") {
+//             await rotateClock(statement.Value); // Attend que la rotation soit terminée
+//         }
+//     }
+// });
+
+// async function moveForward(distance) {
+//     const startTime = performance.now();
+//     const duration = 1000; // Durée du mouvement en millisecondes (ajustez selon vos besoins)
+
+//     await new Promise((resolve) => {
+//         function moveStep() {
+//             const currentTime = performance.now();
+//             const progress = (currentTime - startTime) / duration;
+
+//             if (progress < 1) {
+//                 window.p5robot.move(distance);
+//                 requestAnimationFrame(moveStep);
+//             } else {
+//                 resolve();
+//             }
+//         }
+
+//         moveStep();
+//     });
+// }
+
+// async function rotateClock(value) {
+//     await new Promise((resolve) => {
+//         // Vous pouvez ajuster la logique de rotation selon les besoins
+//         console.log("ça tourne ");
+//         window.p5robot.turn(value);
+//         resolve();
+//     });
+// }

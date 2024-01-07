@@ -119,32 +119,6 @@ export class InterpretorVisitor implements RoboMLVisitor {
         return new Promise( resolve => setTimeout(resolve, ms) );
     }
     
-    async visitDeplacement(node: Deplacement) {
-        
-        let deplacementDistance =  this.visitEntrySimple(node.deplacementDistance as unknown as EntrySimple);
-        let movementType = node.movementType;
-        
-        //let unitMeasure = node.unitMeasure;
-        
-        // const statements = [
-        //     { type: 'Forward', Value: 100 },
-        //     { type: 'Rotate', Value: (300 as Number) },
-        //     { type: 'Forward', Value: 100 },
-        //     { type: 'Rotate', Value: (300 as Number) },
-        //     { type: 'Forward', Value: 100 },
-        //     { type: 'Rotate', Value: (300 as Number) }
-        //   ]
-
-        // // console.log(statements);
-        // connection.sendNotification('browser/sendStatements', statements);
-        
-        //console.log("deplacementDistance : ", deplacementDistance);
-        
-        connection.sendNotification('browser/sendStatements', [{ type: movementType, Value: Number(deplacementDistance) }]);
-        
-        //this.visitEntrySimple(node.deplacementDistance as EntrySimple);
-    }
-    
    
 
     visitEntry(node: Entry) {
@@ -300,9 +274,21 @@ export class InterpretorVisitor implements RoboMLVisitor {
         
     }
 
+    
+    
+    async visitDeplacement(node: Deplacement) {
+        
+        let deplacementDistance =  this.visitEntrySimple(node.deplacementDistance as unknown as EntrySimple);
+        let movementType = node.movementType;       
+        connection.sendNotification('browser/sendStatements', [{ type: movementType, Value: Number(deplacementDistance) }]);
+    }
+    
+
     async visitRotation(node: Rotation) {
-        let rotAngle = node.rotationAngle.accept(this);
-        connection.sendNotification('browser/sendStatements', [{ type: 'Rotate', Value: Number(rotAngle) }]);
+        
+        //let rotAngle = node.rotationAngle.accept(this);
+        connection.sendNotification('browser/sendStatements', [{ type: 'Rotate', Value: Number(node.rotationAngle.accept(this)) }]);
+        
     }
 
     visitSetRotation(node: SetRotation) {

@@ -4,14 +4,12 @@ import type { RoboMlServices } from '../robo-ml-module.js';
 
 // 1. Checker qu'une variable existe au moment de son assignation ou son appel
 // 2. Checker qu'une fonction existe 
-// 3. Pas deux variables qui ont le meme nom
-// 4. Pas deux fonctions qui ont le meme nom
 
 export class RoboMLValidator {
 
     validateAssignement(node: InterfaceAST.Assignement, acceptor: ValidationAcceptor): void {
         
-        if (!this.isValidEntry(node.entry)) {
+        if (!this.isValidEntry((node.entry as InterfaceAST.EntrySimple))) {
             console.log("Erreur : non");
         }
         
@@ -37,10 +35,6 @@ export class RoboMLValidator {
     }
     */
 
-    // private isValidExpression(expression: InterfaceAST.Expression): boolean {
-
-    //     return expression.elementA !== null && expression.elementB !== null;
-    // }
 }
 
 

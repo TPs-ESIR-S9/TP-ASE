@@ -15,12 +15,6 @@ export const RoboMlTerminals = {
     WS: /((( |	)|\r)|\n)+/,
 };
 
-export type Boolean = boolean;
-
-export function isBoolean(item: unknown): item is Boolean {
-    return typeof item === 'boolean';
-}
-
 export type Direction = Direction_backward | Direction_forward | Direction_sideLeft | Direction_sideRight;
 
 export type Direction_backward = 'Backward';
@@ -30,6 +24,18 @@ export type Direction_forward = 'Forward';
 export type Direction_sideLeft = 'SideLeft';
 
 export type Direction_sideRight = 'SideRight';
+
+export type EBoolean = boolean;
+
+export function isEBoolean(item: unknown): item is EBoolean {
+    return typeof item === 'boolean';
+}
+
+export type EInt = number;
+
+export function isEInt(item: unknown): item is EInt {
+    return typeof item === 'number';
+}
 
 export type Operators = Operators_And | Operators_Divide | Operators_Equal | Operators_Greater | Operators_GreaterEqual | Operators_Less | Operators_LessEqual | Operators_Minus | Operators_Modulo | Operators_Multiplie | Operators_Not | Operators_NotEqual | Operators_Or | Operators_Plus | Operators_Power;
 
@@ -86,7 +92,7 @@ export type UnitMeasure_m = 'm';
 export type UnitMeasure_mm = 'mm';
 
 export interface Entry extends AstNode {
-    readonly $type: 'Entry' | 'EntrySimple' | 'Expression' | 'FunctionCall' | 'GetRotation' | 'GetSpeed' | 'VariableRef';
+    readonly $type: 'Entry' | 'EntrySimple' | 'Expression' | 'FunctionCall' | 'GetRotation' | 'GetSpeed' | 'RMLBoolean' | 'RMLInt' | 'VariableRef';
 }
 
 export const Entry = 'Entry';
@@ -159,7 +165,7 @@ export function isVariableFunDef(item: unknown): item is VariableFunDef {
 }
 
 export interface EntrySimple extends Entry {
-    readonly $type: 'EntrySimple';
+    readonly $type: 'EntrySimple' | 'FunctionCall' | 'GetRotation' | 'GetSpeed' | 'RMLBoolean' | 'RMLInt' | 'VariableRef';
 }
 
 export const EntrySimple = 'EntrySimple';
@@ -170,7 +176,7 @@ export function isEntrySimple(item: unknown): item is EntrySimple {
 
 export interface Expression extends Entry {
     readonly $type: 'Expression';
-    elementA: Entry
+    elementA: EntrySimple
     elementB?: Entry
     operator?: Operators
 }
@@ -181,53 +187,10 @@ export function isExpression(item: unknown): item is Expression {
     return reflection.isInstance(item, Expression);
 }
 
-export interface FunctionCall extends Entry {
-    readonly $type: 'FunctionCall';
-    arguments: Array<Entry>
-    function: string
-}
-
-export const FunctionCall = 'FunctionCall';
-
-export function isFunctionCall(item: unknown): item is FunctionCall {
-    return reflection.isInstance(item, FunctionCall);
-}
-
-export interface GetRotation extends Entry {
-    readonly $type: 'GetRotation';
-}
-
-export const GetRotation = 'GetRotation';
-
-export function isGetRotation(item: unknown): item is GetRotation {
-    return reflection.isInstance(item, GetRotation);
-}
-
-export interface GetSpeed extends Entry {
-    readonly $type: 'GetSpeed';
-}
-
-export const GetSpeed = 'GetSpeed';
-
-export function isGetSpeed(item: unknown): item is GetSpeed {
-    return reflection.isInstance(item, GetSpeed);
-}
-
-export interface VariableRef extends Entry {
-    readonly $type: 'VariableRef';
-    variableDefinition: string
-}
-
-export const VariableRef = 'VariableRef';
-
-export function isVariableRef(item: unknown): item is VariableRef {
-    return reflection.isInstance(item, VariableRef);
-}
-
 export interface Assignement extends Statement {
     readonly $type: 'Assignement';
     assignableVariable?: string
-    entry: Entry
+    entry: Entry | string
 }
 
 export const Assignement = 'Assignement';
@@ -309,6 +272,71 @@ export function isSetSpeed(item: unknown): item is SetSpeed {
     return reflection.isInstance(item, SetSpeed);
 }
 
+export interface FunctionCall extends EntrySimple {
+    readonly $type: 'FunctionCall';
+    arguments: Array<Entry>
+    function: string
+}
+
+export const FunctionCall = 'FunctionCall';
+
+export function isFunctionCall(item: unknown): item is FunctionCall {
+    return reflection.isInstance(item, FunctionCall);
+}
+
+export interface GetRotation extends EntrySimple {
+    readonly $type: 'GetRotation';
+}
+
+export const GetRotation = 'GetRotation';
+
+export function isGetRotation(item: unknown): item is GetRotation {
+    return reflection.isInstance(item, GetRotation);
+}
+
+export interface GetSpeed extends EntrySimple {
+    readonly $type: 'GetSpeed';
+}
+
+export const GetSpeed = 'GetSpeed';
+
+export function isGetSpeed(item: unknown): item is GetSpeed {
+    return reflection.isInstance(item, GetSpeed);
+}
+
+export interface RMLBoolean extends EntrySimple {
+    readonly $type: 'RMLBoolean';
+    value: boolean
+}
+
+export const RMLBoolean = 'RMLBoolean';
+
+export function isRMLBoolean(item: unknown): item is RMLBoolean {
+    return reflection.isInstance(item, RMLBoolean);
+}
+
+export interface RMLInt extends EntrySimple {
+    readonly $type: 'RMLInt';
+    value: number
+}
+
+export const RMLInt = 'RMLInt';
+
+export function isRMLInt(item: unknown): item is RMLInt {
+    return reflection.isInstance(item, RMLInt);
+}
+
+export interface VariableRef extends EntrySimple {
+    readonly $type: 'VariableRef';
+    variableDefinition: string
+}
+
+export const VariableRef = 'VariableRef';
+
+export function isVariableRef(item: unknown): item is VariableRef {
+    return reflection.isInstance(item, VariableRef);
+}
+
 export type RoboMlAstType = {
     Assignement: Assignement
     Condition: Condition
@@ -321,6 +349,8 @@ export type RoboMlAstType = {
     GetRotation: GetRotation
     GetSpeed: GetSpeed
     Loop: Loop
+    RMLBoolean: RMLBoolean
+    RMLInt: RMLInt
     RoboMLProgram: RoboMLProgram
     Rotation: Rotation
     SetRotation: SetRotation
@@ -334,7 +364,7 @@ export type RoboMlAstType = {
 export class RoboMlAstReflection extends AbstractAstReflection {
 
     getAllTypes(): string[] {
-        return ['Assignement', 'Condition', 'Deplacement', 'Entry', 'EntrySimple', 'Expression', 'FunctionCall', 'FunctionDec', 'GetRotation', 'GetSpeed', 'Loop', 'RoboMLProgram', 'Rotation', 'SetRotation', 'SetSpeed', 'Statement', 'VariableDef', 'VariableFunDef', 'VariableRef'];
+        return ['Assignement', 'Condition', 'Deplacement', 'Entry', 'EntrySimple', 'Expression', 'FunctionCall', 'FunctionDec', 'GetRotation', 'GetSpeed', 'Loop', 'RMLBoolean', 'RMLInt', 'RoboMLProgram', 'Rotation', 'SetRotation', 'SetSpeed', 'Statement', 'VariableDef', 'VariableFunDef', 'VariableRef'];
     }
 
     protected override computeIsSubtype(subtype: string, supertype: string): boolean {
@@ -349,12 +379,16 @@ export class RoboMlAstReflection extends AbstractAstReflection {
                 return this.isSubtype(Statement, supertype);
             }
             case EntrySimple:
-            case Expression:
+            case Expression: {
+                return this.isSubtype(Entry, supertype);
+            }
             case FunctionCall:
             case GetRotation:
             case GetSpeed:
+            case RMLBoolean:
+            case RMLInt:
             case VariableRef: {
-                return this.isSubtype(Entry, supertype);
+                return this.isSubtype(EntrySimple, supertype);
             }
             default: {
                 return false;
@@ -390,14 +424,6 @@ export class RoboMlAstReflection extends AbstractAstReflection {
                     ]
                 };
             }
-            case 'FunctionCall': {
-                return {
-                    name: 'FunctionCall',
-                    mandatory: [
-                        { name: 'arguments', type: 'array' }
-                    ]
-                };
-            }
             case 'Condition': {
                 return {
                     name: 'Condition',
@@ -412,6 +438,22 @@ export class RoboMlAstReflection extends AbstractAstReflection {
                     name: 'Loop',
                     mandatory: [
                         { name: 'instruction', type: 'array' }
+                    ]
+                };
+            }
+            case 'FunctionCall': {
+                return {
+                    name: 'FunctionCall',
+                    mandatory: [
+                        { name: 'arguments', type: 'array' }
+                    ]
+                };
+            }
+            case 'RMLBoolean': {
+                return {
+                    name: 'RMLBoolean',
+                    mandatory: [
+                        { name: 'value', type: 'boolean' }
                     ]
                 };
             }

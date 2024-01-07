@@ -1,4 +1,3 @@
-// import { AstNode, CstNode, LangiumDocument, Reference } from 'langium';
 import * as ASTInterfaces from './generated/ast.js';// Remplacez le chemin d'accès par le chemin réel de votre fichier visitor.ts
 
 export interface RoboMLVisitor {
@@ -23,6 +22,19 @@ export interface RoboMLVisitor {
     visitVariableFunDef(node: VariableFunDef): any;
     visitVariableRef(node: VariableRef): any;
 
+
+    //visitEntity(node: Entity): any;
+      
+    //visitVariable(node: Variable): any;
+  
+    //visitSetValue(node: SetValue): any;  
+
+    //visitDirection(node: Direction): any;
+    // visitUnitMeasure(node: UnitMeasure): any;
+    
+    //visitGetValue(node: GetValue): any;
+    
+    //visitArithmeticOperators(node: ArithmeticOperators): any;
 }
 
 export class GetRotation implements ASTInterfaces.GetRotation {
@@ -34,7 +46,7 @@ export class GetRotation implements ASTInterfaces.GetRotation {
 }
 
 export class EntrySimple implements ASTInterfaces.EntrySimple {
-    $type!: 'EntrySimple';
+    $type!: "GetRotation" | "GetSpeed" | "FunctionCall" | "RMLBoolean" | "RMLInt" | "VariableRef"
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitEntrySimple(this);
@@ -85,7 +97,7 @@ export type UnitMeasure_mm = 'mm';
 
 export class RoboMLProgram implements ASTInterfaces.RoboMLProgram {
     readonly $type!: 'RoboMLProgram';
-    function!: FunctionDec[];
+    function!: Array<FunctionDec>;
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitRoboMLProgram(this);
@@ -93,7 +105,7 @@ export class RoboMLProgram implements ASTInterfaces.RoboMLProgram {
 }
 
 export class Entry implements ASTInterfaces.Entry {
-    $type!: 'Entry' | 'EntrySimple' | 'Expression' | 'FunctionCall' | 'GetRotation' | 'GetSpeed' | 'VariableRef';
+    $type!: "EntrySimple" | "Expression"
     
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitEntry(this);
@@ -103,8 +115,8 @@ export class Entry implements ASTInterfaces.Entry {
 export class Condition implements ASTInterfaces.Condition {
     $type!: 'Condition';
     booleanExpression!: Entry;
-    statementElse!: Statement[];
-    statementIf!: Statement[]; 
+    statementElse!: Array<Statement>;
+    statementIf!: Array<Statement>; 
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitCondition(this);
@@ -112,13 +124,12 @@ export class Condition implements ASTInterfaces.Condition {
 }
 
 export class Statement implements ASTInterfaces.Statement {
-    $type!: 'Assignement' | 'Condition' | 'Deplacement' | 'Loop' | 'Rotation' | 'SetSpeed' | 'Statement';
+    $type!: 'Assignement' | 'Condition' | 'Deplacement' | 'Loop' | 'Rotation' | 'SetSpeed' | 'SetRotation'
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitStatement(this);
     }
 }
-
 
 export class VariableFunDef implements ASTInterfaces.VariableFunDef {
 
@@ -130,7 +141,6 @@ export class VariableFunDef implements ASTInterfaces.VariableFunDef {
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitVariableFunDef(this);
     }
-
 }
 
 export class FunctionDec implements ASTInterfaces.FunctionDec {
@@ -150,7 +160,7 @@ export class FunctionDec implements ASTInterfaces.FunctionDec {
 export class Loop implements ASTInterfaces.Loop {
     $type!: 'Loop';
     booleanExpression!: Entry;
-    instruction!: Array<Statement>; /*ASTInterfaces.Statement[];*/
+    instruction!: Array<Statement>;
     
     //variable!: Array<Variable>;
 
@@ -212,7 +222,7 @@ export type ArithmeticOperators_Power = 'Power';
 
 export class Expression implements ASTInterfaces.Expression {
     $type!: 'Expression';
-    elementA!: Entry;
+    elementA!: EntrySimple;
     elementB?: Entry;
     operator?: ASTInterfaces.Operators;
 
@@ -220,6 +230,15 @@ export class Expression implements ASTInterfaces.Expression {
         return visitor.visitExpression(this);
     }
 }
+
+/*
+export class GetValue implements ASTInterfaces.GetValue {
+    $type!: 'GetValue';
+    accept(visitor: RoboMLVisitor): any {
+        return visitor.visitGetValue(this);
+    }
+}
+*/
 
 export class VariableRef implements ASTInterfaces.VariableRef {
     $type!: 'VariableRef';
@@ -236,3 +255,10 @@ export class VariableDef implements ASTInterfaces.VariableDef {
         return visitor.visitVariableDef(this);
     }
 }
+
+/*
+export class Entity implements ASTInterfaces.Entity {
+    $type!: 'ArithmeticExpression' | 'Entity' | 'FunctionCall' | 'GetValue' | 'VariableRef';
+    entityType?: ASTInterfaces.RMLObject | undefined;
+}
+*/

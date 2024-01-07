@@ -2,10 +2,6 @@ import { MonacoEditorLanguageClientWrapper, vscode } from './monaco-editor-wrapp
 import { buildWorkerDefinition } from "./monaco-editor-workers/index.js";
 import monarchSyntax from "./syntaxes/robo-ml.monarch.js";
 
-import { createRoboMlServices } from './services/robo-ml-module.js';
-
-import { extractDocument } from './cli/cli-util.js';
-
 buildWorkerDefinition('./monaco-editor-workers/workers', new URL('', window.location.href).href, false);
 
 MonacoEditorLanguageClientWrapper.addMonacoStyles('monaco-editor-styles');
@@ -16,26 +12,57 @@ editorConfig.setMainLanguageId('robo-ml');       // WARNING Dependent of your pr
 
 editorConfig.setMonarchTokensProvider(monarchSyntax);
 
-let code = `let void entry () {
-    var number count = 0
-    loop count < 5
-    {	
-        setSpeed(500 * (count + 1))
-        count = count + 1
-        square(count)
+let code = `
+let void square(){
+    var RMLInt val1 = 30
+    var RMLInt val2 = 16
+    var RMLInt val3 = 15
+    var RMLInt val4 = 50
+    var RMLInt rot = 2
+    var RMLBoolean condition = 5 < 6
+    if(condition) {
+        Clock rot
+        Forward val4 mm
+        Forward val4 mm
+        Forward val4 mm
+        Forward val4 mm
+    } else {
+        doSomething()
     }
 }
 
-let void square(number factor){
-    Forward 500 * factor
-    Clock 90
-    Forward 500 * factor
-    Clock 90
-    Forward 500 * factor
-    Clock 90
-    Forward 500 * factor
-    Clock 90
-}`
+let void doSomething() {
+
+    var RMLInt a = 60
+    var RMLInt b = a / 2
+    loop b < a {
+        Forward a mm
+        b = b + 2
+    }
+
+}
+
+let RMLInt variables(RMLInt test){
+    variables(4)
+    var RMLBoolean test = true < true + true
+    if ( true ) {
+        setRotation(90)
+    }
+    return 1
+}
+
+
+let void main() {
+    setSpeed(150 dm)
+    var RMLInt count = 0
+    var RMLInt test = count
+    loop count < 50
+    {	
+        count = count + 1
+        square()
+    }
+}
+`
 
 editorConfig.setMainCode(code);
 
@@ -57,38 +84,19 @@ const typecheck = (async () => {
     }
 });
 
-
 const parseAndValidate = (async () => {
-    
-    console.info('testttt...');
-    
-    
-    const services = createRoboMlServices(NodeFile);
-    const document = extractDocument(code);
-    const parseResult = document.parseResult;
-    if(parseResult.lexerrors.length > 0 || parseResult.parseerrors.length > 0){
-        console.log(chalk.red(`Failed to parse and validate ${fileName}!`));
-        const modal = document.getElementById("errorModal");
-        modal.style.display = "block";
-        return;
-    }
-    
-    console.info("mais wesh")
-    
+    console.info('validating current code...');
+    // To implement
 });
+
+// const execute = (async () => {
+//     console.info('running current code...');
+//     // To implement
+// });
 
 const execute = (async () => {
-    console.info('running current code...');
-    
-
-    
-});
-
-const resetSimulation = (async () => {
-    console.info('running current code...');
-    
-
-    
+    console.info('executing code...');
+    client.getLanguageClient().sendNotification('browser/execute', { content: client.getEditor().getModel().getValue() });
 });
 
 
@@ -128,8 +136,6 @@ const setupSimulator = (scene) => {
 }
 
 window.execute = execute;
-window.parseAndValidate = parseAndValidate;
-window.resetSimulation = resetSimulation;  
 window.typecheck = typecheck;
 
 var errorModal = document.getElementById("errorModal");
@@ -151,7 +157,6 @@ window.onclick = function(event) {
     }
   } 
 
-/*
 const workerURL = new URL('./robo-ml-server-worker.js', import.meta.url); // WARNING Dependent of your project
 console.log(workerURL.href);
 
@@ -160,8 +165,26 @@ const lsWorker = new Worker(workerURL.href, {
     name: 'RoboMl Language Server'
 });
 client.setWorker(lsWorker);
-*/
 
 // keep a reference to a promise for when the editor is finished starting, we'll use this to setup the canvas on load
 const startingPromise = client.startEditor(document.getElementById("monaco-editor-root"));
 
+// console.log("default robot speed : ", window.p5robot.speed);
+// window.p5robot.speed = 200;
+
+client.getLanguageClient().onNotification('browser/sendStatements', async (params) => {
+    console.log(params);
+    for (let i = 0; i < params.length; i++) {
+        const statement = params[i];
+                     
+        if (statement.type === "Forward") {
+            //await new Promise(resolve => setTimeout(resolve, 2000)); // Ajoute un délai de 2 secondes
+            window.p5robot.move(statement.Value);
+        }
+
+        if (statement.type === "Rotate") {
+            //await new Promise(resolve => setTimeout(resolve, 2000)); // Ajoute un délai de 2 secondes
+            window.p5robot.turn(statement.Value * 1);
+        }   
+    }
+})

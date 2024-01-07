@@ -65,7 +65,7 @@ interface VariableFunDef {
 interface Entry {
 }
 
-interface VariableRef extends Entry {
+interface VariableRef extends EntrySimple {
 	variableDefinition: string
 }
 
@@ -90,7 +90,7 @@ interface Loop extends Statement {
 
 interface Assignement extends Statement {
 	assignableVariable?: string
-	entry: Entry
+	entry: Entry | string
 }
 
 interface SetSpeed extends Statement {
@@ -108,20 +108,27 @@ interface Condition extends Statement {
 	booleanExpression?: Entry
 }
 
-interface FunctionCall extends Entry {
+interface FunctionCall extends EntrySimple {
 	arguments: Entry[]
 	function: string
 }
 
 interface Expression extends Entry {
-	elementA: Entry
+	elementA: EntrySimple
 	elementB?: Entry
 	operator?: Operators
 }
 
-interface GetSpeed extends Entry {
+interface GetSpeed extends EntrySimple {
 }
 
-interface GetRotation extends Entry {
+interface GetRotation extends EntrySimple {
 }
 
+interface RMLInt extends EntrySimple {
+	value: number
+}
+
+interface RMLBoolean extends EntrySimple {
+	value: boolean
+}

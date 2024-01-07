@@ -36,7 +36,7 @@ export class CompilerVisitor implements RoboMLVisitor {
     }
 
     visitAssignement(node: Assignement) {
-        return node.assignableVariable + " = " + node.entry.accept(this) + ";";
+        return node.assignableVariable + " = " + (node.entry as Entry).accept(this) + ";";
     }
 
     visitCondition(node: Condition) {

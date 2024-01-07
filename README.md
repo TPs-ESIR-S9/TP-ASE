@@ -45,11 +45,113 @@ Le projet RoboML est un projet de langage de programmation permettant de défini
     <li><b>VariableRef</b> : Référence une variable existante dans le programme.</li>
 </ul>
 
+<h2>Interpréteur</h2>
 
+L'interpréteur du langage RoboML permet de lancer des simulations à travers une interface web. 
+Ces simulations facilitent le processus de débogage et de détection des anomalies.
 
+Le langage RoboML est supporté et traduis par l'interpréteur vers une suite d'instruction qui sont ensuite représentées sous forme d'animations représentatives de la trajectoire du robot. 
+Ce support est géré par le biais de visiteurs (patron de conception) en Typescript qui facilient le parcours et les opérations sur les structures d'objets.
 
-<h2>Intérpréteur</h2>
+Le visiteur `RoboMLVisitor` est défini dans `visitor.ts` <i>(/src/language/visitor.ts)</i>
+C'est le fichier `main-browser.ts` <i>(/src/language/visitor.ts)</i> qui instancie le visiteur et qui effecture les parcours associés à chaque structure/concept.
+
+Un exemple de visiteur simple est celui des noeuds correspondants à `Condition`, le visiteur vérifie le résultat retourné par l'expression booléenne qu'il évalue avant de décider vers quel branchement rediriger le programme au moment de l'interprétation :
+
+```javascript
+visitCondition(node: Condition) {
+        let condStatus:boolean = node.booleanExpression.accept(this);
+        if(condStatus) {
+            node.statementIf.forEach(statement => {
+                statement.accept(this);
+            });
+        } else {
+            node.statementElse.forEach(statement => {
+                statement.accept(this);
+            });
+        }
+    }
+```
+
+Le visiteur a permis également de faciliter l'implémentation de bon nombre de concepts du langage comme l'assignation de la valeur d'une variable à une autre variable, exemple :
+
+```
+let void main() {
+    var RMLInt val1 = 30 / 2                  val1 = 6
+    var RMLInt val2 = val1 - 5                val2 = 1
+    var RMLInt val2 = val2 + 10               val2 = 11
+    var RMLInt val3 = val2 + val1             val3 = 17
+}
+```
+
+Ces méthodes d'assignation sont gérées grâce au visiteur de `Assignement` qui vérifie également qu'une variable a bien été déclarée avant d'être appellée :
+
+```javascript
+visitAssignement(node: Assignement) {
+        const vToAssing = node.assignableVariable;
+        if (vToAssing !== undefined) {
+            if (this.variables.has(vToAssing)) {
+                this.variables.set(vToAssing, (node.entry as Entry).accept(this));
+            } else {       
+                throw new Error(`Variable ${vToAssing} not found`);
+            }
+        }
+    }
+```
 
 <h2>Compilateur</h2>
 
 <h2>Exemples de codes</h2>
+
+```
+let void square(){
+    var RMLInt val1 = 30
+    var RMLInt val2 = 16
+    var RMLInt val3 = 15
+    var RMLInt val4 = 50
+    var RMLInt rot = 2
+    var RMLBoolean condition = 5 < 6
+    if(condition) {
+        Clock rot
+        Forward val4 mm
+        Forward val4 mm
+        Forward val4 mm
+        Forward val4 mm
+    } else {
+        doSomething()
+    }
+}
+
+let void doSomething() {
+
+    var RMLInt a = 60
+    var RMLInt b = a / 2
+    loop b < a {
+        Forward a mm
+        b = b + 2
+    }
+
+}
+
+let RMLInt variables(RMLInt test){
+    variables(4)
+    var RMLBoolean test = true < true + true
+    if ( true ) {
+        setRotation(90)
+    }
+    return 1
+}
+
+
+let void main() {
+    setSpeed(150 dm)
+    var RMLInt count = 0
+    var RMLInt test = count
+    loop count < 50
+    {    
+        count = count + 1
+        square()
+    }
+}
+
+```

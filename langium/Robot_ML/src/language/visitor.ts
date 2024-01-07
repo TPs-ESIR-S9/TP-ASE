@@ -46,7 +46,7 @@ export class GetRotation implements ASTInterfaces.GetRotation {
 }
 
 export class EntrySimple implements ASTInterfaces.EntrySimple {
-    $type!: 'EntrySimple';
+    $type!: "GetRotation" | "GetSpeed" | "FunctionCall" | "RMLBoolean" | "RMLInt" | "VariableRef"
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitEntrySimple(this);
@@ -105,7 +105,7 @@ export class RoboMLProgram implements ASTInterfaces.RoboMLProgram {
 }
 
 export class Entry implements ASTInterfaces.Entry {
-    $type!: 'Entry' | 'EntrySimple' | 'Expression' | 'FunctionCall' | 'GetRotation' | 'GetSpeed' | 'VariableRef';
+    $type!: "EntrySimple" | "Expression"
     
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitEntry(this);
@@ -124,7 +124,7 @@ export class Condition implements ASTInterfaces.Condition {
 }
 
 export class Statement implements ASTInterfaces.Statement {
-    $type!: 'Assignement' | 'Condition' | 'Deplacement' | 'Loop' | 'Rotation' | 'SetSpeed' | 'Statement';
+    $type!: 'Assignement' | 'Condition' | 'Deplacement' | 'Loop' | 'Rotation' | 'SetSpeed' | 'SetRotation'
 
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitStatement(this);
@@ -223,7 +223,7 @@ export type ArithmeticOperators_Power = 'Power';
 
 export class Expression implements ASTInterfaces.Expression {
     $type!: 'Expression';
-    elementA!: Entry;
+    elementA!: EntrySimple;
     elementB?: Entry;
     operator?: ASTInterfaces.Operators;
 

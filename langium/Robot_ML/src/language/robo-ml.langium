@@ -12,15 +12,15 @@ Statement returns Statement:   //OK
 ;
 
 Entry returns Entry:    //OK
-    FunctionCall | Expression | GetSpeed | GetRotation | INT | Boolean | VariableRef
+    Expression | EntrySimple
 ;
 
 EntrySimple returns EntrySimple:    //OK
-    FunctionCall | GetSpeed | GetRotation | INT | Boolean | VariableRef
+    FunctionCall | GetSpeed | GetRotation | RMLInt | RMLBoolean | VariableRef
 ;
 
 FunctionDec returns FunctionDec: //OK
-    {FunctionDec} 'let' ( 'void' | returnType=RMLObject ) functionName=ID '(' ( variableFunDef+=VariableFunDef  ("," variableFunDef+=VariableFunDef  )* )? ')' '{' ( instruction+=Statement )+ ('return' returnEntry=Entry)? '}'  
+    'let' ( 'void' | returnType=RMLObject ) functionName=ID '(' ( variableFunDef+=VariableFunDef  ("," variableFunDef+=VariableFunDef  )* )? ')' '{' ( instruction+=Statement )+ ('return' returnEntry=Entry)? '}'  
 ;
 
 RMLObject returns RMLObject: //OK
@@ -30,11 +30,11 @@ RMLObject_RMLInt returns RMLObject_RMLInt: 'RMLInt' ;
 RMLObject_RMLBoolean returns RMLObject_RMLBoolean: 'RMLBoolean' ;
 
 VariableDef returns VariableDef: //OK
-    {VariableDef} 'var' variableType=RMLObject variableName=ID '=' variableValue=Entry
+    'var' variableType=RMLObject variableName=ID '=' variableValue=Entry
 ;
 
 VariableFunDef returns VariableFunDef: //OK
-    {VariableFunDef} variableType=RMLObject variableName=ID 
+    variableType=RMLObject variableName=ID 
 ;
 
 Deplacement returns Deplacement: //OK
@@ -47,7 +47,7 @@ Rotation returns Rotation: //OK
 RotationSens returns RotationSens: 'Clock' | 'AntiClock' ;
 
 Loop returns Loop: //OK
-    {Loop} 'loop' booleanExpression=Entry '{' ( instruction+=Statement )+ '}'  
+    'loop' booleanExpression=Entry '{' ( instruction+=Statement )+ '}'  
 ;
 
 Assignement returns Assignement: //OK
@@ -63,7 +63,7 @@ SetRotation returns SetRotation: //OK
 ;
 
 Condition returns Condition: //OK
-    {Condition} 'if' '(' ( booleanExpression=Entry )? ')' '{' ( statementIf+=Statement )* '}' ('else' '{' ( statementElse+=Statement )* '}' )?
+    'if' '(' ( booleanExpression=Entry )? ')' '{' ( statementIf+=Statement )* '}' ('else' '{' ( statementElse+=Statement )* '}' )?
 ;
 
 Direction returns Direction: //OK
@@ -99,7 +99,7 @@ GetRotation returns GetRotation: //OK
 ;
 
 VariableRef returns VariableRef:  //OK
-    {VariableRef} variableDefinition=ID
+    variableDefinition=ID
 ;
 
 Operators returns Operators:  //OK
@@ -121,6 +121,15 @@ Operators_And returns Operators_And: '&&' ;
 Operators_Or returns Operators_Or: '||' ;
 Operators_Not returns Operators_Not: '!' ;
 
-Boolean returns boolean: //OK
+RMLInt returns RMLInt: //OK
+    value=EInt;
+
+RMLBoolean returns RMLBoolean: //OK
+    value=EBoolean;
+
+EInt returns number: //OK
+    '-'? INT;
+
+EBoolean returns boolean: //OK
     'true' | 'false'
 ;

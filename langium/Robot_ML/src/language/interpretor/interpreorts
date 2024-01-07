@@ -1,0 +1,52 @@
+import * as ts from 'typescript';
+import * as fs from 'fs';
+import { RoboMlServices } from './robo-ml-module'; // Adjust the path
+
+function readCodeFromFile(filePath: string): string {
+  return fs.readFileSync(filePath, 'utf-8');
+}
+
+function convertCodeToAST(code: string): ts.Node {
+  const sourceFile = ts.createSourceFile(
+    'temp.ts', // You can provide a meaningful file name
+    code,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TS
+  );
+
+  return sourceFile;
+}
+
+function main() {
+  // Replace with the path to your code file
+  const codeFilePath = 'path/to/your/code.ts';
+  const code = readCodeFromFile(codeFilePath);
+
+  // Set up services and register validation checks
+  const services: RoboMlServices = {
+    // Adjust accordingly
+    validation: {
+      ValidationRegistry: new YourValidationRegistry(),
+      RoboMLValidator: new YourRoboMLValidator(),
+    },
+  };
+  registerValidationChecks(services);
+
+  // Convert code to AST
+  const ast = convertCodeToAST(code);
+
+  // Validate AST
+  const validationAcceptor = new YourValidationAcceptor(); // Replace with your implementation
+  services.validation.ValidationRegistry.validate(ast, validationAcceptor);
+
+  // Check if there are errors
+  if (validationAcceptor.hasErrors()) {
+    console.error('Validation errors:', validationAcceptor.getErrors());
+  } else {
+    console.log('Code is valid!');
+  }
+}
+
+// Run the main function
+main();

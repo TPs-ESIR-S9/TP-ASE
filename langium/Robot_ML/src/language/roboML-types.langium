@@ -90,7 +90,7 @@ interface Loop extends Statement {
 
 interface Assignement extends Statement {
 	assignableVariable?: string
-	entry: Entry
+	entry: Entry | string
 }
 
 interface SetSpeed extends Statement {

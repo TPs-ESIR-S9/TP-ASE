@@ -10,7 +10,7 @@
 
 > Le projet est accessible sur le site : [RoboML](https://cv.thomega.fr/) 
 
-# Présentation du Projet
+# Présentation du Projet 🤖
 
 Le projet RoboML est un projet de langage de programmation permettant de définir le déploiement d'un robot. Le langage permet de controler les déplacements du robot ainsi que de gérer des variables et des fonctions. Ce langage inspiré du Python est compilé en Arduino C.
 ### Usefull links :
@@ -25,7 +25,7 @@ Le projet RoboML est un projet de langage de programmation permettant de défini
 
 - [Arduino](https://create.arduino.cc/editor/)
 
-<h2>Modèle et Quelques Concepts du Langage</h2>
+<h2>Modèle et Quelques Concepts du Langage 📖 </h2>
 <img src="assets/roboML_class_diagram.svg">
 
 <ul>
@@ -45,7 +45,7 @@ Le projet RoboML est un projet de langage de programmation permettant de défini
     <li><b>VariableRef</b> : Référence une variable existante dans le programme.</li>
 </ul>
 
-<h2>Interpréteur</h2>
+<h2>Interpréteur 🔍</h2>
 
 L'interpréteur du langage RoboML permet de lancer des simulations à travers une interface web. 
 Ces simulations facilitent le processus de débogage et de détection des anomalies.
@@ -99,59 +99,43 @@ visitAssignement(node: Assignement) {
     }
 ```
 
-<h2>Compilateur</h2>
+<h2>Compilateur ⭐</h2>
 
-<h2>Exemples de codes</h2>
+<h2>Exemples de codes & spécificités du langage ​🐱</h2>
+
+<ul>
+   <li>Les fonctions doivent être déclarées avant la fonction `main()`.</li>
+   <li>Une variable doit être déclarée pour pouvoir être utilisée</li>
+   <li>La logique du langage est "python-like", c à d toutes les variables ont un scope global par défaut.</li>
+</ul>
+
+<h4>Trajectoire triangulaire 📐:</h4>
 
 ```
-let void square(){
-    var RMLInt val1 = 30
-    var RMLInt val2 = 16
-    var RMLInt val3 = 15
-    var RMLInt val4 = 50
-    var RMLInt rot = 2
-    var RMLBoolean condition = 5 < 6
-    if(condition) {
-        Clock rot
-        Forward val4 mm
-        Forward val4 mm
-        Forward val4 mm
-        Forward val4 mm
-    } else {
-        doSomething()
+let void triangle() {
+    var RMLInt sideLength = 100
+    var RMLInt rotationAngle = 120
+    var RMLInt count = 0
+
+    loop count < 3 {
+        Clock rotationAngle
+
+        Forward sideLength cm
+        Forward sideLength cm
+        Forward sideLength cm
+
+        count = count + 1
     }
 }
-
-let void doSomething() {
-
-    var RMLInt a = 60
-    var RMLInt b = a / 2
-    loop b < a {
-        Forward a mm
-        b = b + 2
-    }
-
-}
-
-let RMLInt variables(RMLInt test){
-    variables(4)
-    var RMLBoolean test = true < true + true
-    if ( true ) {
-        setRotation(90)
-    }
-    return 1
-}
-
 
 let void main() {
     setSpeed(150 dm)
+    Clock 60
     var RMLInt count = 0
-    var RMLInt test = count
-    loop count < 50
-    {    
+
+    loop count < 1 {
         count = count + 1
-        square()
+        triangle()
     }
 }
-
 ```

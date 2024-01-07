@@ -184,7 +184,7 @@ export class CompilerVisitor implements RoboMLVisitor {
             case "SetSpeed":
                 return this.visitSetSpeed(node as SetSpeed);
             default:
-                throw new Error("Statement not found");
+                throw new Error("Unhandle statement type: " + node.$type);
         }
     }
 

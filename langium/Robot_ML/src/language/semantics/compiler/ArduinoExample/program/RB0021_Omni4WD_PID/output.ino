@@ -7,6 +7,10 @@
 #include <MotorWheel.h>
 #include <Omni4WD.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
 //#include <fuzzy_table.h>
 //#include <PID_Beta6.h>
 
@@ -54,10 +58,12 @@ MotorWheel wheel4(10, 7, 18, 19, &irq4);
 
 Omni4WD Omni(&wheel1, &wheel2, &wheel3, &wheel4);
 
-int global_speed = 0;
-int global_rotation = 0;
+int global_speed = 1;
+int global_rotation = 1;
 
 void setup() {
+  Serial.begin(9600);
+
   //TCCR0B=TCCR0B&0xf8|0x01;    // warning!! it will change millis()
   TCCR1B = TCCR1B & 0xf8 | 0x01; // Pin9,Pin10 PWM 31250Hz
   TCCR2B = TCCR2B & 0xf8 | 0x01; // Pin3,Pin11 PWM 31250Hz
@@ -66,8 +72,57 @@ void setup() {
 }
 
 void loop() {
-  Omni.demoActions(30,1500,500,false);
+  // Omni.demoActions(30,1500,500,false);
   main();
 }
 
+
+void main() {
+global_speed = 150;
+int count = 0;
+int test = count;
+while (count < 5) {
+count = count + 1;
+square()
+}
+}
+
+void square() {
+Omni.setCarAdvance(30 * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarRotateRight(90/ 180 * 3.1415926545 * global_rotation);
+Omni.delayMS(3000);
+Omni.setCarStop();
+Omni.setCarAdvance(300 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarRotateRight(90/ 180 * 3.1415926545 * global_rotation);
+Omni.delayMS(3000);
+Omni.setCarStop();
+Omni.setCarAdvance(30 * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarRotateRight(90/ 180 * 3.1415926545 * global_rotation);
+Omni.delayMS(3000);
+Omni.setCarStop();
+Omni.setCarAdvance(300 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarRotateRight(90/ 180 * 3.1415926545 * global_rotation);
+Omni.delayMS(3000);
+Omni.setCarStop();
+}
+
+int variables(int test) {
+variables(4)
+bool test = true < true + true;
+if (test) {
+global_rotation = 90;
+}else {
+if (test == false) {
+global_rotation = -90;
+}
+}
+}
 

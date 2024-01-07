@@ -7,6 +7,10 @@
 #include <MotorWheel.h>
 #include <Omni4WD.h>
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
 //#include <fuzzy_table.h>
 //#include <PID_Beta6.h>
 
@@ -54,10 +58,12 @@ MotorWheel wheel4(10, 7, 18, 19, &irq4);
 
 Omni4WD Omni(&wheel1, &wheel2, &wheel3, &wheel4);
 
-int global_speed = 0;
-int global_rotation = 0;
+int global_speed = 1;
+int global_rotation = 1;
 
 void setup() {
+  Serial.begin(9600);
+
   //TCCR0B=TCCR0B&0xf8|0x01;    // warning!! it will change millis()
   TCCR1B = TCCR1B & 0xf8 | 0x01; // Pin9,Pin10 PWM 31250Hz
   TCCR2B = TCCR2B & 0xf8 | 0x01; // Pin3,Pin11 PWM 31250Hz
@@ -66,6 +72,6 @@ void setup() {
 }
 
 void loop() {
-  Omni.demoActions(30,1500,500,false);
+  // Omni.demoActions(30,1500,500,false);
   main();
 }

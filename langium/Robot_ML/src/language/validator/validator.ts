@@ -9,7 +9,7 @@ export class RoboMLValidator {
 
     validateAssignement(node: InterfaceAST.Assignement, acceptor: ValidationAcceptor): void {
         
-        if (!this.isValidEntry(node.entry)) {
+        if (!this.isValidEntry((node.entry as InterfaceAST.EntrySimple))) {
             console.log("Erreur : non");
         }
         
@@ -28,10 +28,13 @@ export class RoboMLValidator {
         return entry !== null;
     }
 
-    // private isValidExpression(expression: InterfaceAST.Expression): boolean {
+    /*
+    private isValidExpression(expression: InterfaceAST.Expression): boolean {
 
-    //     return expression.elementA !== null && expression.elementB !== null;
-    // }
+        return expression.elementA !== null && expression.elementB !== null;
+    }
+    */
+
 }
 
 

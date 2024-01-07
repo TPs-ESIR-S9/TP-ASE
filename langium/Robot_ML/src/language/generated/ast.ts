@@ -190,7 +190,7 @@ export function isExpression(item: unknown): item is Expression {
 export interface Assignement extends Statement {
     readonly $type: 'Assignement';
     assignableVariable?: string
-    entry: Entry
+    entry: Entry | string
 }
 
 export const Assignement = 'Assignement';

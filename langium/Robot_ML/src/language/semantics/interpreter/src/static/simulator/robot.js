@@ -17,6 +17,7 @@ class Robot {
         rotate(this.angle);
         stroke(255, 255, 255);
         rect(-this.height/2, -this.width/2, this.height, this.width);
+        circle(0, 0, this.height);
         stroke(255, 0, 0);
         fill(255, 0, 0);
         const h = (Math.sqrt(3)/2) * (this.width/3)

@@ -141,7 +141,6 @@ export class VariableFunDef implements ASTInterfaces.VariableFunDef {
     accept(visitor: RoboMLVisitor): any {
         return visitor.visitVariableFunDef(this);
     }
-
 }
 
 export class FunctionDec implements ASTInterfaces.FunctionDec {

@@ -1,6 +1,7 @@
-import { MonacoEditorLanguageClientWrapper, vscode } from './monaco-editor-wrapper/index.js';
+import { MonacoEditorLanguageClientWrapper } from './monaco-editor-wrapper/index.js';
 import { buildWorkerDefinition } from "./monaco-editor-workers/index.js";
 import monarchSyntax from "./syntaxes/robo-ml.monarch.js";
+import handleNotification from './notifications.js';
 
 buildWorkerDefinition('./monaco-editor-workers/workers', new URL('', window.location.href).href, false);
 
@@ -12,26 +13,34 @@ editorConfig.setMainLanguageId('robo-ml');       // WARNING Dependent of your pr
 
 editorConfig.setMonarchTokensProvider(monarchSyntax);
 
-let code = `let void entry () {
-    var number count = 0
-    loop count < 5
-    {	
-        setSpeed(500 * (count + 1))
+let code = `
+let void triangle() {
+    var RMLInt sideLength = 100
+    var RMLInt rotationAngle = 120
+    var RMLInt count = 0
+
+    loop count < 3 {
+        Clock rotationAngle
+
+        Forward sideLength cm
+        Forward sideLength cm
+        Forward sideLength cm
+
         count = count + 1
-        square(count)
     }
 }
 
-let void square(number factor){
-    Forward 500 * factor
-    Clock 90
-    Forward 500 * factor
-    Clock 90
-    Forward 500 * factor
-    Clock 90
-    Forward 500 * factor
-    Clock 90
-}`
+let void main() {
+    setSpeed(150 dm)
+    Clock 60
+    var RMLInt count = 0
+
+    loop count < 1 {
+        count = count + 1
+        triangle()
+    }
+}
+`
 
 editorConfig.setMainCode(code);
 
@@ -45,11 +54,15 @@ const typecheck = (async () => {
     // To implement (Bonus)
     
     if(errors.length > 0){
+        
         const modal = document.getElementById("errorModal");
         modal.style.display = "block";
+
     } else {
+        
         const modal = document.getElementById("validModal");
         modal.style.display = "block";
+    
     }
 });
 
@@ -59,9 +72,10 @@ const parseAndValidate = (async () => {
 });
 
 const execute = (async () => {
-    console.info('running current code...');
-    // To implement
+    console.info('executing code...');
+    client.getLanguageClient().sendNotification('browser/execute', { content: client.getEditor().getModel().getValue() });
 });
+
 
 const setupSimulator = (scene) => {
     const wideSide = max(scene.size.x, scene.size.y);
@@ -101,10 +115,10 @@ const setupSimulator = (scene) => {
 window.execute = execute;
 window.typecheck = typecheck;
 
-var errorModal = document.getElementById("errorModal");
-var validModal = document.getElementById("validModal");
-var closeError = document.querySelector("#errorModal .close");
-var closeValid = document.querySelector("#validModal .close");
+const errorModal = document.getElementById("errorModal");
+const validModal = document.getElementById("validModal");
+const closeError = document.querySelector("#errorModal .close");
+const closeValid = document.querySelector("#validModal .close");
 closeError.onclick = function() {
     errorModal.style.display = "none";
 }
@@ -121,7 +135,6 @@ window.onclick = function(event) {
   } 
 
 const workerURL = new URL('./robo-ml-server-worker.js', import.meta.url); // WARNING Dependent of your project
-console.log(workerURL.href);
 
 const lsWorker = new Worker(workerURL.href, {
     type: 'classic',
@@ -132,3 +145,4 @@ client.setWorker(lsWorker);
 // keep a reference to a promise for when the editor is finished starting, we'll use this to setup the canvas on load
 const startingPromise = client.startEditor(document.getElementById("monaco-editor-root"));
 
+handleNotification(client)

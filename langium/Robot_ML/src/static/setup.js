@@ -1,4 +1,4 @@
-import { MonacoEditorLanguageClientWrapper, vscode } from './monaco-editor-wrapper/index.js';
+import { MonacoEditorLanguageClientWrapper } from './monaco-editor-wrapper/index.js';
 import { buildWorkerDefinition } from "./monaco-editor-workers/index.js";
 import monarchSyntax from "./syntaxes/robo-ml.monarch.js";
 
@@ -76,11 +76,15 @@ const typecheck = (async () => {
     // To implement (Bonus)
     
     if(errors.length > 0){
+        
         const modal = document.getElementById("errorModal");
         modal.style.display = "block";
+
     } else {
+        
         const modal = document.getElementById("validModal");
         modal.style.display = "block";
+    
     }
 });
 
@@ -173,18 +177,24 @@ const startingPromise = client.startEditor(document.getElementById("monaco-edito
 // window.p5robot.speed = 200;
 
 client.getLanguageClient().onNotification('browser/sendStatements', async (params) => {
-    console.log(params);
     for (let i = 0; i < params.length; i++) {
         const statement = params[i];
                      
         if (statement.type === "Forward") {
-            //await new Promise(resolve => setTimeout(resolve, 2000)); // Ajoute un délai de 2 secondes
-            window.p5robot.move(statement.Value);
+
+            for(let i = 0 ; i < statement.Value ; i+=0.5){
+                await new Promise(resolve => setTimeout(resolve, 500));
+                window.p5robot.move(i);
+            }
+            
         }
 
         if (statement.type === "Rotate") {
             //await new Promise(resolve => setTimeout(resolve, 2000)); // Ajoute un délai de 2 secondes
-            window.p5robot.turn(statement.Value * 1);
+            for(let i = 0; i < statement.Value; i+=0.5) {
+                await new Promise(resolve => setTimeout(resolve, 500));
+                window.p5robot.turn(i);
+            }
         }   
     }
 })

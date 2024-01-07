@@ -123,6 +123,7 @@ export class InterpretorVisitor implements RoboMLVisitor {
         
         let deplacementDistance =  this.visitEntrySimple(node.deplacementDistance as unknown as EntrySimple);
         let movementType = node.movementType;
+        
         //let unitMeasure = node.unitMeasure;
         
         // const statements = [
@@ -138,7 +139,9 @@ export class InterpretorVisitor implements RoboMLVisitor {
         // connection.sendNotification('browser/sendStatements', statements);
         
         //console.log("deplacementDistance : ", deplacementDistance);
+        
         connection.sendNotification('browser/sendStatements', [{ type: movementType, Value: Number(deplacementDistance) }]);
+        
         //this.visitEntrySimple(node.deplacementDistance as EntrySimple);
     }
     
@@ -186,7 +189,6 @@ export class InterpretorVisitor implements RoboMLVisitor {
                 return (node as unknown as RMLInt).value;
                 
             case 'VariableRef':
-                console.log("bouuuuh");
                 return this.visitVariableRef(node as unknown as VariableRef);
                 
             default:
@@ -299,7 +301,6 @@ export class InterpretorVisitor implements RoboMLVisitor {
     }
 
     async visitRotation(node: Rotation) {
-
         let rotAngle = node.rotationAngle.accept(this);
         connection.sendNotification('browser/sendStatements', [{ type: 'Rotate', Value: Number(rotAngle) }]);
     }
@@ -374,9 +375,7 @@ export class InterpretorVisitor implements RoboMLVisitor {
 
 
 connection.onNotification('browser/execute', async params => {
-    console.log("received execute notification");
-    console.log(params);
-    
+
     const program = params.content;
     const doc = shared.workspace.LangiumDocumentFactory.fromString<RoboMLProgram>(program, URI.parse("memory://Rob.document"));  
    

@@ -35,7 +35,7 @@ class Robot {
         }
     }
 
-    async move(dist){
+    move(dist){
         // delay the execution        
         let anglecos = cos(this.angle);
         let anglesin = sin(this.angle);

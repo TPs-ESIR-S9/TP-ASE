@@ -15,15 +15,15 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
-        
     </head>
 
 
     <body>
+        <div id="letter-container" style="position: sticky; padding: 1em; top: 0; width: 100%; right: 0; display: flex; justify-content: center; gap: 2em;"></div>
         <h1 style="font-size: 50px">RoboML in Langium by Yazid & Thomas</h1>
         <div id="buttons">
             <input class="build" type="button" value="Parse and Validate" onclick="window.parseAndValidate()">
-            <input class="build" type="button" value="Execute Simulation" onclick="window.execute()">
+            <input id="execute" class="build" type="button" value="Execute Simulation" onclick="window.execute()">
             <input class="build" type="button" value="Restart Simulation" onclick="window.resetSimulation()">
             <input class="build" type="button" value="Clear Data" onclick="window.setup()">
         </div>
@@ -70,6 +70,7 @@
         </footer>
         <!-- Monaco Configuration -->
         <script type="module" src="setup.js"></script>
+        <script type="module" src="easter-egg.js"></script>
         <script src="simulator/wall.js"></script>
         <script src="simulator/block.js"></script>
         <script src="simulator/robot.js"></script>

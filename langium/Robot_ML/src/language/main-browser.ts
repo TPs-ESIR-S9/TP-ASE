@@ -1,11 +1,8 @@
 import { EmptyFileSystem, URI, /*URI,*/ startLanguageServer } from 'langium';
 import { BrowserMessageReader, BrowserMessageWriter, createConnection } from 'vscode-languageserver/browser.js';
 import { createRoboMlServices } from './robo-ml-module.js';
-//import { weaveAcceptMethods } from './accept-weaver.js';
 import { Assignement, Condition, Deplacement, Entry, EntrySimple, Expression, FunctionCall, FunctionDec, GetRotation, GetSpeed, Loop, RoboMLProgram, RoboMLVisitor, Rotation, SetRotation, SetSpeed, Statement, VariableDef, VariableFunDef, VariableRef } from './visitor.js';
 import { RMLBoolean, RMLInt } from './generated/ast.js';
-//import { extractAstNode } from '../cli/cli-util.js';
-//import { RoboMLVisitor } from './visitor.js';
 
 declare const self: DedicatedWorkerGlobalScope;
 
@@ -19,23 +16,6 @@ const { shared, RoboMl } = createRoboMlServices({ connection, ...EmptyFileSystem
 const functionsDecs: FunctionDec[] = [];
 
 startLanguageServer(shared);
-
-    // const statements = [
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) },
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) },
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) }
-    //   ]
-
-    // // console.log(statements);
-    // connection.sendNotification('browser/sendStatements', statements);
-    
-//let myMap = new Map<string, Statement[]>();
-
-// const global_speed = 1;
-// const global_rotation = 1;
 
 export class InterpretorVisitor implements RoboMLVisitor {
     
@@ -79,13 +59,6 @@ export class InterpretorVisitor implements RoboMLVisitor {
             }
         }
 
-        //let vValue = (node.entry as string);
-        // if (typeof vValue !== 'string') {
-        //     vValue = vValue.accept(this);
-        // }
-        //console.log("vToAssing : ", vValue);
-        console.log(this.variables);
-
     }
     
     visitCondition(node: Condition) {
@@ -103,41 +76,14 @@ export class InterpretorVisitor implements RoboMLVisitor {
                 statement.accept(this);
             });
         }
-
-        // node.statementIf.forEach(statement => {
-        //     console.log(" : ", statement);
-        //     statement.accept(this);
-        // });
-        // node.statementElse.forEach(statement => {
-        //     console.log(" : ", statement);
-        //     statement.accept(this);
-        // });
     }
 
     // function to delay execution 
     async delay(ms: number) {
         return new Promise( resolve => setTimeout(resolve, ms) );
     }
-    
    
-
     visitEntry(node: Entry) {
-
-        console.log("  ENTRY  ");
-
-        switch((node as Entry).$type) {
-
-            case 'EntrySimple':
-                console.log("entrysimmmple", this.visitEntrySimple(node as unknown as EntrySimple));
-                    
-            case 'Expression':
-                console.log("expressionnnn:", this.visitExpression(node as Expression));
-                //this.visitExpression(node as Expression);
-
-            default:
-                throw new Error(`Unhandled entry type: ${node.$type}`);
-     
-        }
     }
 
     visitEntrySimple(node: EntrySimple) {
@@ -148,13 +94,13 @@ export class InterpretorVisitor implements RoboMLVisitor {
         switch(node.$type) {
 
             case 'GetRotation':
-                this.visitGetRotation(node as GetRotation);
+                return this.visitGetRotation(node as GetRotation);
                 
             case 'GetSpeed':
-                this.visitGetSpeed(node as GetSpeed);
+                return this.visitGetSpeed(node as GetSpeed);
                 
             case 'FunctionCall':
-                this.visitFunctionCall(node as FunctionCall);
+                return this.visitFunctionCall(node as FunctionCall);
                 
             case 'RMLBoolean':
                 return (node as unknown as RMLBoolean).value;
@@ -207,7 +153,6 @@ export class InterpretorVisitor implements RoboMLVisitor {
             default:
                 throw new Error(`Unhandled operator type: ${node.operator}`);
         }
-        //return node.elementA.accept(this) + (node.operator && node.elementB)? + " " + node.operator! + " " + node.elementB!.accept(this);
     }
 
     visitFunctionCall(node: FunctionCall) {
@@ -215,18 +160,13 @@ export class InterpretorVisitor implements RoboMLVisitor {
         let functionDec = functionsDecs.find(functionDec => functionDec.functionName === node.function);
         
         if(functionDec) {
-            console.log("functionDec found : ", functionDec);
-            //functionDec.accept(this);
 
-            let arg = 0;
             node.arguments.forEach(argument => {
-                arg = argument.accept(this);
-                console.log("arg : ", arg);   
+                argument.accept(this);  
             });
 
             functionDec?.instruction.forEach(statement => {
                 statement.accept(this);
-                console.log("statement : ", statement);
             });
 
         } else {
@@ -239,23 +179,21 @@ export class InterpretorVisitor implements RoboMLVisitor {
 
     visitFunctionDec(node: FunctionDec) {
 
-        //console.log(parameters);
         if(node.functionName == "main") {
                 node.instruction.forEach(statement => {
-                //console.log("insttt : ", statement);
                     statement.accept(this);
-                //instruction.accept(this);
                 });
             }  
-        }
+    }
 
     visitGetRotation(node: GetRotation) {
-        // console.log("getrotation");
+        return this.global_rotation;
     }
 
     visitGetSpeed(node: GetSpeed) {
-        console.log("getspeed to implement");
+        return this.global_speed;
     }
+
     visitLoop(node: Loop) {
 
         let stat:boolean = node.booleanExpression.accept(this);
@@ -268,43 +206,69 @@ export class InterpretorVisitor implements RoboMLVisitor {
                 statement.accept(this);
             });
             this.visitLoop(node);
-
         }
-
-        
     }
 
-    
-    
     async visitDeplacement(node: Deplacement) {
-        
         let deplacementDistance =  this.visitEntrySimple(node.deplacementDistance as unknown as EntrySimple);
-        let movementType = node.movementType;       
+        let movementType = node.movementType;
+        console.log("unitMeasure : ", node.unitMeasure);
+        console.log("deplacementDistance : ", deplacementDistance);
+        switch(node.unitMeasure) {
+            case 'm':
+                deplacementDistance = deplacementDistance * 100;
+                break;
+            case 'dm':
+                deplacementDistance = deplacementDistance * 10;
+                break;
+            case 'cm':
+                break;
+            case 'mm':
+                deplacementDistance = deplacementDistance / 10;
+                break;
+            default:
+                throw new Error(`Unhandled unitMeasure type: ${node.unitMeasure}`);
+        }
+        console.log("deplacementDistance : ", deplacementDistance);
         connection.sendNotification('browser/sendStatements', [{ type: movementType, Value: Number(deplacementDistance) }]);
     }
     
-
     async visitRotation(node: Rotation) {
-        
-        //let rotAngle = node.rotationAngle.accept(this);
-        connection.sendNotification('browser/sendStatements', [{ type: 'Rotate', Value: Number(node.rotationAngle.accept(this)) }]);
-        
+        const rotateval = Number(node.rotationAngle.accept(this));
+        connection.sendNotification('browser/sendStatements', [{ type: node.rotationSens, Value: rotateval }]);
     }
 
     visitSetRotation(node: SetRotation) {
-        console.log("setrotation to implement");
+        let rotation =  Number(node.variableValue.accept(this));
+        this.global_rotation = rotation;
+        connection.sendNotification('browser/sendStatements', [{ type: 'SetRotation', Value: rotation }]);
     }
     
     visitSetSpeed(node: SetSpeed) {
-        console.log("setspeed to implement");
+        let speed =  Number(node.variableValue.accept(this));
+        switch(node.unitMeasure) {
+            case 'm':
+                speed = speed * 100;
+                break;
+            case 'dm':
+                speed = speed * 10;
+                break;
+            case 'cm':
+                break;
+            case 'mm':
+                speed = speed / 10;
+                break;
+            default:
+                throw new Error(`Unhandled unitMeasure type: ${node.unitMeasure}`);
+        }
+        this.global_speed = speed;
+        connection.sendNotification('browser/sendStatements', [{ type: 'SetSpeed', Value: speed }]);
     }
 
     async visitStatement(node: Statement) {
         switch(node.$type) {
             case 'Assignement':
                 this.visitAssignement(node as Assignement);
-                //     { type: 'Rotate', Value: (300 as Number) }
-                //return (node as Assignement).assignableVariable + " = " + (node as Assignement).entry.accept(this) + ";";
                 break;
             case 'Condition':
                 this.visitCondition(node as Condition);
@@ -327,27 +291,22 @@ export class InterpretorVisitor implements RoboMLVisitor {
                 break;
             default:
                 throw new Error(`Unhandled statement type: ${node.$type}`);
-        //         console.log("Statement type not handled");
-        //         break;
-        // 
             }
-       //node.accept(this);
-        //console.log(node);
     }
     
     visitVariableDef(node: VariableDef) {
 
         let val = node.variableValue.accept(this);
         this.variables.set(node.variableName, val);
-        console.log(this.variables);
 
         return val;
     }
 
     visitVariableFunDef(node: VariableFunDef) {
-        console.log("variableFunDef to implement");
-        //console.log("variable fun def !!!");
-        //console.log("couin couin");
+        const vToAssing = node.variableName;
+        const vType = node.variableType;
+        console.log("variable name : ", vToAssing);
+        console.log("variable type : ", vType);
     }
 
     visitVariableRef(node: VariableRef) {
@@ -359,14 +318,10 @@ export class InterpretorVisitor implements RoboMLVisitor {
     }
 }
 
-
 connection.onNotification('browser/execute', async params => {
 
     const program = params.content;
     const doc = shared.workspace.LangiumDocumentFactory.fromString<RoboMLProgram>(program, URI.parse("memory://Rob.document"));  
-   
-    //const parseResult = shared.workspace.LangiumDocumentFactory.fromString<RoboMLProgram>(params.content, URI.parse("memory://Rob.document"));
-    //await RoboMl.shared.workspace.DocumentBuilder.build([parseResult], { validation: true});
 
     //const doc = RoboMl.shared.workspace.LangiumDocumentFactory.fromString<RoboMLProgram>;
 
@@ -376,127 +331,9 @@ connection.onNotification('browser/execute', async params => {
 
     let interpretorVisitor = new InterpretorVisitor();
     console.log(interpretorVisitor.visitRoboMLProgram(roboMLProgram));
+    connection.sendNotification('browser/finishCompilation', {});
 
-    //const roboMLProgram: RoboMLProgram | undefined = doc.parseResult.value;
-    
-    // if (roboMLProgram) {
-    
-    //     console.log("ok go");
-    //     //generateRobotMovements(roboMLProgram);
-    
-    // } else {
-    //     // Handle the case where the root element is not of type RoboMLProgram
-    //     console.error('The root element is not of type RoboMLProgram !!!!');
-    // }
-
-    //weaveAcceptMethods(RoboMl);
-
-    // let interpretorVisitor = new InterpretorVisitor();
-    // console.log(interpretorVisitor.visitRoboMLProgram(roboMLProgram));
-
-   //generateRobotMovements(parfseResult);
-
-    // const statements = [
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) },
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) },
-    //     { type: 'Forward', Value: 100 },
-    //     { type: 'Rotate', Value: (300 as Number) }
-    //   ]
-
-    // // console.log(statements);
-    // connection.sendNotification('browser/sendStatements', statements);
 });
-
-//const statementsArray: Statement[][] = [];
-
-// function generateRobotMovements(program: RoboMLProgram): void {
-
-//     // console.log('Generating robot movements...');
-//     // console.log(`coucou 0 :: ${program.function[0].instruction[0].$type}`);
-    
-//     // for(const a of program.function) {
-//     //     console.log("function name : ", a.functionName);
-//     //     console.log("function variable : ", a.variableFunDef)
-//     //     console.log("function return type : ", a.returnType);
-//     //     console.log("function instruction : ", a.instruction);
-//     // }
-
-//     for (const func of program.function) {
-
-//         console.log(`Function name: ${func.functionName}`);
-
-//         for (const statement of func.instruction) {
-//             console.log(`Statement: ${statement} in function ${func}`);
-//             processStatement(statement);            
-//         }
-        
-//         console.log("------------------------------------------------------------------------");
-
-//     }
-// }
-
-// function processStatement(statement: Statement): void {
-//     switch (statement.$type) {
-        
-//         case 'Deplacement':
-//             const deplacement:Deplacement = (statement as unknown as Deplacement);
-//             console.log("deplacement: ", deplacement);
-//             processDeplacement(deplacement);
-
-//         case 'Assignement':
-//             const assignement:Assignement = (statement as unknown as Assignement);
-//             console.log("assignement: ", assignement);
-
-//         case 'Condition':
-//             const condition:Condition = (statement as unknown as Condition);
-//             console.log("condition: ", condition);
-
-//         case 'Loop':
-//             const loopStatement:Loop = (statement as unknown as Loop);
-//             console.log("boucle : ", loopStatement);
-            
-//         case 'Rotation':
-//             const rotation:Rotation = (statement as unknown as Rotation);
-//             console.log("rotation : ", rotation);
-//             //processRotation(statement as unknown as Rotation);
-//         case 'SetSpeed':    
-//             const setSpeed:SetSpeed = (statement as unknown as SetSpeed);
-//             console.log("set speed : ", setSpeed);
-//             //processRotation(statement as unknown as Rotation);
-//         case 'Statement':
-//             console.warn(`Unhandled statement type: ${statement.$type}`);
-//             //break;
-//         default:
-//             console.warn(`Unknown statement type: ${statement.$type}`);
-//     }
-// }
-
-// function processDeplacement(deplacement: Deplacement): void {
-//     const distance = deplacement.deplacementDistance?.accept; /*evaluateEntry(deplacement.deplacementDistance); */
-//     const direction = deplacement.movementType || 'forward'; // Default to forward if movementType is not provided
-//     const unitMeasure = deplacement.unitMeasure || 'cm'; // Default to cm if unitMeasure is not provided
-
-//     console.log(`Move ${direction} ${distance} ${unitMeasure}`);
-// }
-
-// // function processRotation(rotation: Rotation): void {
-    
-// //     console.log("rotation : ", rotation);
-
-// //     // const distance = evaluateEntry(deplacement.deplacementDistance);
-// //     // const direction = deplacement.movementType || 'forward'; // Default to forward if movementType is not provided
-// //     // const unitMeasure = deplacement.unitMeasure || 'cm'; // Default to cm if unitMeasure is not provided
-
-// //     // console.log(`Move ${direction} ${distance} ${unitMeasure}`);
-// // }
-
-// // function evaluateEntry(entry: Entry): number {
-// //     // You need to implement this function based on your specific logic
-// //     // This is a placeholder, and you may need to handle different entry types (e.g., variables, expressions)
-// //     return entry.Value || 0; // Placeholder, replace with your logic
-// // }
 
 
 export class RobotMovement {

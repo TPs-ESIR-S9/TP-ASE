@@ -1,9 +1,9 @@
 import { RoboMLProgram } from '../language/visitor.js';
 import chalk from 'chalk';
 import { Command } from 'commander';
-import * as fs from 'fs/promises';
-import * as path from 'path';
-import * as url from 'url';
+// import * as fs from 'fs/promises';
+// import * as path from 'path';
+// import * as url from 'url';
 import { RoboMlLanguageMetaData } from '../language/generated/module.js';
 import { createRoboMlServices } from '../language/robo-ml-module.js';
 import { extractAstNode } from './cli-util.js';
@@ -18,8 +18,8 @@ export const generateAction = async (fileName: string, opts: GenerateOptions): P
     const generatedFilePath = generateJavaScript(model, fileName, opts.destination);
     console.log(chalk.green(`JavaScript code generated successfully: ${generatedFilePath}`));
 };
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
-const packageJson = await fs.readFile(path.resolve(__dirname, '..', '..', 'package.json'), 'utf-8');
+// const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+// const packageJson = await fs.readFile(path.resolve(__dirname, '..', '..', 'package.json'), 'utf-8');
 
 export type GenerateOptions = {
     destination?: string;

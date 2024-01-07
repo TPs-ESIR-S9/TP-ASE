@@ -45,19 +45,13 @@ jobs:
         run: npm run langium:generate
       - name: Build
         run: npm run build:web
-      - name: Copy required files
-        run: |
-          mkdir github-pages-output
-          mv static github-pages-output
-          mv syntaxes github-pages-output
-          mv language-configuration.json github-pages-output/language-configuration.json
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           # Upload dist repository
-          path: ./langium/Robot_ML/github-pages-output
+          path: ./langium/Robot_ML/public
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2

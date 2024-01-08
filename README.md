@@ -229,7 +229,7 @@ Les unités de mesure des distances sont gérées dans le compilateur :
 
 
 
-<h2>spécificités du langage ​🐱</h2>
+<h2>Spécificités du langage ​🐱</h2>
 
 <ul>
    <li>Les fonctions doivent être déclarées avant la fonction `main()`.</li>

@@ -32,7 +32,6 @@ Le projet RoboML est un projet de langage de programmation permettant de défini
 ### Voci notre shèma tel qu'il a été implémenté dans Langium :
 
 ```mermaid
-
 classDiagram
     class RoboMLProgram {
         +functions: FunctionDec[]
@@ -48,13 +47,11 @@ classDiagram
     class Statement {
     }
 
-
     class Entry {
     }
 
     class UnitMeasure {
     }
-
 
     RoboMLProgram --> FunctionDec
     FunctionDec --> Statement
@@ -85,8 +82,35 @@ classDiagram
     UnitMeasure <|-- UnitMeasure_dm
     UnitMeasure <|-- UnitMeasure_m
     UnitMeasure <|-- UnitMeasure_mm
-
 ```
+
+- **RoboMLProgram :** L'ensemble du programme RoboML, contenant les fonctions.
+  
+- **FunctionDec :** Une fonction : un nom, des paramètres, un corps, un type retour.
+  - **functionName :** Chaîne représentant le nom de la fonction.
+  - **parameters :** Tableau de VariableFunDef pour les paramètres de la fonction.
+  - **body :** Tableau de Statement représentant le corps de la fonction.
+  - **returnType :** RMLObject représentant le type de retour de la fonction.
+
+- **Statement :** Classe de base pour différents types d'instructions.
+  - **Assignement :** L'affectation d'une valeur à une variable.
+  - **Condition :** Une condition logique avec des instructions if et else.
+  - **Deplacement :** Un mouvement : une distance, un type, une unité de mesure.
+  - **Loop :** Une boucle : une expression booléenne, un ensemble d'instructions.
+  - **Rotation :** Une rotation avec un angle et un sens de rotation.
+  - **SetSpeed :** Le réglage de la vitesse : une unité de mesure, une valeur.
+  - **SetRotation :** Le réglage de la rotation avec une valeur de variable.
+
+- **Entry :** Classe de base pour différents types d'entrées.
+  - **EntrySimple :** des entrées simples comme GetRotation, GetSpeed, etc.
+  - **GetRotation :** l'obtention de la rotation.
+  - **GetSpeed :** l'obtention de la vitesse.
+  - **FunctionCall :** un appel de fonction avec des arguments.
+  - **VariableRef :** Référence une variable existante.
+  - **VariableDef :** la définition d'une variable avec un nom, un type et une valeur.
+  - **Expression :** une expression avec des éléments et des opérateurs.
+
+- **UnitMeasure :** Classe de base pour différentes unités de mesure (cm, dm, m, mm).
 
 ### Voici notre shèma tel qu'il a été pensé sur Eclipse Ecore :
 

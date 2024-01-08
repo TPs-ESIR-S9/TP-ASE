@@ -8,7 +8,7 @@
     <b>Autors : </b> <a href="https://github.com/Thomega35/">Thomas DELAPART</a> & <a href="https://github.com/Xacone">Yazid BENJAMAA</a>
 </h4>
 
-> Le projet est accessible sur le site : [RoboML](https://cv.thomega.fr/) 
+> Le projet est accessible sur le site : [RoboML](https://rml.thomega.fr/) 
 >
 > Notre majeure est l'interpreteur et notre mineure est le compilateur.
 

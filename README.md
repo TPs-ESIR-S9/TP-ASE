@@ -28,6 +28,68 @@ Le projet RoboML est un projet de langage de programmation permettant de défini
 - [Arduino](https://create.arduino.cc/editor/)
 
 <h2>Modèle et Quelques Concepts du Langage 📖 </h2>
+
+### Voci notre shèma tel qu'il a été implémenté dans Langium :
+
+```mermaid
+
+classDiagram
+    class RoboMLProgram {
+        +functions: FunctionDec[]
+    }
+
+    class FunctionDec {
+        +functionName: string
+        +parameters: VariableFunDef[]
+        +body: Statement[]
+        +returnType: RMLObject
+    }
+
+    class Statement {
+    }
+
+
+    class Entry {
+    }
+
+    class UnitMeasure {
+    }
+
+
+    RoboMLProgram --> FunctionDec
+    FunctionDec --> Statement
+    Statement <|-- Assignement
+    Statement <|-- Condition
+    Statement <|-- Deplacement
+    Statement <|-- Loop
+    Statement <|-- Rotation
+    Statement <|-- SetSpeed
+    Statement <|-- SetRotation
+    Entry <|-- EntrySimple
+    Entry <|-- GetRotation
+    Entry <|-- GetSpeed
+    Entry <|-- FunctionCall
+    Entry <|-- VariableRef
+    Entry <|-- VariableDef
+    Entry <|-- Expression
+    Assignement <|-- Entry
+    Deplacement <|-- Entry
+    SetSpeed <|-- Entry
+    Rotation <|-- Entry
+    SetRotation <|-- Entry
+    Condition <|-- Entry
+    Loop <|-- Entry
+    Deplacement <|-- UnitMeasure
+    SetSpeed <|-- UnitMeasure
+    UnitMeasure <|-- UnitMeasure_cm
+    UnitMeasure <|-- UnitMeasure_dm
+    UnitMeasure <|-- UnitMeasure_m
+    UnitMeasure <|-- UnitMeasure_mm
+
+```
+
+### Voici notre shèma tel qu'il a été pensé sur Eclipse Ecore :
+
 <img src="assets/roboML_class_diagram.svg">
 
 <ul>
@@ -121,6 +183,26 @@ cd .\langium\Robot_ML\
 .\compile.bat
 ```
 
+### Détails techniques :
+
+Les 4 déplacements possible ont été implémentés dans le compilateur  avec leur code Arduino C associé : 
+- `Forward` : Avancer  `Omni.setCarAdvance`
+- `Backward` : Reculer `Omni.setCarBackoff`
+- `SideLeft` : Aller à gauche `Omni.setCarLeft`
+- `SideRight` : Aller à droite `Omni.setCarRight`
+
+Les 2 rotations possibles ont été implémentés dans le compilateur avec leur code Arduino C associé :
+- `Clock` : Rotation horraire `Omni.setCarRotateRight`
+- `AntiClock` : Rotation antihorraire `Omni.setCarRotateLeft`
+
+Un delay et un stop sont ajoutés après chaque déplacement pour permettre au robot de s'arrêter et de ne pas enchaîner les déplacements trop rapidement.
+
+Les unités de mesure des distances sont gérées dans le compilateur :
+- `mm` : Millimètres ``
+- `cm` : Centimètres `* 10`
+- `dm` : Décimètres `* 100`
+- `m` : Mètres `* 1000`
+
 
 
 <h2>spécificités du langage ​🐱</h2>
@@ -135,7 +217,7 @@ cd .\langium\Robot_ML\
 
 Voici une liste d'exemples de codes RoboML illustrant les diverses fonctionnalités de notre langage. Ces exemples sont disponibles dans le dossier `files` du projet dans les fichiers `.rml` et `.ino` associés.
 
-<h4>Trajectoire triangulaire 📐:</h4>
+<h3>Trajectoire triangulaire 📐:</h3>
 
 ```
 let void triangle() {
@@ -165,9 +247,43 @@ let void main() {
     }
 }
 ```
+```arduino
+void triangle() {
+int sideLength = 100;
+int rotationAngle = 120;
+int count = 0;
+while (count < 3) {
+Omni.setCarRotateRight(rotationAngle/ 180 * 3.1415926545 * global_rotation);
+Omni.delayMS(3000);
+Omni.setCarStop();
+Omni.setCarAdvance(sideLength * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarAdvance(sideLength * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarAdvance(sideLength * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+count = count + 1;
+}
+}
+
+void main() {
+global_speed = 150;
+Omni.setCarRotateRight(60/ 180 * 3.1415926545 * global_rotation);
+Omni.delayMS(3000);
+Omni.setCarStop();
+int count = 0;
+while (count < 1) {
+count = count + 1;
+triangle()
+}
+}
+```
 <img src="assets/triangle.gif"> 
 
-<h4>Trajectoire de carré en marche arrière ​⏹️​​:</h4>
+<h3>Trajectoire de carré en marche arrière ​⏹️​​:</h3>
 
 ```
 let void square() {
@@ -197,9 +313,43 @@ let void main() {
     }
 }
 ```
+```arduino
+void square() {
+int sideLength = 60;
+int rotationAngle = 90;
+int count = 0;
+while (count < 4) {
+Omni.setCarRotateRight(rotationAngle/ 180 * 3.1415926545 * global_rotation);
+Omni.delayMS(3000);
+Omni.setCarStop();
+Omni.setCarBackoff(sideLength * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarBackoff(sideLength * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarBackoff(sideLength * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarBackoff(sideLength * 10 * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+count = count + 1;
+}
+}
+
+void main() {
+global_speed = 250;
+int count = 0;
+while (count < 1) {
+count = count + 1;
+square()
+}
+}
+```
 <img src="assets/square.gif"> 
 
-<h4>Trajectoire de spirale SideLeft en antihorraire ​🌀​​:</h4>
+<h3>Trajectoire de spirale SideLeft en antihorraire ​🌀​​:</h3>
 
 ```
 let void spiral() {
@@ -230,5 +380,46 @@ let void main() {
     }
 }
 ```
+```arduino
+void spiral() {
+int sideLength = 10;
+int rotationAngle = 20;
+int count = 0;
+while (count < 100) {
+Omni.setCarRotateLeft(rotationAngle/ 180 * 3.1415926545 * global_rotation);
+Omni.delayMS(3000);
+Omni.setCarStop();
+Omni.setCarLeft(sideLength * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarLeft(sideLength * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarLeft(sideLength * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+Omni.setCarLeft(sideLength * global_speed);
+Omni.delayMS(1000);
+Omni.setCarStop();
+count = count + 1;
+sideLength = sideLength + 2;
+}
+}
+
+void main() {
+global_speed = 250;
+int count = 0;
+while (count < 1) {
+count = count + 1;
+spiral()
+}
+}
+```
 <img src="assets/spiral.gif">
 
+<h2> Perspectives d'améliorations 📈</h2>
+
+- Ajout du capteur de distance
+- Ajout de la possibilité de lancer le compilateur depuis l'interface web
+- Validation des programmes RoboML
+- Interpréteur en ligne plus agréable visuellement

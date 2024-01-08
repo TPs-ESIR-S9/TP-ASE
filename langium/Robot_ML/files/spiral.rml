@@ -1,0 +1,27 @@
+let void spiral() {
+    var RMLInt sideLength = 10
+    var RMLInt rotationAngle = 20
+    var RMLInt count = 0
+
+    loop count < 100 {
+        AntiClock rotationAngle
+
+        SideLeft sideLength mm
+        SideLeft sideLength mm
+        SideLeft sideLength mm
+        SideLeft sideLength mm
+
+        count = count + 1
+        sideLength = sideLength + 2
+    }
+}
+
+let void main() {
+    setSpeed(250 dm)
+    var RMLInt count = 0
+
+    loop count < 1 {
+        count = count + 1
+        spiral()
+    }
+}

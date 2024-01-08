@@ -9,6 +9,8 @@
 </h4>
 
 > Le projet est accessible sur le site : [RoboML](https://cv.thomega.fr/) 
+>
+> Notre majeure est l'interpreteur et notre mineure est le compilateur.
 
 # Présentation du Projet 🤖
 
@@ -101,13 +103,37 @@ visitAssignement(node: Assignement) {
 
 <h2>Compilateur ⭐</h2>
 
-<h2>Exemples de codes & spécificités du langage ​🐱</h2>
+Le compilateur du langage RoboML permet de générer un code Arduino C à partir d'un programme RoboML.
+
+Pour ce second projet, nous utilisons aussi la classe `visitor.ts` pour parcourir les noeuds du programme et appeller la méthode de `compilerVisitor.ts` associée, qui va générer le code Arduino C et le concaténer dans une variable `codeProgram` qui sera retournée à la fin de l'interprétation.
+
+Le compileur ne s'utilise qu'en ligne de commande malheuresement, il prend en paramètre le chemin relatif vers le fichier RoboML à compiler depuis le dossier `Robot_ML` et génère un fichier `output.ino` dans le dossier `output` du projet.
+
+### Exemple de compilation :
+
+```bash
+cd .\langium\Robot_ML\
+node ./bin/cli.js compile .\files\test.rml
+```
+ou sinon le fichier `compile.bat` permet de compiler le fichier `test.rml` par défaut sur windows.
+```bash
+cd .\langium\Robot_ML\
+.\compile.bat
+```
+
+
+
+<h2>spécificités du langage ​🐱</h2>
 
 <ul>
    <li>Les fonctions doivent être déclarées avant la fonction `main()`.</li>
    <li>Une variable doit être déclarée pour pouvoir être utilisée</li>
    <li>La logique du langage est "python-like", c à d toutes les variables ont un scope global par défaut.</li>
 </ul>
+
+<h2>Exemples de codes .rml : Interpretation & Compilation ​📝</h2>
+
+Voici une liste d'exemples de codes RoboML illustrant les diverses fonctionnalités de notre langage. Ces exemples sont disponibles dans le dossier `files` du projet dans les fichiers `.rml` et `.ino` associés.
 
 <h4>Trajectoire triangulaire 📐:</h4>
 
@@ -173,5 +199,36 @@ let void main() {
 ```
 <img src="assets/square.gif"> 
 
+<h4>Trajectoire de spirale SideLeft en antihorraire ​🌀​​:</h4>
 
+```
+let void spiral() {
+    var RMLInt sideLength = 10
+    var RMLInt rotationAngle = 20
+    var RMLInt count = 0
+
+    loop count < 100 {
+        AntiClock rotationAngle
+
+        SideLeft sideLength mm
+        SideLeft sideLength mm
+        SideLeft sideLength mm
+        SideLeft sideLength mm
+
+        count = count + 1
+        sideLength = sideLength + 2
+    }
+}
+
+let void main() {
+    setSpeed(250 dm)
+    var RMLInt count = 0
+
+    loop count < 1 {
+        count = count + 1
+        spiral()
+    }
+}
+```
+<img src="assets/spiral.gif">
 

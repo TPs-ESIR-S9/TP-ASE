@@ -1,0 +1,26 @@
+let void triangle() {
+    var RMLInt sideLength = 100
+    var RMLInt rotationAngle = 120
+    var RMLInt count = 0
+
+    loop count < 3 {
+        Clock rotationAngle
+
+        Forward sideLength cm
+        Forward sideLength cm
+        Forward sideLength cm
+
+        count = count + 1
+    }
+}
+
+let void main() {
+    setSpeed(150 dm)
+    Clock 60
+    var RMLInt count = 0
+
+    loop count < 1 {
+        count = count + 1
+        triangle()
+    }
+}
